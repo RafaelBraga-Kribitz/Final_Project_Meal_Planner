@@ -1,5 +1,12 @@
 # Project 2 - Meal Planner (Symfony/MySQL)
 
+@Marina Stanković https://fswd23.slack.com/team/U07TLJL7HLY - Backend
+@Philipp https://fswd23.slack.com/team/U07SXQMC1QA Backend,
+@William https://fswd23.slack.com/team/U07JYM3PT7W Frontend,
+@Yosyp Malanka https://fswd23.slack.com/team/U07K8SDHBC1 Frontend,
+@rafael Braga-Kribitz https://fswd23.slack.com/team/U07K8SDHBC1 Frontend,
+
+
 **Timeframe:** 2 Weeks  
 **Team Members:**  
 - **Back-End (2):** Person A, Person B  
