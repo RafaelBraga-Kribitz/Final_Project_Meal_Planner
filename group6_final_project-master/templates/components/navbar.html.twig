@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ path('app_static') }}">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+          {% else %}
+          <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+          <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+          {% endif %}
+          {% if is_granted("ROLE_USER") %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Test</a>
+                </li>
+                {% endif %}
+
+                {% if is_granted("ROLE_ADMIN") %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Recipe Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">User Dashboard</a>
+              </li>
+                {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>

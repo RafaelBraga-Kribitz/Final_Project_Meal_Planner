@@ -76,19 +76,19 @@
   - [x] **Create all initial entities upfront** (User, Recipe, MealPlan, optionally ShoppingList, Rating) to define the database schema early on.  
   - [x] Run `doctrine:migrations` to generate and apply initial DB schema migrations.  
   - [x] Push the initial migrations and entities to the repo so the entire team can pull the consistent DB structure.
-- [ ] **User Entity & Authentication:**  
+- [x] **User Entity & Authentication:**  
   - [x] Complete `User` entity (id, username, password, role, etc.).  
-  - [ ] Set up a default admin user in data fixtures.  
-  - [ ] Implement authentication (login/register) using Symfony Security.  
-  - [ ] Verify users can register as normal users only.
+  - [x] Set up a default admin user in data fixtures. - Testing: admin@mail.com password: 123123  
+  - [x] Implement authentication (login/register) using Symfony Security.  
+  - [x] Verify users can register as normal users only.
 
 - [ ] **Role Management:**  
-  - [ ] Implement role-based security (ADMIN vs USER).  
+  - [ ] Implement role-based security (ADMIN vs USER). - Partial
   - [ ] Protect admin routes with role checks.
 
 **Week 2 (Days 8-14):**  
 - [ ] **Recipe Management & Approval Workflow:**  
-  - [ ] Implement CRUD controllers for `Recipe` (Admin: all, User: their own).  
+  - [ ] Implement CRUD controllers for `Recipe` (Admin: all, User: their own). - For Admin
   - [ ] Add `approved` boolean field to `Recipe`.  
   - [ ] Admin-only route to approve pending recipes.  
   - [ ] Notification system (e.g., "pending recipes" counter for admin dashboard).

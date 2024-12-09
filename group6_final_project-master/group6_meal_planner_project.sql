@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 02:16 PM
+-- Generation Time: Dec 09, 2024 at 09:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -122,6 +122,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`) VALUES
+(1, 'admin@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fmTS7GRAJQWOwWENpN6ssexNcfelsMjC9gznUqKF0GJDRChOKOTlG', 'Admin', 'Test', NULL, 660123456);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -195,7 +202,7 @@ ALTER TABLE `recipe`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
