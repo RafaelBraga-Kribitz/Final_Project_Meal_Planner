@@ -1,16 +1,14 @@
 # Project 2 - Meal Planner (Symfony/MySQL)
 
-@Marina Stanković https://fswd23.slack.com/team/U07TLJL7HLY - Backend
-@Philipp https://fswd23.slack.com/team/U07SXQMC1QA Backend,
-@William https://fswd23.slack.com/team/U07JYM3PT7W Frontend,
-@Yosyp Malanka https://fswd23.slack.com/team/U07K8SDHBC1 Frontend,
-@rafael Braga-Kribitz https://fswd23.slack.com/team/U07K8SDHBC1 Frontend,
-
-
 **Timeframe:** 2 Weeks  
 **Team Members:**  
-- **Back-End (2):** Person A, Person B  
-- **Front-End (3):** Person C, Person D, Person E
+- **Back-End (2):**  
+  - Person A ([Marina Stanković](https://fswd23.slack.com/team/U07TLJL7HLY))  
+  - Person B ([Philipp](https://fswd23.slack.com/team/U07SXQMC1QA))  
+- **Front-End (3):**  
+  - Person C ([William](https://fswd23.slack.com/team/U07JYM3PT7W))  
+  - Person D ([Yosyp Malanka](https://fswd23.slack.com/team/U07K8SDHBC1))  
+  - Person E ([Rafael Braga-Kribitz](https://fswd23.slack.com/team/U07K8SDHBC1))
 
 **Goal:** Build a Meal Planner web application that allows users to create, manage, and schedule meals, view other users’ recipes, and handle an admin panel for global CRUD operations and approvals. The final product should be fully functional, clean, and straightforward.
 
@@ -44,11 +42,11 @@
 
 1. **Set Up Environment (Week 1):**  
    - Configure Symfony project.  
-   - Setup MySQL database, schema, and initial admin user.  
-   - Create essential entities: User, Recipe, MealPlan, (optional: ShoppingList, Ratings).
+   - **One BE Dev (Person A) sets up the database schema and all entities from the start.**  
+   - Run initial `doctrine:migrations` so everyone can pull and have the same DB structure.
 
 2. **Back-End Core Logic (Week 1 & Week 2):**  
-   - Implement CRUD operations for Users, Recipes, and Meal Plans.  
+   - After DB structure is in place, implement CRUD operations for Users, Recipes, and Meal Plans.  
    - Implement filtering (by type, calories) and approval workflows.  
    - Ensure role-based access control.
 
@@ -68,60 +66,59 @@
 
 ### Back-End Developers
 
-#### Person A (Back-End)
+#### Person A (Marina Stanković - Back-End)
 
 **Week 1 (Days 1-7):**  
-- [ ] **Environment Setup:**  
-  - [ ] Install and configure Symfony skeleton project.  
-  - [ ] Connect project to MySQL database.  
+- [ ] **Database & Environment Setup:**  
+  - [ ] Install and configure the Symfony skeleton project.  
+  - [ ] Connect the project to the MySQL database.  
   - [ ] Ensure `.env` configurations for local development are correct.  
-  - [ ] Create initial database schema and run `doctrine:migrations`.  
+  - [ ] **Create all initial entities upfront** (User, Recipe, MealPlan, optionally ShoppingList, Rating) to define the database schema early on.  
+  - [ ] Run `doctrine:migrations` to generate and apply initial DB schema migrations.  
+  - [ ] Push the initial migrations and entities to the repo so the entire team can pull the consistent DB structure.
 - [ ] **User Entity & Authentication:**  
-  - [ ] Create `User` entity with fields (id, username, password, role, etc.).  
+  - [ ] Complete `User` entity (id, username, password, role, etc.).  
   - [ ] Set up a default admin user in data fixtures.  
   - [ ] Implement authentication (login/register) using Symfony Security.  
-  - [ ] Verify users can register as normal users only.  
+  - [ ] Verify users can register as normal users only.
+
 - [ ] **Role Management:**  
   - [ ] Implement role-based security (ADMIN vs USER).  
   - [ ] Protect admin routes with role checks.
 
 **Week 2 (Days 8-14):**  
-- [ ] **Recipe Entity & Basic CRUD:**  
-  - [ ] Create `Recipe` entity with fields (title, ingredients, description, time, calories, type).  
-  - [ ] Implement CRUD controllers for `Recipe` (Admin can manage all, User can manage their own).  
-  - [ ] Implement basic validation (e.g., empty fields, numeric calories).  
-- [ ] **Approval Workflow:**  
+- [ ] **Recipe Management & Approval Workflow:**  
+  - [ ] Implement CRUD controllers for `Recipe` (Admin: all, User: their own).  
   - [ ] Add `approved` boolean field to `Recipe`.  
   - [ ] Admin-only route to approve pending recipes.  
-  - [ ] Notification system (e.g., a simple "pending recipes" counter for admin dashboard).
-
-- [ ] **Testing & Bug Fixes:**  
-  - [ ] Test user registration, login, and recipe creation/deletion.  
+  - [ ] Notification system (e.g., "pending recipes" counter for admin dashboard).
+- [ ] **Validation & Testing:**  
+  - [ ] Implement field validations (e.g., empty fields, numeric calories).  
+  - [ ] Test user registration, login, and recipe creation/deletion.
   - [ ] Fix any DB or logic issues found.
 
-#### Person B (Back-End)
+#### Person B (Philipp - Back-End)
+
+**After pulling initial schema from Person A:**  
 
 **Week 1 (Days 1-7):**  
-- [ ] **Meal Planner Entity & CRUD:**  
-  - [ ] Create `MealPlan` entity (id, user_id, recipe_id, datetime).  
-  - [ ] Implement CRUD for MealPlans (User-specific).  
+- [ ] **Meal Planner Logic:**  
+  - [ ] Implement CRUD for `MealPlan` entity (User-specific logic).  
   - [ ] Ensure user can pick recipes from all approved recipes.  
 - [ ] **Filtering & Searching:**  
-  - [ ] Implement filtering by dietary type, calorie range.  
+  - [ ] Implement filtering by dietary type and calorie range.  
   - [ ] Create repository methods for complex queries (e.g., `findByCaloriesRange`).
 
 **Week 2 (Days 8-14):**  
-- [ ] **Optional: Rating & Allergens:**  
-  - [ ] If time allows, add `Rating` entity and link to `Recipe`.  
-  - [ ] Add `allergens`, `nutrients` columns to `Recipe` (or related entities).  
-  - [ ] Implement logic to display average rating, and filter by allergens if requested.
+- [ ] **Optional Features (Ratings, Allergens, Nutrients):**  
+  - [ ] If time allows, add `Rating` entity linked to `Recipe`.  
+  - [ ] Add `allergens`, `nutrients` fields to `Recipe`.  
+  - [ ] Implement logic for displaying average rating and filtering by allergens.
   
 - [ ] **Shopping List (Nice to have):**  
-  - [ ] Create `ShoppingList` entity with fields (id, user_id, created_at).  
-  - [ ] Associate selected recipe ingredients with a `ShoppingListItem` entity.  
-  - [ ] CRUD for Shopping Lists (create list from selected recipes, finalize it).  
-  - [ ] Ensure lists can be revisited.
-
+  - [ ] Implement `ShoppingList` and `ShoppingListItem` entities.  
+  - [ ] CRUD for Shopping Lists (create from selected recipes, finalize, revisit).
+  
 - [ ] **Testing & Optimization:**  
   - [ ] Test Meal Planner and Filtering functionalities.  
   - [ ] Optimize queries if needed.  
@@ -131,7 +128,7 @@
 
 ### Front-End Developers
 
-#### Person C (Front-End)
+#### Person C (William - Front-End)
 
 **Week 1 (Days 1-7):**  
 - [ ] **Basic Layout & Navigation:**  
@@ -140,74 +137,74 @@
 - [ ] **Authentication Pages:**  
   - [ ] Create login page (username/password form).  
   - [ ] Create registration page with basic validations.  
-  - [ ] Integrate with back-end endpoints (fetch/axios or similar).  
+  - [ ] Integrate with back-end endpoints (fetch/axios).  
 - [ ] **Responsive Design Setup:**  
   - [ ] Ensure layout is mobile-friendly.  
   - [ ] Test a few breakpoints to confirm responsiveness.
 
 **Week 2 (Days 8-14):**  
 - [ ] **User Dashboard & Profile:**  
-  - [ ] Create a simple user dashboard (links to manage recipes, meal planner).  
-  - [ ] Optionally, add a profile page where user can view/update their info.  
+  - [ ] User dashboard linking to manage recipes, meal planner.  
+  - [ ] Optional profile page for viewing/updating user info.
 - [ ] **Forms Validation & UX Enhancements:**  
   - [ ] Add inline form validation messages.  
   - [ ] Ensure error/success notifications appear clearly.
 
 - [ ] **Testing & Polish:**  
   - [ ] Test login/register flows thoroughly.  
-  - [ ] Fix any styling/layout issues reported by the team.
+  - [ ] Fix styling/layout issues.
 
-#### Person D (Front-End)
+#### Person D (Yosyp Malanka - Front-End)
 
 **Week 1 (Days 1-7):**  
 - [ ] **Recipes Page (List & Details):**  
   - [ ] Create a page to display all approved recipes.  
   - [ ] Include search/filter options (by type, calories).  
-  - [ ] Clicking on a recipe shows details (ingredients, steps, etc.).
+  - [ ] On click, show recipe details (ingredients, steps, etc.).
 - [ ] **User’s Own Recipes (CRUD):**  
-  - [ ] Create forms to add/edit/delete user’s own recipes.  
+  - [ ] Forms to add/edit/delete user’s own recipes.  
   - [ ] Integrate with back-end recipe endpoints.  
-  - [ ] Display clear messages after creation/update/deletion.
+  - [ ] Display messages after create/update/delete actions.
 
 **Week 2 (Days 8-14):**  
 - [ ] **Meal Planner Interface:**  
-  - [ ] Create a calendar or simple list interface to view assigned meals by day.  
-  - [ ] Add a form to pick a recipe and time, then add it to the planner.  
-  - [ ] Integrate filtering to quickly find desired recipes.
-- [ ] **Admin Panel UI (if accessible to admin role):**  
-  - [ ] Special page for admin to approve recipes.  
-  - [ ] View pending recipes and click “approve” button.  
-  - [ ] Simple user management page (block/unblock).
+  - [ ] Calendar or list interface to view assigned meals by day.  
+  - [ ] Form to pick a recipe and time, add to planner.  
+  - [ ] Integrate filtering to find desired recipes quickly.
+- [ ] **Admin Panel UI (if user is admin):**  
+  - [ ] Page for admin to approve recipes.  
+  - [ ] View pending recipes and click “approve”.  
+  - [ ] Basic user management (block/unblock).
 
 - [ ] **Testing & Polish:**  
   - [ ] Test recipe and meal planner functionalities.  
-  - [ ] Adjust UI elements based on feedback.
+  - [ ] Adjust UI based on feedback.
 
-#### Person E (Front-End)
+#### Person E (Rafael Braga-Kribitz - Front-End)
 
 **Week 1 (Days 1-7):**  
 - [ ] **Global Styling & Theming:**  
   - [ ] Define a simple color palette and font choices.  
   - [ ] Create reusable CSS classes/components (buttons, inputs, cards).  
-  - [ ] Apply consistent styling to all pages developed by Person C and D.
+  - [ ] Apply consistent styling to pages by Person C and D.
 - [ ] **Responsive Grid & Components:**  
-  - [ ] Ensure recipe listing and meal planner layouts work well in multiple screen sizes.  
-  - [ ] Create a responsive grid for recipe thumbnails.
+  - [ ] Ensure recipe listing and meal planner layouts scale well.  
+  - [ ] Create responsive grids for recipe thumbnails.
 
 **Week 2 (Days 8-14):**  
 - [ ] **Enhanced UI Elements:**  
   - [ ] Add icons or small illustrations where appropriate.  
-  - [ ] Implement a simple filtering panel UI with toggles or dropdowns.  
-  - [ ] Provide visual feedback (spinners, loading indicators).
+  - [ ] Implement a simple filtering panel (toggles, dropdowns).  
+  - [ ] Show visual feedback (spinners, loading indicators).
 - [ ] **Nice-to-Have Features UI:**  
-  - [ ] UI elements for rating recipes (stars, numeric rating).  
-  - [ ] Allergens/Nutrient badges.  
-  - [ ] Shopping List page and ingredient list layout.
+  - [ ] UI for rating recipes (stars, numeric).  
+  - [ ] Allergens/Nutrient badges display.  
+  - [ ] Shopping List page layout.
 
 - [ ] **Final Polish & Consistency Check:**  
-  - [ ] Check all pages for consistent typography, spacing, and color usage.  
-  - [ ] Ensure accessibility basics (alt text on images, proper form labels).  
-  - [ ] Gather final feedback and make minor adjustments.
+  - [ ] Check typography, spacing, colors consistency.  
+  - [ ] Ensure accessibility basics (alt text, labels).  
+  - [ ] Minor UI adjustments after feedback.
 
 ---
 
@@ -215,11 +212,11 @@
 
 **Week 2 (Last 2 Days):**  
 - [ ] **Integration Testing:**  
-  - [ ] Test end-to-end flows: user registration -> login -> create recipe -> plan meal -> admin approval -> filtering.  
-  - [ ] Check error handling: invalid logins, missing fields in forms.
+  - [ ] Test user registration -> login -> create recipe -> plan meal -> admin approval -> filtering end-to-end.  
+  - [ ] Check error handling for invalid logins, missing fields.
 - [ ] **Documentation & Presentation:**  
-  - [ ] Write a short README explaining how to run the project.  
-  - [ ] Prepare a quick demonstration script for course conclusion presentation.  
+  - [ ] Write README with setup/running instructions.  
+  - [ ] Prepare a short demo script.  
   - [ ] Ensure code comments and commit messages are clear.
 
-**The project should now be ready for submission.**
+**Project Ready for Submission.**
