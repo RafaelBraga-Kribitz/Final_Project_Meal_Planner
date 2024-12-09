@@ -180,16 +180,22 @@
   - [ ] Test recipe and meal planner functionalities.  
   - [ ] Adjust UI based on feedback.
 
-#### Person E (Rafael Braga-Kribitz - Front-End)
+#### Person E (Rafael Braga-Kribitz - Front-End, UI/UX Lead)
 
 **Week 1 (Days 1-7):**  
+- [ ] **UX/UI Planning & Design System:**
+  - [ ] Create and share initial wireframes/mockups for key pages
+  - [ ] Design and document the component system (buttons, forms, cards, etc.)
+  - [ ] Create a UI style guide (colors, typography, spacing rules)
+  - [ ] Get team approval on design direction
 - [ ] **Global Styling & Theming:**  
-  - [ ] Define a simple color palette and font choices.  
-  - [ ] Create reusable CSS classes/components (buttons, inputs, cards).  
-  - [ ] Apply consistent styling to pages by Person C and D.
+  - [ ] Define and implement the approved color palette and typography
+  - [ ] Create reusable CSS classes/components based on the style guide
+  - [ ] Build a component library for other front-end devs to use
 - [ ] **Responsive Grid & Components:**  
-  - [ ] Ensure recipe listing and meal planner layouts scale well.  
-  - [ ] Create responsive grids for recipe thumbnails.
+  - [ ] Design and implement responsive layouts for all major views
+  - [ ] Create responsive grids for recipe thumbnails
+  - [ ] Document responsive breakpoints for the team
 
 **Week 2 (Days 8-14):**  
 - [ ] **Enhanced UI Elements:**  
