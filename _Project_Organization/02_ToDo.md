@@ -69,15 +69,15 @@
 #### Person A (Marina Stanković - Back-End)
 
 **Week 1 (Days 1-7):**  
-- [ ] **Database & Environment Setup:**  
-  - [ ] Install and configure the Symfony skeleton project.  
-  - [ ] Connect the project to the MySQL database.  
-  - [ ] Ensure `.env` configurations for local development are correct.  
-  - [ ] **Create all initial entities upfront** (User, Recipe, MealPlan, optionally ShoppingList, Rating) to define the database schema early on.  
-  - [ ] Run `doctrine:migrations` to generate and apply initial DB schema migrations.  
-  - [ ] Push the initial migrations and entities to the repo so the entire team can pull the consistent DB structure.
+- [x] **Database & Environment Setup:**  
+  - [x] Install and configure the Symfony skeleton project.  
+  - [x] Connect the project to the MySQL database.  
+  - [x] Ensure `.env` configurations for local development are correct.  
+  - [x] **Create all initial entities upfront** (User, Recipe, MealPlan, optionally ShoppingList, Rating) to define the database schema early on.  
+  - [x] Run `doctrine:migrations` to generate and apply initial DB schema migrations.  
+  - [x] Push the initial migrations and entities to the repo so the entire team can pull the consistent DB structure.
 - [ ] **User Entity & Authentication:**  
-  - [ ] Complete `User` entity (id, username, password, role, etc.).  
+  - [x] Complete `User` entity (id, username, password, role, etc.).  
   - [ ] Set up a default admin user in data fixtures.  
   - [ ] Implement authentication (login/register) using Symfony Security.  
   - [ ] Verify users can register as normal users only.
