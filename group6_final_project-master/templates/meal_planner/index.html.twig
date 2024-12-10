@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>meals chosen</th>
+
                 <th>Chosen_date</th>
                 <th>Update_date</th>
                 <th>actions</th>
@@ -20,11 +22,20 @@
                 <td>{{ meal_planner.id }}</td>
                 <td>{{ meal_planner.chosenDate ? meal_planner.chosenDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ meal_planner.updateDate ? meal_planner.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{% for item in  meal_planner.getMealChosen %}
+                    <p>{{ item.getName }}</p>
+                    {% else %}
+                    <p>No meals planned</p>
+               {% endfor %} 
+                 </td>
+
                 <td>
                     <a href="{{ path('app_meal_planner_show', {'id': meal_planner.id}) }}">show</a>
                     <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}">edit</a>
                 </td>
             </tr>
+        
+           
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>

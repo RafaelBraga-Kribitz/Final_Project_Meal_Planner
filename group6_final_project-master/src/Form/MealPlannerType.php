@@ -23,13 +23,15 @@ class MealPlannerType extends AbstractType
             ])
             ->add('meal_chosen', EntityType::class, [
                 'class' => Recipe::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
             ])
+           
         ;
     }
 
