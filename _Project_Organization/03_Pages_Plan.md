@@ -1,106 +1,61 @@
 # Pages & Sections Breakdown
 
 ## Public Pages
-1. **Landing Page**
+1. **Landing Page** (currently at /static)
    - Welcome message
-   - Features overview
-   - Call-to-action (Register/Login)
    - Navigation menu
+   - Call-to-action (Register/Login)
 
-2. **Authentication Pages**
+2. **Authentication Pages** (already implemented in security system)
    - Login form
    - Registration form
-   - Password recovery (if implemented)
 
 ## User Dashboard & Profile
-3. **User Dashboard**
-   - Quick stats (total recipes, planned meals)
-   - Recent activity
+3. **User Dashboard** (currently at /home)
    - Quick actions menu
-   - Notifications area
-
-4. **User Profile**
-   - Personal information
-   - Dietary preferences
-   - Account settings
+   - Navigation to recipes
 
 ## Recipe Management
-5. **Recipe Listing Page**
-   - Grid/List view toggle
-   - Search bar
-   - Filter panel
-     - Dietary type
+4. **Recipe Listing Page** (/recipe)
+   - List view of recipes
+   - Basic filtering
+     - Dietary type (vegetarian, vegan)
      - Calorie range
-     - Cooking time
-   - Sorting options
-   - Pagination
+   - Basic search
 
-6. **Recipe Detail Page**
-   - Recipe images
+5. **Recipe Detail Page** (/recipe/{id})
+   - Recipe title & description
    - Ingredients list
    - Cooking instructions
-   - Nutritional information
    - Preparation time
-   - Serving size
-   - Rating system (if implemented)
-   - Share functionality
+   - Calories
+   - Dietary preferences (vegan, vegetarian)
 
-7. **Recipe Creation/Edit Page**
+6. **Recipe Creation/Edit Page** (/recipe/new, /recipe/{id}/edit)
    - Recipe form
      - Title & description
-     - Ingredients manager
-     - Steps editor
-     - Image upload
-     - Metadata (time, servings, etc.)
-     - Categories & tags
-
-## Meal Planner
-8. **Meal Planning Dashboard**
-   - Calendar view (daily/weekly toggle)
-   - Meal slots (breakfast, lunch, dinner)
-   - Quick recipe selector
-   - Dietary restrictions indicator
-
-9. **Meal Planning Interface**
-   - Recipe search & filter
-   - Drag-and-drop interface
-   - Time slot assignment
-   - Meal plan summary
+     - Ingredients list
+     - Preparation instructions
+     - Cooking time
+     - Calories
+     - Dietary preferences
 
 ## Admin Section
-10. **Admin Dashboard**
-    - System overview
-    - Pending approvals counter
-    - Quick actions
-    - User statistics
-
-11. **Recipe Management (Admin)**
-    - All recipes list
-    - Approval workflow
-    - Bulk actions
-    - Recipe moderation tools
-
-12. **User Management**
-    - Users list
-    - Block/unblock controls
-    - Role management
-    - User activity logs
-
-## Optional Features
-13. **Shopping List** (if implemented)
-    - Generated list view
-    - Manual item addition
-    - List management
-    - Save/share options
-
-14. **Nutrition Tracking** (if implemented)
-    - Nutritional overview
-    - Daily/weekly summaries
-    - Goals and progress
+7. **User Management** (/user)
+   - Users list
+   - Block/unblock controls
+   - Basic user CRUD operations
 
 ## System Pages
-15. **Error Pages**
-    - 404 Not Found
-    - 403 Forbidden
-    - 500 Server Error
-    - Maintenance page
+8. **Error Pages**
+   - 404 Not Found
+   - 403 Forbidden
+   - 500 Server Error
+
+Notes:
+- Removed Meal Planner section as it's not yet implemented
+- Removed Shopping List as it's in "Nice to Have" features
+- Removed Nutrition Tracking as it's not in scope
+- Simplified Recipe Management to match current implementation
+- Removed Rating system as it's in "Nice to Have" features
+- Removed Profile management as it's not yet implemented
