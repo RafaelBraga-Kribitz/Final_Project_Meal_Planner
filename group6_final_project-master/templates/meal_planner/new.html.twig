@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MealPlanner{% endblock %}
+
+{% block body %}
+    <h1>Create new MealPlanner</h1>
+
+    {{ include('meal_planner/_form.html.twig') }}
+
+    <a href="{{ path('app_meal_planner_index') }}">back to list</a>
+{% endblock %}

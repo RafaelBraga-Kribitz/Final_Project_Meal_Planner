@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MealPlanner{% endblock %}
+
+{% block body %}
+    <h1>Edit MealPlanner</h1>
+
+    {{ include('meal_planner/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_meal_planner_index') }}">back to list</a>
+
+    {{ include('meal_planner/_delete_form.html.twig') }}
+{% endblock %}

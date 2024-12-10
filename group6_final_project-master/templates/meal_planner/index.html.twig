@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MealPlanner index{% endblock %}
+
+{% block body %}
+    <h1>MealPlanner index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Chosen_date</th>
+                <th>Update_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meal_planner in meal_planners %}
+            <tr>
+                <td>{{ meal_planner.id }}</td>
+                <td>{{ meal_planner.chosenDate ? meal_planner.chosenDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ meal_planner.updateDate ? meal_planner.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_meal_planner_show', {'id': meal_planner.id}) }}">show</a>
+                    <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_meal_planner_new') }}">Create new</a>
+{% endblock %}
