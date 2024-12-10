@@ -83,12 +83,12 @@
   - [x] Verify users can register as normal users only.
 
 - [ ] **Role Management:**  
-  - [ ] Implement role-based security (ADMIN vs USER). - Partial
+  - [x] Implement role-based security (ADMIN vs USER).
   - [ ] Protect admin routes with role checks.
 
 **Week 2 (Days 8-14):**  
 - [ ] **Recipe Management & Approval Workflow:**  
-  - [ ] Implement CRUD controllers for `Recipe` (Admin: all, User: their own). - For Admin
+  - [x] Implement CRUD controllers for `Recipe` (Admin: all, User: their own).
   - [ ] Add `approved` boolean field to `Recipe`.  
   - [ ] Admin-only route to approve pending recipes.  
   - [ ] Notification system (e.g., "pending recipes" counter for admin dashboard).
