@@ -185,12 +185,11 @@
 **Week 1 (Days 1-7):**  
 - [ ] **UX/UI Planning & Design System:**
   - [ ] Create and share initial wireframes/mockups for key pages
-  - [ ] Design and document the component system (buttons, forms, cards, etc.)
+  - [x] Design and document the component system (buttons, forms, cards, etc.)
   - [ ] Create a UI style guide (colors, typography, spacing rules)
-  - [ ] Get team approval on design direction
 - [ ] **Global Styling & Theming:**  
-  - [ ] Define and implement the approved color palette and typography
-  - [ ] Create reusable CSS classes/components based on the style guide
+  - [x] Define and implement the color palette and typography
+  - [x] Create reusable CSS classes/components based on the style guide
   - [ ] Build a component library for other front-end devs to use
 - [ ] **Responsive Grid & Components:**  
   - [ ] Design and implement responsive layouts for all major views
