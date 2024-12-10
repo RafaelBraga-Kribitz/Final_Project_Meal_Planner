@@ -68,7 +68,7 @@ Before you start, make sure you have:
 ### **Installation**
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-team/group6_final_project.git
+   git clone https://github.com/RafaelBraga-Kribitz/Final_Project_Meal_Planner.git
    cd group6_final_project-master
    ```
 
