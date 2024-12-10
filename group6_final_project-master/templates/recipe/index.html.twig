@@ -7,6 +7,7 @@
 
     <table class="table">
         <thead>
+            
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -21,6 +22,7 @@
                 <th>Date_added</th>
                 <th>Date_updated</th>
                 <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -36,12 +38,31 @@
                 <td>{{ recipe.calories }}</td>
                 <td>{{ recipe.link }}</td>
                 <td>{{ recipe.type }}</td>
+                
+                {% if is_granted("ROLE_ADMIN") %}
                 <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
                     <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
                 </td>
+                {% elseif userId == recipe.author.id %}
+                <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
+                    <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
+                </td>
+                {% else %}
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
+                </td>
+                {% endif %}
+                
+                
+                
             </tr>
         {% else %}
             <tr>

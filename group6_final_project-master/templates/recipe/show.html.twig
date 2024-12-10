@@ -47,20 +47,24 @@
                 <th>Type</th>
                 <td>{{ recipe.type }}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Date_added</th>
                 <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Date_updated</th>
                 <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+            </tr> #}
         </tbody>
     </table>
 
     <a href="{{ path('app_recipe_index') }}">back to list</a>
-
+    {% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
-
     {{ include('recipe/_delete_form.html.twig') }}
+    {% elseif userId == recipe.author.id %}
+    <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
+    {{ include('recipe/_delete_form.html.twig') }}
+    {% endif %}
+
 {% endblock %}

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{ path('app_static') }}">Navbar</a>
+      <a class="navbar-brand" href="{{ path('app_home') }}">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,7 +14,7 @@
           {% endif %}
           {% if is_granted("ROLE_USER") %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Test</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Test</a>
                 </li>
                 {% endif %}
 

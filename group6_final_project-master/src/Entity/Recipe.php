@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Recipe
 {
     #[ORM\Id]
@@ -46,6 +47,16 @@ class Recipe
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $date_updated = null;
+
+    #[ORM\PrePersist]
+    public function updateDateAdded():void {
+        $this->date_added = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function updateDateUpdated():void {
+        $this->date_updated = new \DateTimeImmutable();
+    }
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]

@@ -31,16 +31,16 @@ class RecipeType extends AbstractType
                     'Meat' => 'Meat'
                 ]
             ])
-            ->add('date_added', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('date_updated', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
+            #->add('date_added', null, [
+            #    'widget' => 'single_text',
+            #])
+            #->add('date_updated', null, [
+            #    'widget' => 'single_text',
+            #])
+            // ->add('author', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'id',
+            // ])
         ;
     }
 
