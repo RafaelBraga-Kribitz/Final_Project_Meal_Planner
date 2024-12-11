@@ -25,8 +25,11 @@
                 {% endif %}
           {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Test</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Recipes</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ path('app_meal_planner_index') }}">Meal Planner</a>
+              </li>
                 {% endif %}                
         </div>
       </div>
