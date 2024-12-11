@@ -18,19 +18,14 @@ class MealPlannerType extends AbstractType
             ->add('chosen_date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('update_date', null, [
-                'widget' => 'single_text',
-            ])
+          
             ->add('meal_chosen', EntityType::class, [
                 'class' => Recipe::class,
                 'choice_label' => 'name', //display name instead of id 
                 'multiple' => true,
                 'required' => false,
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
+          
            
         ;
     }

@@ -8,9 +8,11 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ meal_planner.id }}</td>
-            </tr>
+                <th>Meals</th>
+                <td>{% for item in  meal_planner.getMealChosen %}
+                    <p>{{ item.getName }}</p> {# get the name from recipe (manytomany) array#}
+               {% endfor %}             
+            </td>
             <tr>
                 <th>Chosen_date</th>
                 <td>{{ meal_planner.chosenDate ? meal_planner.chosenDate|date('Y-m-d H:i:s') : '' }}</td>
