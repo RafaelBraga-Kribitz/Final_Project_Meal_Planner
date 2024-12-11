@@ -18,9 +18,6 @@ final class MealPlannerController extends AbstractController
     public function index(MealPlannerRepository $mealPlannerRepository): Response
     {
         $user = $this->getUser();
-
-       
-
         return $this->render('meal_planner/index.html.twig', [
             'meal_planners' => $mealPlannerRepository->findBy(['user' => $user]),
             'userId'=>$user->getId(),
