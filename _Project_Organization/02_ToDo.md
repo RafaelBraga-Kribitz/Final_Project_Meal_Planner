@@ -84,13 +84,13 @@
 
 - [ ] **Role Management:**  
   - [x] Implement role-based security (ADMIN vs USER).
-  - [ ] Protect admin routes with role checks.
+  - [x] Protect admin routes with role checks.
 
 **Week 2 (Days 8-14):**  
 - [ ] **Recipe Management & Approval Workflow:**  
   - [x] Implement CRUD controllers for `Recipe` (Admin: all, User: their own).
-  - [ ] Add `approved` boolean field to `Recipe`.  
-  - [ ] Admin-only route to approve pending recipes.  
+  - [x] Add `approved` boolean field to `Recipe`.  
+  - [x] Admin-only route to approve pending recipes.  
   - [ ] Notification system (e.g., "pending recipes" counter for admin dashboard).
 - [ ] **Validation & Testing:**  
   - [ ] Implement field validations (e.g., empty fields, numeric calories).  
