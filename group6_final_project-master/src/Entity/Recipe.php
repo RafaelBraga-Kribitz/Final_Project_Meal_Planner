@@ -62,6 +62,9 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +210,18 @@ class Recipe
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

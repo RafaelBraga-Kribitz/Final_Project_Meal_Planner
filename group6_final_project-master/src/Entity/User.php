@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $phone_number = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $blocked = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,6 +167,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhoneNumber(?int $phone_number): static
     {
         $this->phone_number = $phone_number;
+
+        return $this;
+    }
+
+    public function isBlocked(): ?bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(?bool $blocked): static
+    {
+        $this->blocked = $blocked;
 
         return $this;
     }

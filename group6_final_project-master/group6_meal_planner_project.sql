@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 09:40 PM
+-- Generation Time: Dec 11, 2024 at 02:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -22,25 +22,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `group6_meal_planner_project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `group6_meal_planner_project`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `doctrine_migration_versions`
---
-
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20241209131419', '2024-12-09 14:15:19', 254);
 
 -- --------------------------------------------------------
 
@@ -101,8 +82,26 @@ CREATE TABLE `recipe` (
   `link` varchar(255) DEFAULT NULL,
   `type` varchar(50) NOT NULL,
   `date_added` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `date_updated` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `date_updated` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `recipe`
+--
+
+INSERT INTO `recipe` (`id`, `author_id`, `name`, `ingredients`, `description`, `photo`, `cooking_time`, `preparation_time`, `calories`, `link`, `type`, `date_added`, `date_updated`, `status`) VALUES
+(3, 1, 'rrw', 'frwerew', 'rwre', 'rwerew', 32, 2333, 43, '43', 'Vegan', '2024-12-10 10:12:30', '2024-12-10 14:26:00', 1),
+(4, 2, 'grg34', 'grg3rg34', 'grgre', 'gwrgw', 23, 324, 2434, 'fwef', 'Vegan', '2024-12-10 14:54:26', '2024-12-11 13:27:31', 1),
+(5, 2, 'ferger', 'vrev', 'vervre', 'vrevre', 33, 33, 33, 'few', 'Vegan', '2024-12-11 10:05:06', NULL, 1),
+(6, 2, 'efe', 'fefe', 'fefe', 'fefe', 22, 22, 22, 'fef', 'Vegan', '2024-12-11 10:06:40', NULL, 1),
+(7, 2, 'fewf', 'fwfwe', 'fefw', 'fwe', 2, 2, 2, 'cds', 'Vegan', '2024-12-11 10:08:42', NULL, 1),
+(8, 2, 'fe', 'fe', 'fe', 'fe', 2, 2, 2, 'fe', 'Vegan', '2024-12-11 10:15:47', NULL, 0),
+(9, 2, 'fsfs', 'sdfsd', 'fsdfs', '33', 33, 33, 33, 'fs', 'Vegan', '2024-12-11 12:14:06', NULL, 0),
+(10, 1, 'ferffefer', 'efe', 'fefe', 'fefe', 22, 22, 22, 'de', 'Vegan', '2024-12-11 12:51:03', '2024-12-11 13:40:04', 1),
+(11, 1, 'dwedw', 'dwed', 'edwe', 'dwedw', 11, 11, 11, 'e3', 'Vegan', '2024-12-11 12:51:42', NULL, 0),
+(12, 1, 'fewewew', 'dewdew', 'dewdew', 'dewdw', 11, 11, 11, 'vevr', 'Vegan', '2024-12-11 13:00:15', NULL, 1),
+(13, 1, 'AdminMeal', 'fefe', 'fefe', 'fefe', 1, 1, 1, 'a', 'Vegan', '2024-12-11 13:38:52', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -118,25 +117,22 @@ CREATE TABLE `user` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `phone_number` int(11) DEFAULT NULL
+  `phone_number` int(11) DEFAULT NULL,
+  `blocked` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`) VALUES
-(1, 'admin@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fmTS7GRAJQWOwWENpN6ssexNcfelsMjC9gznUqKF0GJDRChOKOTlG', 'Admin', 'Test', NULL, 660123456);
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`, `blocked`) VALUES
+(1, 'admin@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fmTS7GRAJQWOwWENpN6ssexNcfelsMjC9gznUqKF0GJDRChOKOTlG', 'Admin', 'Test', NULL, 660123456, 0),
+(2, 'test@mail.com', '[]', '$2y$13$WJ1N4PKluBpbBqX34wXD/.hCSmcvLnBHfPNfL5lkGZXeC/dWAwBL.', 'Test', 'Test', 'fnfe', 25468, 0),
+(3, 'test1@mail.com', '[]', '$2y$13$PhXZ.hsDKi1Ah5314zVrteATkx4paMQGiW0BL6o6Bd8rQaYfW90Le', 'Test', 'Teste', 'fe', 555, 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `doctrine_migration_versions`
---
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
 
 --
 -- Indexes for table `meal_planner`
@@ -196,13 +192,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

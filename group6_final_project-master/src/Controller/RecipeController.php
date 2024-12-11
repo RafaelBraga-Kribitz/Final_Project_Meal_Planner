@@ -11,15 +11,32 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/home/admin/recipe')]
+#[Route('/home/admin/recipe', name: 'admin_')]
 final class RecipeController extends AbstractController
 {
-    #[Route(name: 'app_recipe_index', methods: ['GET'])]
+    #[Route('/',name: 'app_recipe_index', methods: ['GET'])]
     public function index(RecipeRepository $recipeRepository): Response
     {
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
         ]);
+    }
+
+    #[Route('/pending', name: 'app_pending', methods: ['GET'])]
+    public function pending(RecipeRepository $recipeRepository): Response
+    {
+        return $this->render('recipe/pending.html.twig', [
+            'recipes' => $recipeRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/approve/{id}', name: 'app_approve', methods: ['GET', 'POST'])]
+    public function approve(Recipe $recipe, EntityManagerInterface $em): Response
+    {
+        $recipe->setStatus(1);
+        $em->persist($recipe);
+        $em->flush();
+        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
@@ -31,10 +48,11 @@ final class RecipeController extends AbstractController
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setAuthor($user);
+            $recipe->setStatus(True);
             $entityManager->persist($recipe);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('recipe/new.html.twig', [
@@ -60,7 +78,7 @@ final class RecipeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('recipe/edit.html.twig', [
@@ -77,6 +95,6 @@ final class RecipeController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
 }

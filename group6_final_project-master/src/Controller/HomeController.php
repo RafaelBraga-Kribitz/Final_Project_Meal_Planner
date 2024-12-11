@@ -11,19 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class HomeController extends AbstractController
-{
-    #[Route('/home', name: 'app_home')]
-    public function index(): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-}
-
 #[Route('/home/user/recipe')]
-final class RecipeController extends AbstractController
+final class HomeController extends AbstractController
 {
     #[Route(name: 'app_recipe_index', methods: ['GET'])]
     public function index(RecipeRepository $recipeRepository): Response
@@ -44,6 +33,7 @@ final class RecipeController extends AbstractController
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setAuthor($user);
+            $recipe->setStatus(False);
             $entityManager->persist($recipe);
             $entityManager->flush();
 
