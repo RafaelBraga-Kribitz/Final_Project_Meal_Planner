@@ -17,6 +17,7 @@ final class HomeController extends AbstractController
     #[Route(name: 'app_recipe_index', methods: ['GET'])]
     public function index(RecipeRepository $recipeRepository): Response
     {
+         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
@@ -49,6 +50,7 @@ final class HomeController extends AbstractController
     #[Route('/{id}', name: 'app_recipe_show', methods: ['GET'])]
     public function show(Recipe $recipe): Response
     {
+         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
