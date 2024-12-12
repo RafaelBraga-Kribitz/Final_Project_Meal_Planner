@@ -82,7 +82,7 @@
   - [x] Implement authentication (login/register) using Symfony Security.  
   - [x] Verify users can register as normal users only.
 
-- [ ] **Role Management:**  
+- [x] **Role Management:**  
   - [x] Implement role-based security (ADMIN vs USER).
   - [x] Protect admin routes with role checks.
 
@@ -93,8 +93,8 @@
   - [x] Admin-only route to approve pending recipes.  
   - [ ] Notification system (e.g., "pending recipes" counter for admin dashboard).
 - [ ] **Validation & Testing:**  
-  - [ ] Implement field validations (e.g., empty fields, numeric calories).  
-  - [ ] Test user registration, login, and recipe creation/deletion.
+  - [x] Implement field validations (e.g., empty fields, numeric calories).  
+  - [x] Test user registration, login, and recipe creation/deletion.
   - [ ] Fix any DB or logic issues found.
 
 #### Person B (Philipp - Back-End)
