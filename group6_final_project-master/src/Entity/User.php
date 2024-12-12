@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -34,16 +35,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Length(min: 3)]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Length(min: 3)]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $phone_number = null;
+    private ?string $phone_number = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $blocked = null;
@@ -159,12 +162,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phone_number;
     }
 
-    public function setPhoneNumber(?int $phone_number): static
+    public function setPhoneNumber(?string $phone_number): static
     {
         $this->phone_number = $phone_number;
 
