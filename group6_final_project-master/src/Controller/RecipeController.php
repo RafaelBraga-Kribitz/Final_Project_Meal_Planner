@@ -76,6 +76,7 @@ final class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setStatus(True);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
