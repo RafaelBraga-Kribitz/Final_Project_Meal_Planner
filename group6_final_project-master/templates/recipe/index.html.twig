@@ -3,83 +3,42 @@
 {% block title %}Recipe index{% endblock %}
 
 {% block body %}
-    <h1>Recipe index</h1>
+    <h1>Recipe Index</h1>
 
-    <table class="table">
-        <thead>
-            
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Ingredients</th>
-                <th>Description</th>
-                <th>Photo</th>
-                <th>Cooking_time</th>
-                <th>Preparation_time</th>
-                <th>Calories</th>
-                <th>Link</th>
-                <th>Type</th>
-                <th>Date_added</th>
-                <th>Date_updated</th>
-                <th>actions</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            
-            
+    <div class="recipe-container">
         {% for recipe in recipes %}
         {% if recipe.status == '1' %}
-            <tr>
-                <td>{{ recipe.id }}</td>
-                <td>{{ recipe.name }}</td>
-                <td>{{ recipe.ingredients }}</td>
-                <td>{{ recipe.description }}</td>
-                <td>{{ recipe.photo }}</td>
-                <td>{{ recipe.cookingTime }}</td>
-                <td>{{ recipe.preparationTime }}</td>
-                <td>{{ recipe.calories }}</td>
-                <td>{{ recipe.link }}</td>
-                <td>{{ recipe.type }}</td>
-                
-                {% if is_granted("ROLE_ADMIN") %}
-                <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_app_recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('admin_app_recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
-                {% elseif userId == recipe.author.id %}
-                <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
+            <div class="recipe-card">
+                {% if recipe.photo is empty %}
+                    <img src="https://placehold.co/400x300/orange/white?text=Delicious+Recipe" alt="{{ recipe.name }}" class="recipe-image">
                 {% else %}
-                <td></td>
-                <td></td>
-                <td>
-                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
-                </td>
+                    <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" class="recipe-image" onerror="this.src='https://placehold.co/400x300/orange/white?text=Delicious+Recipe'">
                 {% endif %}
+                <h2 class="recipe-name">{{ recipe.name }}</h2>
+                <p class="recipe-description">{{ recipe.description }}</p>
+                <p class="recipe-ingredients">Ingredients: {{ recipe.ingredients }}</p>
+                <p class="recipe-cooking-time">Cooking Time: {{ recipe.cookingTime }} minutes</p>
+                <p class="recipe-preparation-time">Preparation Time: {{ recipe.preparationTime }} minutes</p>
+                <p class="recipe-calories">Calories: {{ recipe.calories }}</p>
+                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="recipe-link">View Recipe</a>
                 
-                
-                
-            </tr>
-        
-        
+                {% if is_granted("ROLE_ADMIN") or userId == recipe.author.id %}
+                    <div class="recipe-actions">
+                        <a href="{{ path('admin_app_recipe_edit', {'id': recipe.id}) }}" class="edit-link">Edit</a>
+                    </div>
+                {% endif %}
+            </div>
         {% endif %}
         {% else %}
-            <tr>
-                <td colspan="13">no records found</td>
-            </tr>
+            <p>No records found</p>
         {% endfor %}
-        </tbody>
-    </table>
-    {% if is_granted("ROLE_ADMIN") %}
-    <a href="{{ path('admin_app_recipe_new') }}">Create new</a>
-    {% else %}
-    <a href="{{ path('app_recipe_new') }}">Create new</a>
-    {% endif %}
+    </div>
+
+    <div class="create-recipe">
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('admin_app_recipe_new') }}" class="create-link">Create New Recipe</a>
+        {% else %}
+            <a href="{{ path('app_recipe_new') }}" class="create-link">Create New Recipe</a>
+        {% endif %}
+    </div>
 {% endblock %}

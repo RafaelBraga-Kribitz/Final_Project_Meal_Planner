@@ -217,3 +217,87 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     color: var(--primary);
 }
+
+/* Recipe Container */
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the cards */
+    padding: 20px; /* Padding around the container */
+}
+
+/* Recipe Card */
+.recipe-card {
+    background-color: #fff; /* White background for cards */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Prevent overflow */
+    width: 300px; /* Fixed width for cards */
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+/* Card Hover Effect */
+.recipe-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Recipe Image */
+.recipe-image {
+    width: 100%; /* Full width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Cover the area without distortion */
+}
+
+/* Recipe Name */
+.recipe-name {
+    font-size: 1.5em; /* Larger font size */
+    margin: 10px; /* Margin around the name */
+    color: #333; /* Darker text color */
+}
+
+/* Recipe Description and Details */
+.recipe-description,
+.recipe-ingredients,
+.recipe-cooking-time,
+.recipe-preparation-time,
+.recipe-calories {
+    margin: 5px 10px; /* Margin for spacing */
+    color: #666; /* Lighter text color */
+}
+
+/* Recipe Link */
+.recipe-link {
+    display: block; /* Block display for full width */
+    text-align: center; /* Center the text */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text */
+    padding: 10px; /* Padding */
+    text-decoration: none; /* Remove underline */
+    border-radius: 4px; /* Rounded corners */
+    margin: 10px; /* Margin for spacing */
+}
+
+/* Recipe Link Hover Effect */
+.recipe-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Create Recipe Button */
+.create-recipe {
+    text-align: center; /* Center the button */
+    margin-top: 20px; /* Margin above the button */
+}
+
+.create-link {
+    background-color: #28a745; /* Green color for create link */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    text-decoration: none; /* Remove underline */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.create-link:hover {
+    background-color: #218838; /* Darker green on hover */
+}
