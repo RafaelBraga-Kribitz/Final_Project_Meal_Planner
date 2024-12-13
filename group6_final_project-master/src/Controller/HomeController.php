@@ -62,6 +62,7 @@ final class HomeController extends AbstractController
     #[Route('/{id}/edit', name: 'app_recipe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager): Response
     {
+        
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         $user = $this->getUser();
@@ -72,6 +73,7 @@ final class HomeController extends AbstractController
             return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
+         /** @var \App\Entity\User $user */
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
