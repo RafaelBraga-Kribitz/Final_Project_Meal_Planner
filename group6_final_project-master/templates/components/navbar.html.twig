@@ -1,14 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{ path('app_static') }}">Navbar</a>
+      <a class="navbar-brand" href="{{ path('app_static') }}">NextMeal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-          {% else %}
+          {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
           <a class="nav-link" href="{{ path('app_login') }}">Login</a>
           <a class="nav-link" href="{{ path('app_register') }}">Register</a>
           {% endif %}
@@ -30,8 +28,13 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{ path('app_meal_planner_index') }}">Meal Planner</a>
               </li>
-                {% endif %}                
+                {% endif %}
         </div>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        {% endif %}
       </div>
     </div>
   </nav>
