@@ -55,6 +55,7 @@ final class HomeController extends AbstractController
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
             'userId' => $user->getId(),
+            
         ]);
     }
 
@@ -63,6 +64,7 @@ final class HomeController extends AbstractController
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
@@ -73,6 +75,7 @@ final class HomeController extends AbstractController
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+            'userId' => $user->getId(),
         ]);
     }
 
