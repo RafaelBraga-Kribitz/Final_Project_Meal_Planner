@@ -22,10 +22,10 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('first_name', TextType::class, options: [
-                'attr' => ['pattern' => '[a-zA-Z]*']
+                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ])
             ->add('last_name', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z]*']
+                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ))
             ->add('photo')
             ->add('phone_number', TelType::class, array(
