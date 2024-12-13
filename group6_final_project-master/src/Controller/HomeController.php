@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/home/user/recipe')]
 final class HomeController extends AbstractController
@@ -47,7 +48,7 @@ final class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recipe_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_recipe_show', methods: ['GET'])]
     public function show(Recipe $recipe): Response
     {
          /** @var \App\Entity\User $user */
@@ -65,7 +66,11 @@ final class HomeController extends AbstractController
         
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
-        $user = $this->getUser();
+
+        // ***************************
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser(); // you get user from system
+        //**************************** */
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
@@ -77,7 +82,10 @@ final class HomeController extends AbstractController
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
-            'userId' => $user->getId(),
+
+            // *********************************************************
+            'userId' => $user->getId(), // you sent userId to template
+            // *********************************************************
         ]);
     }
 
@@ -91,4 +99,28 @@ final class HomeController extends AbstractController
 
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/approved', name: 'app_approved_recipes', methods: ['GET'])]
+    public function approvedRecipes(Request $request, RecipeRepository $recipeRepository): Response
+    {
+        $type = $request->query->get('type');
+        $maxCaloriesInput = $request->query->get('max_calories'); 
+        $maxCalories = is_numeric($maxCaloriesInput) ? (int) $maxCaloriesInput : null; 
+
+        
+        if (!$type && !$maxCalories) {
+            $approvedRecipes = $recipeRepository->findBy(['status' => true]);
+        } else {
+            
+            $approvedRecipes = $recipeRepository->findByFilters($type, $maxCalories);
+        }
+
+        return $this->render('recipe/approved.html.twig', [
+            'approvedRecipes' => $approvedRecipes,
+            'type' => $type,
+            'max_calories' => $maxCaloriesInput, 
+        ]);
+    }
+    
 }

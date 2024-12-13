@@ -1,46 +1,30 @@
+
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Approved Recipes{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1 class="mb-4">Approved Recipes</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Calories</th>
-                    <th>Author</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for recipe in recipes %}
-                    <tr>
-                        <td>{{ recipe.id }}</td>
-                        <td>{{ recipe.name }}</td>
-                        <td>{{ recipe.type }}</td>
-                        <td>{{ recipe.calories }}</td>
-                        <td>{{ recipe.author.firstName }} {{ recipe.author.lastName }}</td>
-                        <td>
-                            <a href="{{ path('app_recipe_show', {id: recipe.id}) }}" class="btn btn-primary btn-sm">View</a>
-                            {% if is_granted("ROLE_ADMIN") %}
-                                <a href="{{ path('app_recipe_edit', {id: recipe.id}) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                {{ include('recipe/_delete_form.html.twig') }}
-                            {% elseif userId == recipe.author.id %}
-                                <a href="{{ path('app_recipe_edit', {id: recipe.id}) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                {{ include('recipe/_delete_form.html.twig') }}
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="6" class="text-center">No approved recipes available.</td>
-                    </tr>
+        <h1>Approved Recipes</h1>
+
+        {% include 'components/_filter_form.html.twig' %}
+
+        {% if approvedRecipes is empty %}
+            <p class="text-center text-muted">No recipes match your criteria.</p>
+        {% else %}
+            <ul class="list-group">
+                {% for recipe in approvedRecipes %}
+                    <li class="list-group-item">
+                        <a href="{{ path('app_recipe_show', { id: recipe.id }) }}">
+                            <strong>{{ recipe.name }}</strong> 
+                        </a> 
+                        <span class="text-muted">({{ recipe.type }})</span>
+                        <span class="text-muted">({{ recipe.description }})</span>
+                        <span class="text-muted">({{ recipe.photo }})</span>
+                    </li>
                 {% endfor %}
-            </tbody>
-        </table>
+            </ul>
+        {% endif %}
     </div>
 {% endblock %}

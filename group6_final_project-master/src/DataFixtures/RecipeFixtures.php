@@ -6,55 +6,52 @@ use App\Entity\Recipe;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker\Factory;
 use DateTimeImmutable;
 
-class RecipeFixtures extends Fixture
+class RecipeFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Retrieve existing users
+        // Get all users from "App/DataFixtures/UserFixtures.php"
         $userRepo = $manager->getRepository(User::class);
-        $adminUser = $userRepo->find(1); // Assuming User ID 1 exists
-        $testUser = $userRepo->find(2); // Assuming User ID 2 exists
+        $users = $userRepo->findAll();
 
-        // Verify users exist
-        if (!$adminUser || !$testUser) {
-            throw new \Exception('Required user records are missing. Ensure users with IDs 1 and 2 exist.');
+        if (empty($users)) {
+            throw new \Exception('Users not found. Please add at least one user to the database');
         }
 
-        // Recipe 1
-        $recipe1 = new Recipe();
-        $recipe1->setAuthor($adminUser); // Set author
-        $recipe1->setName('Spicy Chicken and Sweet Potato');
-        $recipe1->setIngredients('Chicken, Sweet Potato, Spices');
-        $recipe1->setDescription('A spicy and healthy meal perfect for meal prep.');
-        $recipe1->setPhoto('https://cdn.example.com/spicy-chicken.jpg');
-        $recipe1->setCookingTime(45);
-        $recipe1->setPreparationTime(15);
-        $recipe1->setCalories(500);
-        $recipe1->setLink('https://example.com/spicy-chicken');
-        $recipe1->setType('Non-Vegetarian');
-        $recipe1->setDateAdded(new DateTimeImmutable());
-        $recipe1->setStatus(true);
-        $manager->persist($recipe1);
+        // Creating a Faker object
+        $faker = Factory::create();
 
-        // Recipe 2
-        $recipe2 = new Recipe();
-        $recipe2->setAuthor($testUser); // Set author
-        $recipe2->setName('Instant Pot Beef and Broccoli');
-        $recipe2->setIngredients('Beef, Broccoli, Soy Sauce, Garlic');
-        $recipe2->setDescription('A quick and delicious Instant Pot meal.');
-        $recipe2->setPhoto('https://cdn.example.com/beef-broccoli.jpg');
-        $recipe2->setCookingTime(30);
-        $recipe2->setPreparationTime(10);
-        $recipe2->setCalories(400);
-        $recipe2->setLink('https://example.com/beef-broccoli');
-        $recipe2->setType('Non-Vegetarian');
-        $recipe2->setDateAdded(new DateTimeImmutable());
-        $recipe2->setStatus(true);
-        $manager->persist($recipe2);
+        // Generating recipes
+        for ($i = 0; $i < 12; $i++) {
+            $recipe = new Recipe();
+            $recipe->setAuthor($users[array_rand($users)]); // Random user
+            $recipe->setName($faker->sentence(3));
+            $recipe->setIngredients($faker->words(5, true));
+            $recipe->setDescription($faker->sentence(10));
+            $recipe->setPhoto($faker->imageUrl(640, 480, 'food'));
+            $recipe->setCookingTime($faker->numberBetween(10, 120));
+            $recipe->setPreparationTime($faker->numberBetween(5, 60));
+            $recipe->setCalories($faker->numberBetween(100, 900));
+            $recipe->setLink($faker->url());
+            $recipe->setType($faker->randomElement(['Vegan', 'Vegetarian', 'Pescatarian', 'Meat']));
+            $recipe->setDateAdded(new DateTimeImmutable());
+            $recipe->setStatus(true);
+            $manager->persist($recipe);
+        }
 
-        // Flush the data to the database
+        // Saving all recipes to the database
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        // Link to "App/DataFixtures/UserFixtures.php" for creating users
+        return [
+            UserFixtures::class, // Ensure users are loaded first
+        ];
     }
 }
