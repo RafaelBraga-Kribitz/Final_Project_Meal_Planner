@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+recipe_index:
+    path: /recipes
+    controller: App\Controller\RecipeController::index
+
+admin_recipe_index:
+    path: /admin/recipes
+    controller: App\Controller\RecipeController::index

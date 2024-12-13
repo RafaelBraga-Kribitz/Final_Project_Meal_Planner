@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\MealPlanner;
 use App\Form\MealPlannerType;
 use App\Repository\MealPlannerRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,12 +26,15 @@ final class MealPlannerController extends AbstractController
     }
 
     #[Route('/new', name: 'app_meal_planner_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(RecipeRepository $recipeRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
         $mealPlanner = new MealPlanner();
         $form = $this->createForm(MealPlannerType::class, $mealPlanner);
         $form->handleRequest($request);
         $user=$this->getUser();
+        $approvedRecipes=$recipeRepository->findBy(["status"=>"1"]);
+         $form->get("meal_chosen")->setData($approvedRecipes);
+       
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime("now");
             $mealPlanner->setUpdateDate($now);
@@ -44,6 +48,7 @@ final class MealPlannerController extends AbstractController
         return $this->render('meal_planner/new.html.twig', [
             'meal_planner' => $mealPlanner,
             'form' => $form,
+            'approvedRecipes'=> $approvedRecipes
         ]);
     }
 

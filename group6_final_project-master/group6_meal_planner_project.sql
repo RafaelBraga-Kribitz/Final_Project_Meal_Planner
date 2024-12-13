@@ -91,17 +91,16 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`id`, `author_id`, `name`, `ingredients`, `description`, `photo`, `cooking_time`, `preparation_time`, `calories`, `link`, `type`, `date_added`, `date_updated`, `status`) VALUES
-(3, 1, 'rrw', 'frwerew', 'rwre', 'rwerew', 32, 2333, 43, '43', 'Vegan', '2024-12-10 10:12:30', '2024-12-10 14:26:00', 1),
-(4, 2, 'grg34', 'grg3rg34', 'grgre', 'gwrgw', 23, 324, 2434, 'fwef', 'Vegan', '2024-12-10 14:54:26', '2024-12-11 13:27:31', 1),
-(5, 2, 'ferger', 'vrev', 'vervre', 'vrevre', 33, 33, 33, 'few', 'Vegan', '2024-12-11 10:05:06', NULL, 1),
-(6, 2, 'efe', 'fefe', 'fefe', 'fefe', 22, 22, 22, 'fef', 'Vegan', '2024-12-11 10:06:40', NULL, 1),
-(7, 2, 'fewf', 'fwfwe', 'fefw', 'fwe', 2, 2, 2, 'cds', 'Vegan', '2024-12-11 10:08:42', NULL, 1),
-(8, 2, 'fe', 'fe', 'fe', 'fe', 2, 2, 2, 'fe', 'Vegan', '2024-12-11 10:15:47', NULL, 0),
-(9, 2, 'fsfs', 'sdfsd', 'fsdfs', '33', 33, 33, 33, 'fs', 'Vegan', '2024-12-11 12:14:06', NULL, 0),
-(10, 1, 'ferffefer', 'efe', 'fefe', 'fefe', 22, 22, 22, 'de', 'Vegan', '2024-12-11 12:51:03', '2024-12-11 13:40:04', 1),
-(11, 1, 'dwedw', 'dwed', 'edwe', 'dwedw', 11, 11, 11, 'e3', 'Vegan', '2024-12-11 12:51:42', NULL, 0),
-(12, 1, 'fewewew', 'dewdew', 'dewdew', 'dewdw', 11, 11, 11, 'vevr', 'Vegan', '2024-12-11 13:00:15', NULL, 1),
-(13, 1, 'AdminMeal', 'fefe', 'fefe', 'fefe', 1, 1, 1, 'a', 'Vegan', '2024-12-11 13:38:52', NULL, 1);
+(1, 2, 'Quinoa Buddha Bowl', 'Quinoa, chickpeas, sweet potato, kale, tahini, olive oil, lemon juice, garlic', 'A nutritious and colorful Buddha bowl packed with protein and vegetables', 'buddha-bowl.jpg', 20, 15, 450, 'https://mealplanner.com/recipes/buddha-bowl', 'Vegan', '2024-03-15 10:00:00', NULL, 1),
+(2, 2, 'Grilled Salmon with Asparagus', 'Fresh salmon fillet, asparagus, lemon, olive oil, garlic, dill, salt, pepper', 'Perfectly grilled salmon served with crispy asparagus', 'salmon-asparagus.jpg', 15, 10, 380, 'https://mealplanner.com/recipes/grilled-salmon', 'Pescatarian', '2024-03-15 10:15:00', NULL, 1),
+(3, 3, 'Mediterranean Chicken Bowl', 'Chicken breast, quinoa, cucumber, cherry tomatoes, red onion, feta cheese, olive oil', 'Fresh and light Mediterranean-style chicken bowl', 'med-chicken.jpg', 25, 15, 520, 'https://mealplanner.com/recipes/med-chicken', 'Meat', '2024-03-15 11:00:00', NULL, 1),
+(4, 4, 'Vegetarian Lentil Curry', 'Red lentils, coconut milk, curry powder, onion, garlic, ginger, tomatoes, spinach', 'Creamy and spicy lentil curry perfect for cold days', 'lentil-curry.jpg', 30, 10, 320, 'https://mealplanner.com/recipes/lentil-curry', 'Vegetarian', '2024-03-15 12:00:00', NULL, 1),
+(5, 2, 'Tofu Stir-Fry', 'Firm tofu, broccoli, carrots, snap peas, soy sauce, ginger, garlic, sesame oil', 'Quick and healthy tofu stir-fry with crispy vegetables', 'tofu-stirfry.jpg', 20, 15, 300, 'https://mealplanner.com/recipes/tofu-stirfry', 'Vegan', '2024-03-15 13:00:00', NULL, 1),
+(6, 3, 'Greek Salad Bowl', 'Mixed greens, cucumber, tomatoes, red onion, olives, feta cheese, olive oil, oregano', 'Classic Greek salad with fresh Mediterranean ingredients', 'greek-salad.jpg', 0, 15, 280, 'https://mealplanner.com/recipes/greek-salad', 'Vegetarian', '2024-03-15 14:00:00', NULL, 1),
+(7, 4, 'Shrimp Scampi', 'Shrimp, garlic, white wine, lemon juice, parsley, butter, pasta', 'Classic shrimp scampi served over pasta', 'shrimp-scampi.jpg', 20, 10, 420, 'https://mealplanner.com/recipes/shrimp-scampi', 'Pescatarian', '2024-03-15 15:00:00', NULL, 1),
+(8, 2, 'Turkey Meatballs', 'Ground turkey, breadcrumbs, egg, garlic, onion, parsley, marinara sauce', 'Healthy turkey meatballs in marinara sauce', 'turkey-meatballs.jpg', 25, 15, 380, 'https://mealplanner.com/recipes/turkey-meatballs', 'Meat', '2024-03-15 16:00:00', NULL, 1),
+(9, 3, 'Chickpea Curry', 'Chickpeas, coconut milk, tomatoes, onion, garlic, ginger, curry powder, cilantro', 'Hearty vegan chickpea curry with aromatic spices', 'chickpea-curry.jpg', 30, 10, 340, 'https://mealplanner.com/recipes/chickpea-curry', 'Vegan', '2024-03-15 17:00:00', NULL, 1),
+(10, 4, 'Grilled Vegetable Platter', 'Zucchini, eggplant, bell peppers, mushrooms, olive oil, herbs', 'Colorful platter of grilled seasonal vegetables', 'grilled-veggies.jpg', 20, 15, 200, 'https://mealplanner.com/recipes/grilled-veggies', 'Vegan', '2024-03-15 18:00:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -126,9 +125,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`, `blocked`) VALUES
-(1, 'admin@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fmTS7GRAJQWOwWENpN6ssexNcfelsMjC9gznUqKF0GJDRChOKOTlG', 'Admin', 'Test', NULL, 660123456, 0),
-(2, 'test@mail.com', '[]', '$2y$13$WJ1N4PKluBpbBqX34wXD/.hCSmcvLnBHfPNfL5lkGZXeC/dWAwBL.', 'Test', 'Test', 'fnfe', 25468, 0),
-(3, 'test1@mail.com', '[]', '$2y$13$PhXZ.hsDKi1Ah5314zVrteATkx4paMQGiW0BL6o6Bd8rQaYfW90Le', 'Test', 'Teste', 'fe', 555, 0);
+(1, 'rafael@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fm1h4k7nOjR0g3TARawc/OR8IlcoWFxtnEHUXTVeSJmruG87gLXyO', 'Rafael', 'Braga', 'rafael-avatar.jpg', 123456789, 0),
+(2, 'chef.maria@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Maria', 'Rodriguez', 'maria-profile.jpg', 987654321, 0),
+(3, 'john.cook@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'John', 'Cook', 'john-avatar.jpg', 456789123, 0);
 
 --
 -- Indexes for dumped tables
@@ -192,13 +191,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -227,3 +226,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+

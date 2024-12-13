@@ -56,6 +56,7 @@ final class HomeController extends AbstractController
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
             'userId' => $user->getId(),
+            
         ]);
     }
 
