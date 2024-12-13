@@ -8,29 +8,32 @@
     <div class="recipe-container">
         {% for recipe in recipes %}
         {% if recipe.status == '1' %}
-            <div class="recipe-card">
-                {% if recipe.photo is empty %}
-                    <img src="https://placehold.co/400x300/orange/white?text=Delicious+Recipe" alt="{{ recipe.name }}" class="recipe-image">
-                {% else %}
-                    <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" class="recipe-image" onerror="this.src='https://placehold.co/400x300/orange/white?text=Delicious+Recipe'">
-                {% endif %}
-                <h2 class="recipe-name">{{ recipe.name }}</h2>
-                <p class="recipe-description">{{ recipe.description }}</p>
-                <p class="recipe-ingredients">Ingredients: {{ recipe.ingredients }}</p>
-                <p class="recipe-cooking-time">Cooking Time: {{ recipe.cookingTime }} minutes</p>
-                <p class="recipe-preparation-time">Preparation Time: {{ recipe.preparationTime }} minutes</p>
-                <p class="recipe-calories">Calories: {{ recipe.calories }}</p>
-                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="recipe-link">View Recipe</a>
-                
-                {% if is_granted("ROLE_ADMIN") or userId == recipe.author.id %}
-                    <div class="recipe-actions">
-                        <a href="{{ path('admin_app_recipe_edit', {'id': recipe.id}) }}" class="edit-link">Edit</a>
+            <div class="container">
+                <div class="card">
+                    <div class="imgBx">
+                        {% if recipe.photo is empty %}
+                            <img src="https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe" alt="{{ recipe.name }}">
+                        {% else %}
+                            <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe'">
+                        {% endif %}
                     </div>
-                {% endif %}
+                    <div class="contentBx">
+                        <h2>{{ recipe.name }}</h2>
+                        <div class="size">
+                            <h3>Calories:</h3>
+                            <span>{{ recipe.calories }}</span>
+                        </div>
+                        <div class="color">
+                            <h3>Cook Time:</h3>
+                            <span>{{ recipe.cookingTime }}m</span>
+                        </div>
+                        <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
+                    </div>
+                </div>
             </div>
         {% endif %}
         {% else %}
-            <p>No records found</p>
+            <p class="no-records">No records found</p>
         {% endfor %}
     </div>
 

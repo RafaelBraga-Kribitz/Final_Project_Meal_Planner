@@ -220,84 +220,238 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Recipe Container */
 .recipe-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default 4 columns */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1400px) {
+    .recipe-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .recipe-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 640px) {
+    .recipe-container {
+        grid-template-columns: 1fr; /* 1 column */
+        max-width: 400px;
+    }
+}
+
+.container {
+    width: 100%;
+}
+
+.container .card {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background: #232323;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.container .card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .card:hover:before {
+    clip-path: circle(300px at 80% -20%);
+}
+
+.container .card .imgBx {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    width: 100%;
+    height: 220px;
+    transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+    top: 0%;
+    transform: translateY(0%);
+}
+
+.container .card .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.container .card .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition: 1s;
+    z-index: 10;
+}
+
+.container .card:hover .contentBx {
+    height: 210px;
+}
+
+.container .card .contentBx h2 {
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 1.2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.container .card .contentBx .size,
+.container .card .contentBx .color {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Space between cards */
-    justify-content: center; /* Center the cards */
-    padding: 20px; /* Padding around the container */
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-/* Recipe Card */
-.recipe-card {
-    background-color: #fff; /* White background for cards */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden; /* Prevent overflow */
-    width: 300px; /* Fixed width for cards */
-    transition: transform 0.2s; /* Smooth hover effect */
+.container .card:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
 }
 
-/* Card Hover Effect */
-.recipe-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.container .card:hover .contentBx .color {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.6s;
 }
 
-/* Recipe Image */
-.recipe-image {
-    width: 100%; /* Full width */
-    height: 200px; /* Fixed height */
-    object-fit: cover; /* Cover the area without distortion */
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
-/* Recipe Name */
-.recipe-name {
-    font-size: 1.5em; /* Larger font size */
-    margin: 10px; /* Margin around the name */
-    color: #333; /* Darker text color */
+.container .card .contentBx .size span,
+.container .card .contentBx .color span {
+    width: auto;
+    padding: 0 10px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    display: inline-block;
+    color: #111;
+    background: #fff;
+    margin: 0 5px;
+    transition: 0.5s;
+    border-radius: 4px;
 }
 
-/* Recipe Description and Details */
-.recipe-description,
-.recipe-ingredients,
-.recipe-cooking-time,
-.recipe-preparation-time,
-.recipe-calories {
-    margin: 5px 10px; /* Margin for spacing */
-    color: #666; /* Lighter text color */
+.container .card .contentBx a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #111;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.5s;
 }
 
-/* Recipe Link */
-.recipe-link {
-    display: block; /* Block display for full width */
-    text-align: center; /* Center the text */
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text */
-    padding: 10px; /* Padding */
-    text-decoration: none; /* Remove underline */
-    border-radius: 4px; /* Rounded corners */
-    margin: 10px; /* Margin for spacing */
-}
-
-/* Recipe Link Hover Effect */
-.recipe-link:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+.container .card:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0.75s;
 }
 
 /* Create Recipe Button */
 .create-recipe {
-    text-align: center; /* Center the button */
-    margin-top: 20px; /* Margin above the button */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
 }
 
 .create-link {
-    background-color: #28a745; /* Green color for create link */
-    color: white; /* White text */
-    padding: 10px 20px; /* Padding */
-    text-decoration: none; /* Remove underline */
-    border-radius: 4px; /* Rounded corners */
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--primary);
+    color: #111;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
 .create-link:hover {
-    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Page Title */
+h1 {
+    color: #fff;
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+/* Dark theme and general styles */
+/* body {
+    background: #131313;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+} */
+
+.no-records {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    font-size: 1.2em;
+    grid-column: 1 / -1;
 }
