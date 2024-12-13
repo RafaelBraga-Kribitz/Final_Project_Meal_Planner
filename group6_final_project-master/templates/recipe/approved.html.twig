@@ -1,29 +1,4 @@
-{# {% extends 'base.html.twig' %}
 
-{% block title %}Approved Recipes{% endblock %}
-
-{% block body %}
-    <div class="container mt-4">
-        <h1>Approved Recipes</h1>
-
-        {% include 'components/_filter_form.html.twig' %}
-
-        <ul class="list-group">
-            {% for recipe in approvedRecipes %}
-                <li class="list-group-item">
-                    <a href="{{ path('app_recipe_show', { id: recipe.id }) }}">
-                        <strong>{{ recipe.name }}</strong> 
-                    </a> 
-                    <span class="text-muted">({{ recipe.type }})</span>
-                    <span class="text-muted">({{ recipe.description }})</span>
-                    <span class="text-muted">({{ recipe.photo }})</span>
-                </li>
-            {% else %}
-                <li class="list-group-item text-center">No approved recipes found.</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endblock %} #}
 
 {% extends 'base.html.twig' %}
 
