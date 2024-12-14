@@ -82,6 +82,8 @@ final class RecipeController extends AbstractController
 
             return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
+        /** @var \App\Entity\User|null $user */
+        $user = $this->getUser();
 
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
