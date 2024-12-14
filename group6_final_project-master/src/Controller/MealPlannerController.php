@@ -40,6 +40,7 @@ final class MealPlannerController extends AbstractController
             'approved_recipes' => $approvedRecipes,
         ]);
         $form->handleRequest($request);
+
        
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime("now");

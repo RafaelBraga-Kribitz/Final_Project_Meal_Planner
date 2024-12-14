@@ -76,6 +76,7 @@ final class RecipeController extends AbstractController
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setStatus(True);
@@ -84,9 +85,13 @@ final class RecipeController extends AbstractController
             return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        /** @var \App\Entity\User|null $user */
+        $user = $this->getUser();
+
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+            'userId' => $user->getId(),
         ]);
     }
 
