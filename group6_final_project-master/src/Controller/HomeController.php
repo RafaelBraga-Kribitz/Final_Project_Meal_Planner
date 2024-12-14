@@ -39,8 +39,10 @@ final class HomeController extends AbstractController
             $entityManager->persist($recipe);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Recipe has been submitted for approval.');
+            
             return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
-        }
+        }        
 
         return $this->render('recipe/new.html.twig', [
             'recipe' => $recipe,
@@ -108,16 +110,35 @@ final class HomeController extends AbstractController
         $maxCaloriesInput = $request->query->get('max_calories'); 
         $maxCalories = is_numeric($maxCaloriesInput) ? (int) $maxCaloriesInput : null; 
 
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $userRecipes = [];
+        $approvedRecipes = [];
         
+        // approved recipies from all users
         if (!$type && !$maxCalories) {
             $approvedRecipes = $recipeRepository->findBy(['status' => true]);
-        } else {
-            
+        } else {            
             $approvedRecipes = $recipeRepository->findByFilters($type, $maxCalories);
         }
 
+        // approved recipies from current user in session
+        if ($user) {
+            if (!$type && !$maxCalories) {
+                $userRecipes = $recipeRepository->findBy([
+                    'status' => true,
+                    'author' => $user,
+                ]);
+            } else {
+                $userRecipes = $recipeRepository->findByFiltersAndUser($type, $maxCalories, $user);
+            }
+        }
+
+                
         return $this->render('recipe/approved.html.twig', [
-            'approvedRecipes' => $approvedRecipes,
+            'approvedRecipes' => $approvedRecipes, // all approved recipies
+            'userRecipes' => $userRecipes, // approved recipies from current user
             'type' => $type,
             'max_calories' => $maxCaloriesInput, 
         ]);

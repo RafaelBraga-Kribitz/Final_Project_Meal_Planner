@@ -19,32 +19,87 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
+                'attr' => [
+                    'class' => 'form-control mb-3', 
+                    'pattern' => '[a-zA-Z0-9\s.,/*-]*',
+                    'placeholder' => 'Enter recipe name'
+                ],
+                'label' => 'Recipe Name',
+                'label_attr' => ['class' => 'form-label'], 
             ))
             ->add('ingredients', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'pattern' => '[a-zA-Z0-9\s.,/*-]*',
+                    'placeholder' => 'List the ingredients'
+                ],
+                'label' => 'Ingredients',
+                'label_attr' => ['class' => 'form-label'],
             ))
             ->add('description', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'pattern' => '[a-zA-Z0-9\s.,/*-]*',
+                    'placeholder' => 'Describe the recipe'
+                ],
+                'label' => 'Description',
+                'label_attr' => ['class' => 'form-label'],  
             ))
-            ->add('photo')
+            ->add('photo', UrlType::class, [
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'placeholder' => 'Provide a photo URL'
+                ],
+                'label' => 'Photo URL',
+                'label_attr' => ['class' => 'form-label'],
+            ])
             ->add('cooking_time', NumberType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'pattern' => '[0-9]*',
+                    'placeholder' => 'Enter cooking time (minutes)'
+                ],
+                'label' => 'Cooking Time (minutes)',
+                'label_attr' => ['class' => 'form-label'],
             ))
             ->add('preparation_time', NumberType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'pattern' => '[0-9]*',
+                    'placeholder' => 'Enter preparation time (minutes)'
+                ],
+                'label' => 'Preparation Time (minutes)',
+                'label_attr' => ['class' => 'form-label'],
             ))
             ->add('calories', NumberType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'pattern' => '[0-9]*',
+                    'placeholder' => 'Enter calorie count'
+                ],
+                'label' => 'Calories',
+                'label_attr' => ['class' => 'form-label'],
             ))
-            ->add('link', UrlType::class)
+            ->add('link', UrlType::class, [
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'placeholder' => 'Enter a link to the recipe'
+                ],
+                'label' => 'Recipe Link',
+                'label_attr' => ['class' => 'form-label'],
+            ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Vegan' => 'Vegan',
                     'Vegetarian' => 'Vegetarian',
                     'Pescatarian' => 'Pescatarian',
                     'Meat' => 'Meat'
-                ]
+                ],
+                'attr' => [
+                    'class' => 'form-select mb-3',
+                ],
+                'label' => 'Recipe Type',
+                'label_attr' => ['class' => 'form-label'],
             ])
             #->add('date_added', null, [
             #    'widget' => 'single_text',
@@ -66,3 +121,6 @@ class RecipeType extends AbstractType
         ]);
     }
 }
+
+
+// '[a-zA-Z0-9\s.,/*-]*'
