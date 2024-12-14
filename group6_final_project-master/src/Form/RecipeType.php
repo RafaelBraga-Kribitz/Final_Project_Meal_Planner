@@ -19,13 +19,13 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z]*']
+                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ))
             ->add('ingredients', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9]*']
+                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ))
             ->add('description', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9]*']
+                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ))
             ->add('photo')
             ->add('cooking_time', NumberType::class, array(

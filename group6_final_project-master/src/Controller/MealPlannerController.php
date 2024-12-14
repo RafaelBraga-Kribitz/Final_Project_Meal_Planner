@@ -19,6 +19,7 @@ final class MealPlannerController extends AbstractController
     #[Route(name: 'app_meal_planner_index', methods: ['GET'])]
     public function index(MealPlannerRepository $mealPlannerRepository): Response
     {
+         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         return $this->render('meal_planner/index.html.twig', [
             'meal_planners' => $mealPlannerRepository->findBy(['user' => $user]),
@@ -39,6 +40,7 @@ final class MealPlannerController extends AbstractController
             'approved_recipes' => $approvedRecipes,
         ]);
         $form->handleRequest($request);
+
        
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime("now");
