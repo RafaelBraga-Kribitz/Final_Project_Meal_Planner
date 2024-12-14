@@ -9,7 +9,6 @@
 
     {% include 'components/_filter_form.html.twig' %}
 
-    {# Блок для всіх затверджених рецептів #}
     <h2>All Approved Recipes</h2>
     {% if approvedRecipes is empty %}
         <p class="text-center text-muted">No approved recipes available.</p>
@@ -43,7 +42,6 @@
         </div>
     {% endif %}
 
-    {# Блок для затверджених рецептів поточного користувача #}
     <h2>Your Approved Recipes</h2>
     {% if userRecipes is empty %}
         <p class="text-center text-muted">You have no approved recipes.</p>
@@ -77,4 +75,13 @@
         </div>
     {% endif %}
 </div>
+
+<div class="create-recipe">
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('admin_app_recipe_new') }}" class="create-link">Create New Recipe</a>
+    {% else %}
+        <a href="{{ path('app_recipe_new') }}" class="create-link">Create New Recipe</a>
+    {% endif %}
+</div>
+
 {% endblock %}

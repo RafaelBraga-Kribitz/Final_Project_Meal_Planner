@@ -13,12 +13,26 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
 
-        <link rel="stylesheet" href="{{ asset('styles/recipe.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/recipe.css') }}?v={{ random() }}">
 
     </head>
     <body>
         {% include "components/navbar.html.twig" %}
+
+        {# Flash messages block #}
+        <div class="container mt-3">
+            {% for label, messages in app.flashes %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+
         {% block body %}{% endblock %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

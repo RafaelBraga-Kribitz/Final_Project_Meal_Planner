@@ -39,8 +39,10 @@ final class HomeController extends AbstractController
             $entityManager->persist($recipe);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Recipe has been submitted for approval.');
+            
             return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
-        }
+        }        
 
         return $this->render('recipe/new.html.twig', [
             'recipe' => $recipe,

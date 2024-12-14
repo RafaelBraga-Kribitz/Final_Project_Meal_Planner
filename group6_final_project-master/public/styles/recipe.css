@@ -1,0 +1,51 @@
+/* ================ new recipe start ================== */
+
+
+.container-recipe {
+width: 500px;
+margin: 0 auto;
+}
+
+/* ================ new recipe end ================== */
+
+
+/* ================ flash-message start ================== */
+
+.alert {
+  border-radius: 30px;
+  font-size: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #041d0a;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.alert-dismissible .btn-close {
+  color: #000;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+/* ================ flash-message end ================== */
+
