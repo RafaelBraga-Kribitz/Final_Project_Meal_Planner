@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Approved Recipes{% endblock %}
@@ -13,66 +12,72 @@
     {% if approvedRecipes is empty %}
         <p class="text-center text-muted">No approved recipes available.</p>
     {% else %}
-        <div class="recipe-container">
-            {% for recipe in approvedRecipes %}
-                <div class="container">
-                    <div class="card">
-                        <div class="imgBx">
-                            {% if recipe.photo is empty %}
-                                <img src="https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe" alt="{{ recipe.name }}">
-                            {% else %}
-                                <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe'">
-                            {% endif %}
-                        </div>
-                        <div class="contentBx">
-                            <h2>{{ recipe.name }}</h2>
-                            <div class="size">
-                                <h3>Calories:</h3>
-                                <span>{{ recipe.calories }}</span>
+    <div class="row"> 
+        {% for recipe in approvedRecipes %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
+                <div class="approved-recipes__card">
+                    <div class="approved-recipes__card-image">
+                        {% if recipe.photo is empty %}
+                            <img src="https://placehold.co/400x300/9bdc28/white?text=No+Image" alt="{{ recipe.name }}">
+                        {% else %}
+                            <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=No+Image'">
+                        {% endif %}
+                    </div>
+                    <div class="approved-recipes__info">
+                        <div class="approved-recipes__content">
+                            <div class="approved-recipes__content--top">
+                                <h3 class="approved-recipes__title">{{ recipe.name }}</h3>
+                                <p class="approved-recipes__description">{{ recipe.description }}</p>
                             </div>
-                            <div class="color">
-                                <h3>Cook Time:</h3>
-                                <span>{{ recipe.cookingTime }}m</span>
+                            <div class="approved-recipes__content--bottom">
+                                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                                <p><strong>Cooking Time:</strong> {{ recipe.cookingTime }} minutes</p>
+                                <p><strong>Preparation Time:</strong> {{ recipe.preparationTime }} minutes</p>
+                                <p><strong>Calories:</strong> {{ recipe.calories }}</p>
+                                <p><strong>Type:</strong> {{ recipe.type }}</p>
                             </div>
-                            <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
     <h2>Your Approved Recipes</h2>
     {% if userRecipes is empty %}
         <p class="text-center text-muted">You have no approved recipes.</p>
     {% else %}
-        <div class="recipe-container">
-            {% for recipe in userRecipes %}
-                <div class="container">
-                    <div class="card">
-                        <div class="imgBx">
-                            {% if recipe.photo is empty %}
-                                <img src="https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe" alt="{{ recipe.name }}">
-                            {% else %}
-                                <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe'">
-                            {% endif %}
-                        </div>
-                        <div class="contentBx">
-                            <h2>{{ recipe.name }}</h2>
-                            <div class="size">
-                                <h3>Calories:</h3>
-                                <span>{{ recipe.calories }}</span>
-                            </div>
-                            <div class="color">
-                                <h3>Cook Time:</h3>
-                                <span>{{ recipe.cookingTime }}m</span>
-                            </div>
-                            <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
-                        </div>
+    <div class="row"> 
+        {% for recipe in approvedRecipes %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
+                <div class="approved-recipes__card">
+                    <div class="approved-recipes__card-image">
+                        {% if recipe.photo is empty %}
+                            <img src="https://placehold.co/400x300/9bdc28/white?text=No+Image" alt="{{ recipe.name }}">
+                        {% else %}
+                            <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=No+Image'">
+                        {% endif %}
                     </div>
+                    {# <div class="approved-recipes__info"> #}
+                        <div class="approved-recipes__content">
+                            <div class="approved-recipes__content--top">
+                                <h3 class="approved-recipes__title">{{ recipe.name }}</h3>
+                                <p class="approved-recipes__description">{{ recipe.description }}</p>
+                            </div>
+                            <div class="approved-recipes__content--bottom">
+                                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                                <p><strong>Cooking Time:</strong> {{ recipe.cookingTime }} minutes</p>
+                                <p><strong>Preparation Time:</strong> {{ recipe.preparationTime }} minutes</p>
+                                <p><strong>Calories:</strong> {{ recipe.calories }}</p>
+                                <p><strong>Type:</strong> {{ recipe.type }}</p>
+                            </div>
+                        </div>
+                    {# </div> #}
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
 </div>
 
