@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Service\FileUploader;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/home/user/recipe')]
@@ -27,13 +28,18 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('photo')->getData();
+            if ($imageFile) {
+            $imageFileName = $fileUploader->upload($imageFile);
+            $recipe->setPhoto($imageFileName);
+            }
             $recipe->setAuthor($user);
             $recipe->setStatus(False);
             $entityManager->persist($recipe);
@@ -63,7 +69,7 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_recipe_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         
         $form = $this->createForm(RecipeType::class, $recipe);
@@ -75,6 +81,11 @@ final class HomeController extends AbstractController
         //**************************** */
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('photo')->getData();
+            if ($imageFile) {
+            $imageFileName = $fileUploader->upload($imageFile);
+            $recipe->setPhoto($imageFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
