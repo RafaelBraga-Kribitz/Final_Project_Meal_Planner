@@ -14,22 +14,28 @@ margin: 0 auto;
 .alert {
   border-radius: 30px;
   font-size: 1rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease-in-out;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  overflow: hidden; 
+  transition: opacity 0.5s ease-in-out; 
 }
+
 
 .alert-success {
   background-color: #d4edda;
   color: #155724;
-  border: 1px solid #041d0a;
+  border: 1px solid #11381a;
 }
+
 
 .alert-danger {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
 
 .alert-warning {
   background-color: #fff3cd;

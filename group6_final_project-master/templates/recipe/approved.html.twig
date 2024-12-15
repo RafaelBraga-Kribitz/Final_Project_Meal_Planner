@@ -2,6 +2,7 @@
 
 {% block title %}Approved Recipes{% endblock %}
 
+
 {% block body %}
 <div class="container mt-4">
     <h1>Approved Recipes</h1>
@@ -52,7 +53,7 @@
         <p class="text-center text-muted">You have no approved recipes.</p>
     {% else %}
     <div class="row"> 
-        {% for recipe in approvedRecipes %}
+        {% for recipe in userRecipes %}
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
                 <div class="approved-recipes__card">
                     <div class="approved-recipes__card-image">

@@ -47,7 +47,7 @@ final class HomeController extends AbstractController
 
             $this->addFlash('success', 'Recipe has been submitted for approval.');
             
-            return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_approved_recipes', [], Response::HTTP_SEE_OTHER);
         }        
 
         return $this->render('recipe/new.html.twig', [
@@ -88,7 +88,7 @@ final class HomeController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_approved_recipes', [], Response::HTTP_SEE_OTHER);
         }
 
          /** @var \App\Entity\User $user */
@@ -110,7 +110,7 @@ final class HomeController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_approved_recipes', [], Response::HTTP_SEE_OTHER);
     }
 
 

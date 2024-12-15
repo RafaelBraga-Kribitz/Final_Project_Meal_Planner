@@ -55,6 +55,12 @@ class RecipeType extends AbstractType
                 // every time you edit the Product details
                 'required' => false,
 
+                'attr' => [
+                    'class' => 'form-control mb-3', 
+                    'accept' => '.png, .jpg, .jpeg', 
+                    'placeholder' => 'Upload an image file' 
+                ],
+
                 // unmapped fields can't define their validation using attributes
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [

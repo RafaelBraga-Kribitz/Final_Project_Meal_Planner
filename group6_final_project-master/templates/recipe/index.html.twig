@@ -27,7 +27,7 @@
                             <h3>Cook Time:</h3>
                             <span>{{ recipe.cookingTime }}m</span>
                         </div>
-                        <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
+                        <a class="btn btn-primary" href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
                     </div>
                 </div>
             </div>
@@ -39,9 +39,9 @@
 
     <div class="create-recipe">
         {% if is_granted("ROLE_ADMIN") %}
-            <a href="{{ path('admin_app_recipe_new') }}" class="create-link">Create New Recipe</a>
+            <a href="{{ path('admin_app_recipe_new') }}" class="btn btn-primary">Create New Recipe</a>
         {% else %}
-            <a href="{{ path('app_recipe_new') }}" class="create-link">Create New Recipe</a>
+            <a href="{{ path('app_recipe_new') }}" class="btn btn-primary">Create New Recipe</a>
         {% endif %}
     </div>
 {% endblock %}
