@@ -39,6 +39,8 @@ final class HomeController extends AbstractController
             if ($imageFile) {
             $imageFileName = $fileUploader->upload($imageFile);
             $recipe->setPhoto($imageFileName);
+            }else{
+                $recipe->setPhoto("recipe.jpg");
             }
             $recipe->setAuthor($user);
             $recipe->setStatus(False);
@@ -83,8 +85,17 @@ final class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('photo')->getData();
             if ($imageFile) {
-            $imageFileName = $fileUploader->upload($imageFile);
-            $recipe->setPhoto($imageFileName);
+                if($recipe->getPhoto() != "recipe.jpg") {
+                    unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+                }
+                $imageFileName = $fileUploader->upload($imageFile);
+                $recipe->setPhoto($imageFileName);
+            }
+
+            elseif($recipe->getPhoto() != "recipe.jpg") {
+                unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+
+                $recipe->setPhoto('recipe.jpg');
             }
             $entityManager->flush();
 
@@ -106,6 +117,10 @@ final class HomeController extends AbstractController
     public function delete(Request $request, Recipe $recipe, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->getPayload()->getString('_token'))) {
+            
+            if($recipe->getPhoto() != "recipe.jpg"){
+                unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+            }
             $entityManager->remove($recipe);
             $entityManager->flush();
         }
