@@ -1,4 +1,86 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+
+{{ form_start(form) }}
+
+<h1 class="form-title">Add a Recipe</h1>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Recipe Name</h3>
+    {{ form_row(form.name) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Recipe Type</h3>
+    <div class="recipe-types d-flex gap-2">
+        <label class="btn">
+            <input type="radio" name="recipe[type]" value="Vegan"> Vegan
+        </label>
+        <label class="btn">
+            <input type="radio" name="recipe[type]" value="Vegetarian"> Vegetarian
+        </label>
+        <label class="btn">
+            <input type="radio" name="recipe[type]" value="Pescatarian"> Pescatarian
+        </label>
+        <label class="btn">
+            <input type="radio" name="recipe[type]" value="Meat"> Meat
+        </label>
+    </div>
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Ingredients</h3>
+    <div class="ingredients-container">
+        <!-- Поле для вводу інгредієнта -->
+        <div class="d-flex gap-2 mb-3">
+            <input type="text" id="ingredient-input" class="form-control" placeholder="Enter ingredient">
+            <button type="button" id="add-ingredient" class="btn btn-dark">
+                <span>+</span> Add Ingredient
+            </button>
+        </div>
+        
+        <!-- Відображення списку доданих інгредієнтів -->
+        <ul id="ingredients-list" class="list-group mb-3"></ul>
+        
+        <!-- Приховані поля для відправки інгредієнтів -->
+        <div id="hidden-ingredients"></div>
+    </div>
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Description</h3>
+    {{ form_row(form.description) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Time</h3>
+    <div class="d-flex gap-3">
+        <div>{{ form_row(form.cooking_time) }}</div>
+        <div>{{ form_row(form.preparation_time) }}</div>
+    </div>
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Add Image</h3>
+    <div>
+        {{ form_row(form.photo) }}
+    </div>
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Calories</h3>
+    {{ form_row(form.calories) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Recipe Link</h3>
+    {{ form_row(form.link) }}
+</div>
+
+<div class="form-actions mt-4">
+    <button type="submit" class="btn btn-success">Save</button>
+</div>
+
 {{ form_end(form) }}

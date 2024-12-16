@@ -145,4 +145,4 @@ class RecipeType extends AbstractType
 }
 
 
-// '[a-zA-Z0-9\s.,/*-]*'
+// '[a-zA-Z0-9\s.,/*-]*'і
