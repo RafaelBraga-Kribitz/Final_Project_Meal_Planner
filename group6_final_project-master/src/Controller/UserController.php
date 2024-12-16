@@ -20,9 +20,9 @@ final class UserController extends AbstractController
         $users = $userRepository->findAll();
         $onlyUsers = [];
         foreach($users as $user){
-           if(!in_array("ROLE_ADMIN",$user->getRoles())){
+            if(!in_array("ROLE_ADMIN",$user->getRoles())){
                 $onlyUsers[] = $user;
-           }
+            }
         }
         return $this->render('user/index.html.twig', [
             'users' => $onlyUsers,

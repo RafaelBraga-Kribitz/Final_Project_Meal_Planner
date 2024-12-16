@@ -14,7 +14,7 @@
                         {% if recipe.photo is empty %}
                             <img src="https://s3-alpha-sig.figma.com/img/7e72/57bf/384e90572b47ebff6c2478ec187a38d9?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XKrCi5jBPcjF~HE1V0iYGesFgv07p92s4MCbvCQvGUkFsXmghdu6p4yghh3u3ArqY7x-xdhumId5~apt6QT0cMel404tclXwKwbPCPuG8TkpUqKgrvlNRup1q8FKmB6tGRwh4Aih49~s0EtSIpChNi5nGWmvUVwXkHeNFtSi2qLt9cEe~QlovEjigAFUFD-kRt6MWdJOJe168YbrOlr89FpNApYr7fYEd1xO7LABn6dS0fFjx6DnMrH~mZYkmaOXrQiNQ8Cl5Ed4gKQazk0OL-yIAzAS32jBaHYXPYe8NmflKTLvyIjlebth6fyTgaxWMWDvZ2bx9zL75TAhckP3SA__" alt="{{ recipe.name }}">
                         {% else %}
-                            <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" onerror="this.src='https://s3-alpha-sig.figma.com/img/7e72/57bf/384e90572b47ebff6c2478ec187a38d9?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XKrCi5jBPcjF~HE1V0iYGesFgv07p92s4MCbvCQvGUkFsXmghdu6p4yghh3u3ArqY7x-xdhumId5~apt6QT0cMel404tclXwKwbPCPuG8TkpUqKgrvlNRup1q8FKmB6tGRwh4Aih49~s0EtSIpChNi5nGWmvUVwXkHeNFtSi2qLt9cEe~QlovEjigAFUFD-kRt6MWdJOJe168YbrOlr89FpNApYr7fYEd1xO7LABn6dS0fFjx6DnMrH~mZYkmaOXrQiNQ8Cl5Ed4gKQazk0OL-yIAzAS32jBaHYXPYe8NmflKTLvyIjlebth6fyTgaxWMWDvZ2bx9zL75TAhckP3SA__'">
+                            <img src="{{ asset('pictures/' ~ recipe.photo ) }}" alt="{{ recipe.name }}" onerror="this.src='https://s3-alpha-sig.figma.com/img/7e72/57bf/384e90572b47ebff6c2478ec187a38d9?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XKrCi5jBPcjF~HE1V0iYGesFgv07p92s4MCbvCQvGUkFsXmghdu6p4yghh3u3ArqY7x-xdhumId5~apt6QT0cMel404tclXwKwbPCPuG8TkpUqKgrvlNRup1q8FKmB6tGRwh4Aih49~s0EtSIpChNi5nGWmvUVwXkHeNFtSi2qLt9cEe~QlovEjigAFUFD-kRt6MWdJOJe168YbrOlr89FpNApYr7fYEd1xO7LABn6dS0fFjx6DnMrH~mZYkmaOXrQiNQ8Cl5Ed4gKQazk0OL-yIAzAS32jBaHYXPYe8NmflKTLvyIjlebth6fyTgaxWMWDvZ2bx9zL75TAhckP3SA__'">
                         {% endif %}
                     </div>
                     <div class="contentBx">
@@ -27,7 +27,7 @@
                             <h3>Cook Time:</h3>
                             <span>{{ recipe.cookingTime }}m</span>
                         </div>
-                        <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
+                        <a class="btn btn-primary" href="{{ path('app_recipe_show', {'id': recipe.id}) }}">View Recipe</a>
                     </div>
                 </div>
             </div>
@@ -39,9 +39,9 @@
 
     <div class="create-recipe">
         {% if is_granted("ROLE_ADMIN") %}
-            <a href="{{ path('admin_app_recipe_new') }}" class="create-link">Create New Recipe</a>
+            <a href="{{ path('admin_app_recipe_new') }}" class="btn btn-primary">Create New Recipe</a>
         {% else %}
-            <a href="{{ path('app_recipe_new') }}" class="create-link">Create New Recipe</a>
+            <a href="{{ path('app_recipe_new') }}" class="btn btn-primary">Create New Recipe</a>
         {% endif %}
     </div>
 {% endblock %}

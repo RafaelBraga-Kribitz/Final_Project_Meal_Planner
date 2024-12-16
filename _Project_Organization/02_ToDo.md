@@ -102,12 +102,12 @@
 **After pulling initial schema from Person A:**  
 
 **Week 1 (Days 1-7):**  
-- [ ] **Meal Planner Logic:**  
-  - [ ] Implement CRUD for `MealPlan` entity (User-specific logic).  
-  - [ ] Ensure user can pick recipes from all approved recipes.  
-- [ ] **Filtering & Searching:**  
-  - [ ] Implement filtering by dietary type and calorie range.  
-  - [ ] Create repository methods for complex queries (e.g., `findByCaloriesRange`).
+- [x] **Meal Planner Logic:**  
+  - [x] Implement CRUD for `MealPlan` entity (User-specific logic).  
+  - [x] Ensure user can pick recipes from all approved recipes.  
+- [x] **Filtering & Searching:**  
+  - [x] Implement filtering by dietary type and calorie range.  
+  - [x] Create repository methods for complex queries (e.g., `findByCaloriesRange`).
 
 **Week 2 (Days 8-14):**  
 - [ ] **Optional Features (Ratings, Allergens, Nutrients):**  

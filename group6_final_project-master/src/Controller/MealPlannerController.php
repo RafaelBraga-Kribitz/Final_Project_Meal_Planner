@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\MealPlanner;
+use App\Entity\Recipe;
 use App\Form\MealPlannerType;
 use App\Repository\MealPlannerRepository;
 use App\Repository\RecipeRepository;
@@ -18,6 +19,7 @@ final class MealPlannerController extends AbstractController
     #[Route(name: 'app_meal_planner_index', methods: ['GET'])]
     public function index(MealPlannerRepository $mealPlannerRepository): Response
     {
+         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         return $this->render('meal_planner/index.html.twig', [
             'meal_planners' => $mealPlannerRepository->findBy(['user' => $user]),
@@ -29,11 +31,16 @@ final class MealPlannerController extends AbstractController
     public function new(RecipeRepository $recipeRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
         $mealPlanner = new MealPlanner();
-        $form = $this->createForm(MealPlannerType::class, $mealPlanner);
-        $form->handleRequest($request);
+        // $form = $this->createForm(MealPlannerType::class, $mealPlanner);
+        
         $user=$this->getUser();
         $approvedRecipes=$recipeRepository->findBy(["status"=>"1"]);
-         $form->get("meal_chosen")->setData($approvedRecipes);
+        $mealPlanner = new MealPlanner();
+        $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
+            'approved_recipes' => $approvedRecipes,
+        ]);
+        $form->handleRequest($request);
+
        
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime("now");
@@ -48,7 +55,6 @@ final class MealPlannerController extends AbstractController
         return $this->render('meal_planner/new.html.twig', [
             'meal_planner' => $mealPlanner,
             'form' => $form,
-            'approvedRecipes'=> $approvedRecipes
         ]);
     }
 
@@ -61,9 +67,14 @@ final class MealPlannerController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_meal_planner_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, MealPlanner $mealPlanner, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, MealPlanner $mealPlanner, EntityManagerInterface $entityManager, RecipeRepository $recipeRepository): Response
     {
-        $form = $this->createForm(MealPlannerType::class, $mealPlanner);
+        // $form = $this->createForm(MealPlannerType::class, $mealPlanner);
+        
+        $approvedRecipes=$recipeRepository->findBy(["status"=>"1"]);
+        $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
+            'approved_recipes' => $approvedRecipes
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
