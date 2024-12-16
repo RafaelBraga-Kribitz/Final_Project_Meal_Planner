@@ -45,8 +45,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $phone_number = null;
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $phoneNumber = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $blocked = null;
@@ -164,13 +164,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phone_number): static
+    public function setPhoneNumber(?string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
-
+        // Remove any non-numeric characters except + for international format
+        if ($phoneNumber) {
+            $phoneNumber = preg_replace('/[^0-9\+]/', '', $phoneNumber);
+        }
+        
+        $this->phoneNumber = $phoneNumber;
+        
         return $this;
     }
 
