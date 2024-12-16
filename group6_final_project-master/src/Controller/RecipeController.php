@@ -37,7 +37,7 @@ final class RecipeController extends AbstractController
         $recipe->setStatus(1);
         $em->persist($recipe);
         $em->flush();
-        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_approved_recipes', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
