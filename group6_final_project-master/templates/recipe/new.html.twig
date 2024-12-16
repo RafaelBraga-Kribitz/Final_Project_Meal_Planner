@@ -8,8 +8,12 @@
             <h1>Create new Recipe</h1>
         
             {{ include('recipe/_form.html.twig') }}
-        
-            <button class="btn btn-secondary mt-3" href="{{ path('app_recipe_index') }}">Back to list</button>
+
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('admin_app_recipe_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+            {% else %}
+                <a href="{{ path('app_approved_recipes') }}" class="btn btn-secondary mt-3">Back to List</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
