@@ -20,8 +20,19 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, options: [
-                'attr' => ['pattern' => '[^@\s]+@[^@\s]+\.[^@\s]+']
+            ->add('email', EmailType::class)
+            ->add('phoneNumber', TelType::class, [
+                'required' => false,
+                'attr' => [
+                    'pattern' => '^[0-9\-\+\s\(\)]{6,20}$',
+                    'placeholder' => '+XX XXX XXX XXX'
+                ],
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                        'maxMessage' => 'Phone number cannot be longer than {{ limit }} characters',
+                    ])
+                ]
             ])
             ->add('first_name', TextType::class, options: [
                 'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
@@ -30,9 +41,6 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
             ))
             ->add('photo')
-            ->add('phone_number', TelType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
-            ))
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
