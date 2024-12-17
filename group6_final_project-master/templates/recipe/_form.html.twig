@@ -1,4 +1,89 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}  #}
+
+
+
+{{ form_start(form) }}
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Recipe Name</h3>
+    {{ form_row(form.name) }}
+</div>
+
+<div class="form-section mb-4">
+    {# <h3 class="section-title">Recipe Type</h3> #}
+    <div class="recipe-types d-flex gap-2">
+        {% for child in form.type %}
+            <label class="btn type-button">
+                {{ form_widget(child) }} {{ child.vars.label }}
+            </label>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Ingredients</h3>
+    {{ form_row(form.ingredients) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Description</h3>
+    {{ form_row(form.description) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Time</h3>
+    <div class="d-flex gap-3">
+        <div>{{ form_row(form.cooking_time) }}</div>
+        <div>{{ form_row(form.preparation_time) }}</div>
+    </div>
+</div>
+
+{# <div class="form-section mb-4">
+    <h3 class="section-title-image">Add Image</h3>
+    <div>
+        {{ form_row(form.photo) }}
+    </div>
+</div> #}
+
+<div class="form-section mb-4">
+    <h3 class="section-title-image">Add Image</h3>
+    <div class="image-upload-container">
+        <div class="image-placeholder">
+            <img src="{{ asset('pictures/image-upload.png') }}" alt="Placeholder image">
+        </div>
+        <div class="image-upload-details">
+            <p class="image-hint">Please upload square image, size less than 2mb.</p>
+            <div class="custom-file-upload">
+                <label for="{{ form.photo.vars.id }}" class="file-label">
+                    Choose File
+                </label>
+                {{ form_widget(form.photo, { 'attr': {'class': 'custom-file-input'} }) }}
+                <span id="file-name" class="file-name">No File Chosen</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Calories</h3>
+    {{ form_row(form.calories) }}
+</div>
+
+<div class="form-section mb-4">
+    <h3 class="section-title">Recipe Link</h3>
+    {{ form_row(form.link) }}
+</div>
+
+<div class="form-actions mt-4">
+    <button type="submit" class="btn btn-success">Save</button>
+</div>
+
+
 {{ form_end(form) }}
+
+

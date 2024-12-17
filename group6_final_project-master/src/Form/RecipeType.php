@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
@@ -20,33 +21,33 @@ class RecipeType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3', 
+                    'class' => 'form-control-name mb-3', 
                     'pattern' => '[a-zA-Z0-9\s.,/*-]*',
-                    'placeholder' => 'Enter recipe name'
+                    'placeholder' => 'E.g. Spaghetti with Tomato Sauce'
                 ],
-                'label' => 'Recipe Name',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'], 
             ))
             ->add('ingredients', TextType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-ingredients mb-3',
                     'pattern' => '[a-zA-Z0-9\s.,/*-]*',
                     'placeholder' => 'List the ingredients'
                 ],
-                'label' => 'Ingredients',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],
             ))
             ->add('description', TextType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-description mb-3',
                     'pattern' => '[a-zA-Z0-9\s.,/*-]*',
                     'placeholder' => 'Describe the recipe'
                 ],
-                'label' => 'Description',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],  
             ))
             ->add('photo', FileType::class, [
-                'label' => 'Image (png, jpg, jpeg file)',
+                'label' => 'Please upload square image, size less than 2mb.',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -56,7 +57,7 @@ class RecipeType extends AbstractType
                 'required' => false,
 
                 'attr' => [
-                    'class' => 'form-control mb-3', 
+                    // 'class' => 'form-control mb-3', 
                     'accept' => '.png, .jpg, .jpeg', 
                     'placeholder' => 'Upload an image file' 
                 ],
@@ -77,37 +78,37 @@ class RecipeType extends AbstractType
             ])
             ->add('cooking_time', NumberType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-time mb-3',
                     'pattern' => '[0-9]*',
-                    'placeholder' => 'Enter cooking time (minutes)'
+                    'placeholder' => 'Cooking time (minutes)'
                 ],
-                'label' => 'Cooking Time (minutes)',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],
             ))
             ->add('preparation_time', NumberType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-time mb-3',
                     'pattern' => '[0-9]*',
-                    'placeholder' => 'Enter preparation time (minutes)'
+                    'placeholder' => 'Preparation time (minutes)'
                 ],
-                'label' => 'Preparation Time (minutes)',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],
             ))
             ->add('calories', NumberType::class, array(
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-calories mb-3',
                     'pattern' => '[0-9]*',
                     'placeholder' => 'Enter calorie count'
                 ],
-                'label' => 'Calories',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],
             ))
             ->add('link', UrlType::class, [
                 'attr' => [
-                    'class' => 'form-control mb-3',
+                    'class' => 'form-control-link mb-3',
                     'placeholder' => 'Enter a link to the recipe'
                 ],
-                'label' => 'Recipe Link',
+                'label' => false,
                 'label_attr' => ['class' => 'form-label'],
             ])
             ->add('type', ChoiceType::class, [
@@ -117,9 +118,8 @@ class RecipeType extends AbstractType
                     'Pescatarian' => 'Pescatarian',
                     'Meat' => 'Meat'
                 ],
-                'attr' => [
-                    'class' => 'form-select mb-3',
-                ],
+                'expanded' => true, 
+                'multiple' => false, 
                 'label' => 'Recipe Type',
                 'label_attr' => ['class' => 'form-label'],
             ])
@@ -145,4 +145,4 @@ class RecipeType extends AbstractType
 }
 
 
-// '[a-zA-Z0-9\s.,/*-]*'
+// '[a-zA-Z0-9\s.,/*-]*'і
