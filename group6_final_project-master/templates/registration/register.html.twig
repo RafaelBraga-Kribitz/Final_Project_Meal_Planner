@@ -19,8 +19,8 @@
             <div class="col-md-8 col-lg-6">
                 {% for field in registrationForm %}
                     
-                    {% if field.vars.block_prefixes|last != 'hidden' %}
-                        {% if field.vars.name == 'agreeTerms' %}
+                    {# {% if field.vars.block_prefixes|last != 'hidden' %} #}
+                        {# {% if field.vars.name == 'agreeTerms' %}
                             
                             <div class="form-check mb-3">
                                 {{ form_widget(field, {'attr': {'class': 'form-check-input'}}) }}
@@ -41,17 +41,17 @@
                                     </div>
                                 {% endif %}
                             </div>
-                        {% endif %}
-                    {% else %}
+                        {% endif %} #}
+                    {# {% else %}
                         {{ form_widget(field) }}
-                    {% endif %}
+                    {% endif %} #}
                 {% endfor %}
+    {{ form_end(registrationForm) }}
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    <button type="submit" class="btn btn-primary btn-lg my-5">Register</button>
                 </div>
             </div>
         </div>
-        {{ form_end(registrationForm) }}
     </form>
 </div>
 {% endblock %}
