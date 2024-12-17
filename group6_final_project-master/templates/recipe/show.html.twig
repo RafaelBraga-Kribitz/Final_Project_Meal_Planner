@@ -93,7 +93,10 @@
                     <p class="list-item">Calories <br> <span class="list-item-style">{{ recipe.calories }} kcal</span></p>
                     <p class="list-item">Preparation Time <br> <span class="list-item-style">{{ recipe.preparationTime }} min</span></p>
                     <p class="list-item">Cooking Time <br> <span class="list-item-style">{{ recipe.cookingTime }} min</span></p>
-                    <p class="list-item">Type <br> <span class="list-item-style">{{ recipe.type }}</span></p>
+                    {# <p class="list-item">Type <br> <span class="list-item-style">{{ recipe.type }}</span></p> #}
+                    <p class="list-item">Author<br> 
+                        <span class="list-item-style">{{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
+                    </p>
                 </div>
             </div>
 
