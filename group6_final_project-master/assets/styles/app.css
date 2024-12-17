@@ -1,5 +1,3 @@
-
-
 :root {
     --primary: #CBFC02;
     --secondary: #6f8a01;
@@ -31,9 +29,24 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem 2rem;
 }
 
-.navbar-nav {
-    margin-left: auto;
-    padding-right: 1rem;
+.navbar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__brand-link {
+    text-decoration: none;
+}
+
+.navbar__brand .brand-logo__text {
+    color: var(--black);
 }
 
 .navbar-nav .nav-link {
@@ -46,20 +59,44 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-nav .nav-link::before {
     content: "";
+    position: absolute;
     width: 100%;
     height: 4px;
-    position: absolute;
-    left: 0;
     bottom: 0;
-    background: var(--primary);
-    transition: 0.5s transform ease;
-    transform: scale3d(0,1,1);
-    transform-origin: 100% 50%;
+    left: 0;
+    background-color: var(--primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover::before {
-    transform: scale3d(1,1,1);
-    transform-origin: 0 50%;
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    margin-left: auto;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 1rem;
+    }
+    
+    .navbar-nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-link::before {
+        display: none;
+    }
 }
 
 /* Button Styles */
@@ -697,4 +734,36 @@ h1 {
     .footer__links-column {
         align-items: center;
     }
+}
+
+/* Add new brand logo styles */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-logo__icon {
+    height: 2rem;
+    width: auto;
+}
+
+.brand-logo__text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Update footer styles */
+.footer__brand .brand-logo {
+    margin-bottom: 1rem;
+}
+
+/* Update navbar styles */
+.navbar__brand-link {
+    text-decoration: none;
+}
+
+.navbar__brand .brand-logo__text {
+    color: var(--color-primary);
 }
