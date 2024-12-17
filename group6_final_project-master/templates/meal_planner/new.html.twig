@@ -2,20 +2,33 @@
 
 {% block title %}New MealPlanner{% endblock %}
 
-
-
 {% block body %}
-    <h1>Create new MealPlanner</h1>
+    <div class="container">
+        <h1>Create new MealPlanner</h1>
 
-    {% include 'components/_filter_mealplanner.html.twig' %}
+        {% include 'components/_filter_mealplanner.html.twig' %}
 
-    {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'class': 'meal-planner-form'}}) }}
+            
+            <div class="date-picker-wrapper">
+                {{ form_row(form.chosen_date, {
+                    'label_attr': {'class': 'form-label'},
+                    'attr': {'class': 'form-control'}
+                }) }}
+            </div>
 
-    {{ form_row(form.chosen_date) }}
-    {{ form_row(form.meal_chosen) }}
-    
-    <button class="btn">{{ button_label|default('Save') }}</button>
+            <div class="meal-choices-wrapper">
+                <h3>Select Your Meals</h3>
+                <div class="meal-choices-grid">
+                    {{ form_widget(form.meal_chosen) }}
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                <a href="{{ path('app_meal_planner_index') }}" class="btn btn-secondary">Back to list</a>
+            </div>
 
-    {{ form_end(form) }}
-    <a href="{{ path('app_meal_planner_index') }}">Back to list</a>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
