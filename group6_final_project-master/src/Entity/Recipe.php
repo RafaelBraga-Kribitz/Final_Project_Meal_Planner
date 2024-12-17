@@ -11,12 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Recipe
 {
 // =========================================
-    public const TYPES = [
-        // 'Vegan' => 'Vegan',
-        // 'Vegetarian' => 'Vegetarian',
-        // 'Pescatarian' => 'Pescatarian',
-        // 'Meat' => 'Meat',
-        
+    public const TYPES = [        
         'Vegan' => 'Vegan',
         'Vegetarian' => 'Vegetarian',
         'Pescatarian' => 'Pescatarian',
