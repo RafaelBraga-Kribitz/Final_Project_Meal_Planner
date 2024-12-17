@@ -12,10 +12,17 @@ class Recipe
 {
 // =========================================
     public const TYPES = [
+        // 'Vegan' => 'Vegan',
+        // 'Vegetarian' => 'Vegetarian',
+        // 'Pescatarian' => 'Pescatarian',
+        // 'Meat' => 'Meat',
+        
         'Vegan' => 'Vegan',
         'Vegetarian' => 'Vegetarian',
         'Pescatarian' => 'Pescatarian',
-        'Meat' => 'Meat',
+        'Carnivore' => 'Carnivore',
+        'Low-Carb' => 'Low-carb',
+        'Paleo' => 'Paleo'
     ];
 // ==========================================
 
