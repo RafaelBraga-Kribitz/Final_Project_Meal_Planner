@@ -126,7 +126,7 @@ CREATE TABLE `user` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `phone_number` int(11) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
   `blocked` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -135,17 +135,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`, `blocked`) VALUES
-(1, 'rafael@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fm1h4k7nOjR0g3TARawc/OR8IlcoWFxtnEHUXTVeSJmruG87gLXyO', 'Rafael', 'Braga', 'rafael-avatar.jpg', 123456789, 0),
-(2, 'james.wilson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'James', 'Wilson', '/users/user1_m.jpeg', 987654321, 0),
-(3, 'michael.brown@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Michael', 'Brown', '/users/user2_m.jpeg', 456789123, 0),
-(4, 'david.miller@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'David', 'Miller', '/users/user3_m.jpeg', 234567890, 0),
-(5, 'sarah.johnson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Sarah', 'Johnson', '/users/user4_f.jpeg', 345678901, 0),
-(6, 'emma.davis@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Emma', 'Davis', '/users/user5_f.jpeg', 456789012, 0),
-(7, 'robert.taylor@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Robert', 'Taylor', '/users/user6_m.jpeg', 567890123, 0),
-(8, 'olivia.anderson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Olivia', 'Anderson', '/users/user7_f.jpeg', 678901234, 0),
-(9, 'william.thomas@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'William', 'Thomas', '/users/user8_m.jpeg', 789012345, 0),
-(10, 'daniel.moore@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Daniel', 'Moore', '/users/user9_m.jpeg', 890123456, 0),
-(11, 'joseph.white@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Joseph', 'White', '/users/user10_m.jpeg', 901234567, 0);
+(1, 'rafael@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fm1h4k7nOjR0g3TARawc/OR8IlcoWFxtnEHUXTVeSJmruG87gLXyO', 'Rafael', 'Braga', 'rafael-avatar.jpg', '123456789', 0),
+(2, 'james.wilson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'James', 'Wilson', '/users/user1_m.jpeg', '987654321', 0),
+(3, 'michael.brown@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Michael', 'Brown', '/users/user2_m.jpeg', '456789123', 0),
+(4, 'david.miller@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'David', 'Miller', '/users/user3_m.jpeg', '234567890', 0),
+(5, 'sarah.johnson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Sarah', 'Johnson', '/users/user4_f.jpeg', '345678901', 0),
+(6, 'emma.davis@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Emma', 'Davis', '/users/user5_f.jpeg', '456789012', 0),
+(7, 'robert.taylor@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Robert', 'Taylor', '/users/user6_m.jpeg', '567890123', 0),
+(8, 'olivia.anderson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Olivia', 'Anderson', '/users/user7_f.jpeg', '678901234', 0),
+(9, 'william.thomas@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'William', 'Thomas', '/users/user8_m.jpeg', '789012345', 0),
+(10, 'daniel.moore@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Daniel', 'Moore', '/users/user9_m.jpeg', '890123456', 0),
+(11, 'joseph.white@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Joseph', 'White', '/users/user10_m.jpeg', '901234567', 0);
 
 --
 -- Indexes for dumped tables
