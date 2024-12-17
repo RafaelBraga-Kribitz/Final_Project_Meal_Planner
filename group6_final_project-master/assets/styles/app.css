@@ -469,7 +469,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Create Recipe Button */
 .create-recipe {
     position: fixed;
-    bottom: 30px;
+    bottom: 70px;
     right: 30px;
     z-index: 1000;
 }
