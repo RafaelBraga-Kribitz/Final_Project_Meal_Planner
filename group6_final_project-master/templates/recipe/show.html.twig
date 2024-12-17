@@ -74,44 +74,49 @@
 {% block title %}Recipe Details{% endblock %}
 
 {% block body %}
-    <div class="container mt-4 mb-4">
+    <div class="container container-view mt-4 mb-4">
 
         <div class="recipe-details">
-            <h1 class="mt-4 text-center">{{ recipe.name }}</h1>
+
+            <div class="form-section mb-4">
+                <h3 class="recipe-details__title">{{ recipe.name }}</h3>
+            </div>
 
             <div class="recipe-image text-center">
-                <img src="{{ asset('pictures/' ~ recipe.photo) }}" alt="{{ recipe.name }}" class="img-fluid rounded">
+                <img src="{{ asset('pictures/' ~ recipe.photo) }}" alt="{{ recipe.name }}" class="img-fluid recipe-image__image" >
             </div>
 
-            <h1 class="mt-4 text-center">{{ recipe.name }}</h1>
+            <h1 class="recipe-details__title">{{ recipe.name }}</h1>
 
-            <div class="col-md-6">
-                <h3>Recipe Information:</h3>
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Calories:</strong> {{ recipe.calories }} kcal</li>
-                    <li class="list-group-item"><strong>Preparation Time:</strong> {{ recipe.preparationTime }} minutes</li>
-                    <li class="list-group-item"><strong>Cooking Time:</strong> {{ recipe.cookingTime }} minutes</li>
-                    <li class="list-group-item"><strong>Type:</strong> {{ recipe.type }}</li>
-                </ul>
+            <div class="recipe-details__items">
+                <div class="list-items">
+                    <p class="list-item">Calories <br> <span class="list-item-style">{{ recipe.calories }} kcal</span></p>
+                    <p class="list-item">Preparation Time <br> <span class="list-item-style">{{ recipe.preparationTime }} min</span></p>
+                    <p class="list-item">Cooking Time <br> <span class="list-item-style">{{ recipe.cookingTime }} min</span></p>
+                    <p class="list-item">Type <br> <span class="list-item-style">{{ recipe.type }}</span></p>
+                </div>
             </div>
 
-            <div class="type">
-                <span>{{ recipe.type }}</span>
+            <div class="recipe-types d-flex gap-2">
+                {% for label, value in availableTypes %}
+                    <a href="#" class="btn type-button">{{ label }}</a>
+                {% endfor %}
             </div>
 
             <div class="col-md-6 mb-3">
-                <h3>Ingredients:</h3>
-                <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ recipe.ingredients }}</li>
-                </ul>
+                <h3 class="recipe-details__title">Ingredients</h3>
+                <div class="list-items">
+                        <p class="list-item-ingredient">{{ recipe.ingredients }}</p>
+                </div>
             </div>
 
             <div class="recipe-description mt-3">
-                <p>{{ recipe.description }}</p>
+                <h3 class="recipe-details__title">Description</h3>
+                <p class="list-item-ingredient">{{ recipe.description }}</p>
             </div>
         </div>
 
-        <!-- Блок кнопок -->
+        
         <div class="mt-5 d-flex justify-content-center gap-2">
             {% if is_granted("ROLE_ADMIN") and recipe.status == '1' %}
                 <a href="{{ path('admin_app_recipe_index') }}" class="btn btn-secondary">Back to List</a>

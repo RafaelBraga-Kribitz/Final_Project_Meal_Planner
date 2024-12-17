@@ -10,6 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Recipe
 {
+// =========================================
+    public const TYPES = [
+        'Vegan' => 'Vegan',
+        'Vegetarian' => 'Vegetarian',
+        'Pescatarian' => 'Pescatarian',
+        'Meat' => 'Meat',
+    ];
+// ==========================================
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -47,6 +56,18 @@ class Recipe
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $date_updated = null;
+
+
+    // ==================================
+
+
+    public static function getAvailableTypes(): array
+    {
+        return self::TYPES;
+    }
+
+
+    // ==================================
 
     #[ORM\PrePersist]
     public function updateDateAdded():void {
