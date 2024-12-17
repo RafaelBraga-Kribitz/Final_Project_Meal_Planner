@@ -52,7 +52,8 @@ class RegistrationFormType extends AbstractType
             ->add('last_name', TextType::class, array(
                 'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*', 'class' => 'form-control']
             ))
-            ->add('photo', FileType::class, [
+            ->add('photo', FileType::class, options: [
+                'attr' => ['class' => 'form-control'],
                 'label' => 'Image (png, jpg, jpeg file)',
                 'mapped' => false,
                 'required' => false,

@@ -3,6 +3,9 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -14,9 +17,9 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="text-center mb-4">Sign In</h1>
 
-        <div class="container">
+        
 
 
         <label for="username">Email</label>
@@ -41,6 +44,8 @@
         <button class="btn btn-lg btn-primary my-4" type="submit">
             Sign in
         </button>
+        <div>
+        <div>
         <div>
     </form>
 {% endblock %}
