@@ -20,6 +20,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
             ->add('email', EmailType::class)
             ->add('phoneNumber', TelType::class, [
                 'required' => false,
@@ -68,7 +69,6 @@ class RegistrationFormType extends AbstractType
             ])
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
