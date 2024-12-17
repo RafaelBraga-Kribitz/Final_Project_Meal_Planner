@@ -9,12 +9,28 @@
 }
 
 /* Base Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     color: var(--black);
     background-color: #f8f9fa;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -537,9 +553,10 @@ h1 {
 /* Footer Styles */
 .footer {
     width: 100%;
-    background-color: var(--bs-tertiary-bg);
+    background-color: #e9ecef;
     font-family: var(--bs-body-font-family);
     padding: 2rem 4rem;
+    flex-shrink: 0;
 }
 
 .footer__container {
