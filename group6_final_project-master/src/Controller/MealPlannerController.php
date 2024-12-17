@@ -138,7 +138,7 @@ final class MealPlannerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
         
-            // $entityManager->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_meal_planner_index', [], Response::HTTP_SEE_OTHER);
         }
