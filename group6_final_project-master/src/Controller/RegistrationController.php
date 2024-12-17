@@ -12,12 +12,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use App\Service\FileUploader;
 
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SessionInterface $session, CsrfTokenManagerInterface $csrfTokenManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SessionInterface $session, CsrfTokenManagerInterface $csrfTokenManager, FileUploader $fileUploader): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -31,6 +32,13 @@ class RegistrationController extends AbstractController
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
             $user->setBlocked(False);
 
+            $imageFile = $form->get('photo')->getData();
+            if ($imageFile) {
+            $imageFileName = $fileUploader->upload($imageFile);
+            $user->setPhoto($imageFileName);
+            }else{
+                $user->setPhoto("user.jpg");
+            }
             $entityManager->persist($user);
             $entityManager->flush();
 

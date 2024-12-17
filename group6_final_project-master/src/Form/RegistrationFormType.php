@@ -6,10 +6,12 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -50,9 +52,22 @@ class RegistrationFormType extends AbstractType
             ->add('last_name', TextType::class, array(
                 'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*', 'class' => 'form-control']
             ))
-            ->add('photo', TextType::class, options: ['attr' => [
-                'class' => 'form-control'
-            ]])
+            ->add('photo', FileType::class, [
+                'label' => 'Image (png, jpg, jpeg file)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'photo/png',
+                            'photo/jpg',
+                            'photo/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file',
+                    ])
+                ],
+            ])
 
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

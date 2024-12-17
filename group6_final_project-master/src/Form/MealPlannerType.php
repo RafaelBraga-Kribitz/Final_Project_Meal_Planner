@@ -21,7 +21,7 @@ class MealPlannerType extends AbstractType
                 'class' => Recipe::class,
                 'choices' => $approvedRecipes,
                 'multiple' => true,
-                'expanded' => false,
+                'expanded' => true,
                 'choice_label' => 'name',
                 'choice_value' => 'id',
             ]);
