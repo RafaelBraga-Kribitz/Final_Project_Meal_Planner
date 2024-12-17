@@ -15,24 +15,19 @@
                     <a class="nav-link active" aria-current="page" href="{{ path('admin_app_recipe_index') }}">Recipe Dashboard</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ path('admin_app_pending') }}">Pending</a>
+              </li>
+                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">User Dashboard</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ path('admin_app_pending') }}">Pending</a>
-            </li>
                 {% endif %}
           {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Recipes</a>
+                  <a class="nav-link active" aria-current="page" href="{{ path('app_approved_recipes') }}">Approved Recipes</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{ path('app_meal_planner_index') }}">Meal Planner</a>
               </li>
-              {% endif %}  
-              {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ path('app_approved_recipes') }}">Approved Recipes</a>
-                </li>
               {% endif %}             
         </div>
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}

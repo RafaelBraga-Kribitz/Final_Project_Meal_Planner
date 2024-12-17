@@ -1,11 +1,11 @@
 {# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }} #}
+{{ form_end(form) }}  #}
+
+
 
 {{ form_start(form) }}
-
-<h1 class="form-title">Add a Recipe</h1>
 
 <div class="form-section mb-4">
     <h3 class="section-title">Recipe Name</h3>
@@ -13,38 +13,19 @@
 </div>
 
 <div class="form-section mb-4">
-    <h3 class="section-title">Recipe Type</h3>
+    {# <h3 class="section-title">Recipe Type</h3> #}
     <div class="recipe-types d-flex gap-2">
-        <label class="btn">
-            <input type="radio" name="recipe[type]" value="Vegan"> Vegan
-        </label>
-        <label class="btn">
-            <input type="radio" name="recipe[type]" value="Vegetarian"> Vegetarian
-        </label>
-        <label class="btn">
-            <input type="radio" name="recipe[type]" value="Pescatarian"> Pescatarian
-        </label>
-        <label class="btn">
-            <input type="radio" name="recipe[type]" value="Meat"> Meat
-        </label>
+        {% for child in form.type %}
+            <label class="btn type-button">
+                {{ form_widget(child) }} {{ child.vars.label }}
+            </label>
+        {% endfor %}
     </div>
 </div>
 
 <div class="form-section mb-4">
     <h3 class="section-title">Ingredients</h3>
-    <div class="ingredients-container">
-        
-        <div class="d-flex gap-2 mb-3">
-            <input type="text" id="ingredient-input" class="form-control" placeholder="Enter ingredient">
-            <button type="button" id="add-ingredient" class="btn btn-dark">
-                <span>+</span> Add Ingredient
-            </button>
-        </div>
-        
-        <ul id="ingredients-list" class="list-group mb-3"></ul>
-
-        <div id="hidden-ingredients"></div>
-    </div>
+    {{ form_row(form.ingredients) }}
 </div>
 
 <div class="form-section mb-4">
@@ -60,12 +41,33 @@
     </div>
 </div>
 
-<div class="form-section mb-4">
-    <h3 class="section-title">Add Image</h3>
+{# <div class="form-section mb-4">
+    <h3 class="section-title-image">Add Image</h3>
     <div>
         {{ form_row(form.photo) }}
     </div>
+</div> #}
+
+<div class="form-section mb-4">
+    <h3 class="section-title-image">Add Image</h3>
+    <div class="image-upload-container">
+        <div class="image-placeholder">
+            <img src="{{ asset('pictures/image-upload.png') }}" alt="Placeholder image">
+        </div>
+        <div class="image-upload-details">
+            <p class="image-hint">Please upload square image, size less than 2mb.</p>
+            <div class="custom-file-upload">
+                <label for="{{ form.photo.vars.id }}" class="file-label">
+                    Choose File
+                </label>
+                {{ form_widget(form.photo, { 'attr': {'class': 'custom-file-input'} }) }}
+                <span id="file-name" class="file-name">No File Chosen</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <div class="form-section mb-4">
     <h3 class="section-title">Calories</h3>
@@ -81,4 +83,7 @@
     <button type="submit" class="btn btn-success">Save</button>
 </div>
 
+
 {{ form_end(form) }}
+
+

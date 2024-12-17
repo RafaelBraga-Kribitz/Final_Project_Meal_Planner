@@ -57,11 +57,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
                 <div class="approved-recipes__card">
                     <div class="approved-recipes__card-image">
-                        {% if recipe.photo is empty %}
-                            <img src="https://placehold.co/400x300/9bdc28/white?text=No+Image" alt="{{ recipe.name }}">
-                        {% else %}
-                        <img src="{{ asset('pictures/' ~ recipe.photo ) }}" alt="{{ recipe.name }}" onerror="this.src='https://placehold.co/400x300/9bdc28/white?text=Delicious+Recipe'">
-                        {% endif %}
+                        <img src="{{ asset('pictures/' ~ recipe.photo ) }}" alt="{{ recipe.name }}">
                     </div>                    
                     <div class="approved-recipes__content">
                         <div class="approved-recipes__content--top">
@@ -87,11 +83,7 @@
 </div>
 
 <div class="create-recipe">
-    {% if is_granted("ROLE_ADMIN") %}
-        <a href="{{ path('admin_app_recipe_new') }}" class="create-link">Create New Recipe</a>
-    {% else %}
         <a href="{{ path('app_recipe_new') }}" class="create-link">Create New Recipe</a>
-    {% endif %}
 </div>
 
 {% endblock %}
