@@ -2,10 +2,7 @@
     <div class="footer__container">
         <div class="footer__top">
             <div class="footer__brand">
-                <div class="footer__logo">
-                    <img class="footer__logo-icon" alt="NextMeal Logo" src="{{ asset('assets/styles/ChefHat.svg') }}">
-                    <span class="footer__logo-text">NextMeal</span>
-                </div>
+                {{ include('components/_brand_logo.html.twig') }}
                 <div class="footer__buttons">
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a href="{{ path('app_register') }}" class="footer__button footer__button--primary">Try NextMeal</a>

@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Edit MealPlanner</h1>
 
+    {% include 'components/_filter_mealplanneredit.html.twig' %}
+
     {{ include('meal_planner/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_meal_planner_index') }}">back to list</a>

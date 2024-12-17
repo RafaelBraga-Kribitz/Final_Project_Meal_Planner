@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use function PHPSTORM_META\type;
+
 #[Route('/meal/planner')]
 final class MealPlannerController extends AbstractController
 {
@@ -27,21 +29,46 @@ final class MealPlannerController extends AbstractController
         ]);
     }
 
+
+
+
     #[Route('/new', name: 'app_meal_planner_new', methods: ['GET', 'POST'])]
     public function new(RecipeRepository $recipeRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
+        $type = $request->query->get('type');
+        $maxCaloriesInput = $request->query->get('max_calories'); 
+        $maxCalories = is_numeric($maxCaloriesInput) ? (int) $maxCaloriesInput : null; 
+
         $mealPlanner = new MealPlanner();
         // $form = $this->createForm(MealPlannerType::class, $mealPlanner);
         
+
         $user=$this->getUser();
-        $approvedRecipes=$recipeRepository->findBy(["status"=>"1"]);
+        if (!$type && !$maxCalories) {
+            $approvedRecipes = $recipeRepository->findBy(["status"=>"1"]);
+        } else {            
+            $approvedRecipes = $recipeRepository->findByFilters($type, $maxCalories);
+        }
+
+           // approved recipies from current user in session
+           if ($user) {
+            if (!$type && !$maxCalories) {
+                $userRecipes = $recipeRepository->findBy([
+                    'status' => true,
+                    'author' => $user,
+                ]);
+            } else {
+                $userRecipes = $recipeRepository->findByFiltersAndUser($type, $maxCalories, $user);
+            }
+
+
+       
         $mealPlanner = new MealPlanner();
         $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
             'approved_recipes' => $approvedRecipes,
         ]);
         $form->handleRequest($request);
-
-       
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime("now");
             $mealPlanner->setUpdateDate($now);
@@ -51,12 +78,17 @@ final class MealPlannerController extends AbstractController
 
             return $this->redirectToRoute('app_meal_planner_index', [], Response::HTTP_SEE_OTHER);
         }
+    }
 
         return $this->render('meal_planner/new.html.twig', [
             'meal_planner' => $mealPlanner,
             'form' => $form,
+            'type' => $type
         ]);
     }
+
+
+
 
     #[Route('/{id}', name: 'app_meal_planner_show', methods: ['GET'])]
     public function show(MealPlanner $mealPlanner): Response
@@ -66,18 +98,46 @@ final class MealPlannerController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}/edit', name: 'app_meal_planner_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, MealPlanner $mealPlanner, EntityManagerInterface $entityManager, RecipeRepository $recipeRepository): Response
     {
+
+        $type = $request->query->get('type');
+        $maxCaloriesInput = $request->query->get('max_calories'); 
+        $maxCalories = is_numeric($maxCaloriesInput) ? (int) $maxCaloriesInput : null; 
+
+        $user=$this->getUser();
+       
+        if (!$type && !$maxCalories) {
+            $approvedRecipes = $recipeRepository->findBy(["status"=>"1"]);
+        } else {            
+            $approvedRecipes = $recipeRepository->findByFilters($type, $maxCalories);
+        }
+
+           // approved recipies from current user in session
+           if ($user) {
+            if (!$type && !$maxCalories) {
+                $userRecipes = $recipeRepository->findBy([
+                    'status' => true,
+                    'author' => $user,
+                ]);
+            } else {
+                $userRecipes = $recipeRepository->findByFiltersAndUser($type, $maxCalories, $user);
+            }
+
+
         // $form = $this->createForm(MealPlannerType::class, $mealPlanner);
         
-        $approvedRecipes=$recipeRepository->findBy(["status"=>"1"]);
+       
         $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
             'approved_recipes' => $approvedRecipes
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+        
             $entityManager->flush();
 
             return $this->redirectToRoute('app_meal_planner_index', [], Response::HTTP_SEE_OTHER);
@@ -86,8 +146,12 @@ final class MealPlannerController extends AbstractController
         return $this->render('meal_planner/edit.html.twig', [
             'meal_planner' => $mealPlanner,
             'form' => $form,
+            'type' => $type
         ]);
     }
+}
+
+
 
     #[Route('/{id}', name: 'app_meal_planner_delete', methods: ['POST'])]
     public function delete(Request $request, MealPlanner $mealPlanner, EntityManagerInterface $entityManager): Response

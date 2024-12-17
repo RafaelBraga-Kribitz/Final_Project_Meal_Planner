@@ -44,7 +44,7 @@
                 <td>{{ recipe.dateAdded ? recipe.dateAdded|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ recipe.dateUpdated ? recipe.dateUpdated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Details</a>
+                    <a class="btn btn-primary" href="{{ path('admin_app_recipe_show', {'id': recipe.id}) }}">Details</a>
                     <a class="btn btn-success" href="{{ path('admin_app_approve', {'id': recipe.id}) }}">Approve</a>
                     {{ include('recipe/_delete_form.html.twig') }}
                 </td>

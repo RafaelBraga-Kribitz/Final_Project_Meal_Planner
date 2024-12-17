@@ -10,3 +10,27 @@ document.addEventListener("turbo:load", () => {
         }, 5000);
     });
 });
+
+
+// ===============================================
+
+function initFileInput() {
+    const fileInput = document.querySelector('.custom-file-input');
+    const fileName = document.querySelector('.file-name');
+
+    if (fileInput && fileName) {
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            } else {
+                fileName.textContent = 'No File Chosen';
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initFileInput);
+document.addEventListener('turbo:load', initFileInput);
+
+
+
