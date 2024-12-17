@@ -37,7 +37,7 @@ final class RecipeController extends AbstractController
         $recipe->setStatus(1);
         $em->persist($recipe);
         $em->flush();
-        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_approved_recipes', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
@@ -52,6 +52,8 @@ final class RecipeController extends AbstractController
             if ($imageFile) {
             $imageFileName = $fileUploader->upload($imageFile);
             $recipe->setPhoto($imageFileName);
+            }else{
+                $recipe->setPhoto("recipe.jpg");
             }
             $recipe->setAuthor($user);
             $recipe->setStatus(True);
@@ -84,9 +86,19 @@ final class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('photo')->getData();
+            
             if ($imageFile) {
-            $imageFileName = $fileUploader->upload($imageFile);
-            $recipe->setPhoto($imageFileName);
+                if($recipe->getPhoto() != "recipe.jpg") {
+                    unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+                }
+                $imageFileName = $fileUploader->upload($imageFile);
+                $recipe->setPhoto($imageFileName);
+            }
+
+            elseif($recipe->getPhoto() != "recipe.jpg") {
+                unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+
+                $recipe->setPhoto('recipe.jpg');
             }
             $recipe->setStatus(True);
             $entityManager->flush();
@@ -110,10 +122,14 @@ final class RecipeController extends AbstractController
     public function delete(Request $request, Recipe $recipe, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->getPayload()->getString('_token'))) {
+         
+            if($recipe->getPhoto() != "recipe.jpg"){
+                unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+            }
             $entityManager->remove($recipe);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
+    
+        return $this->redirectToRoute('app_static', [], Response::HTTP_SEE_OTHER);
     }
 }

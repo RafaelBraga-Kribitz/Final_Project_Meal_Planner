@@ -1,45 +1,48 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand" href="{{ path('app_static') }}">NextMeal</a>
-      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
-          <a class="nav-link" href="{{ path('app_login') }}">Login</a>
-          <a class="nav-link" href="{{ path('app_register') }}">Register</a>
-          {% endif %}
-          {% if is_granted("ROLE_ADMIN") %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('admin_app_recipe_index') }}">Recipe Dashboard</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">User Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ path('admin_app_pending') }}">Pending</a>
-            </li>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar__container container">
+        <div class="navbar__brand">
+            <a href="{{ path('app_static') }}" class="navbar__brand-link">
+                {{ include('components/_brand_logo.html.twig') }}
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ms-auto">
+                {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+                    </li>
                 {% endif %}
-          {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_recipe_index') }}">Recipes</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ path('app_meal_planner_index') }}">Meal Planner</a>
-              </li>
-              {% endif %}  
-              {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ path('app_approved_recipes') }}">Approved Recipes</a>
-                </li>
-              {% endif %}             
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin_app_recipe_index') }}">Recipe Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin_app_pending') }}">Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_user_index') }}">User Dashboard</a>
+                    </li>
+                {% endif %}
+                {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_approved_recipes') }}">Approved Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_meal_planner_index') }}">Meal Planner</a>
+                    </li>
+                {% endif %}
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-        </div>
-        {% endif %}
-      </div>
     </div>
-  </nav>
+</nav>

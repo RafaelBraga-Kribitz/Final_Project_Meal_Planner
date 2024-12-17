@@ -5,11 +5,16 @@
 {% block body %}
     <div class="container">
         <div class="container-recipe">
-            <h1>Create new Recipe</h1>
+            <h1 class="form-title">Add a Recipe</h1>
+            <p class="subtitle">Create and share your own recipes with the community</p>
         
             {{ include('recipe/_form.html.twig') }}
-        
-            <button class="btn btn-secondary mt-3" href="{{ path('app_recipe_index') }}">Back to list</button>
+
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('admin_app_recipe_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+            {% else %}
+                <a href="{{ path('app_approved_recipes') }}" class="btn btn-secondary mt-3">Back to List</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
