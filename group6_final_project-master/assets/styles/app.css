@@ -2,8 +2,8 @@
 
 :root {
     --primary: #CBFC02;
-    --secondary: #005BAC;
-    --black: #000000;
+    --secondary: #6f8a01;
+    --black: #303030;
     --white: #ffffff;
     --semi-black: rgba(0, 0, 0, 0.5);
     --border-radius: 12px;
@@ -559,13 +559,13 @@ h1 {
 }
 
 .footer__button--primary {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
+    background-color: var(--primary);
+    color: var(--black);
 }
 
 .footer__button--primary:hover {
-    background-color: var(--bs-primary-dark);
-    color: var(--bs-light);
+    background-color: var(--primary);
+    color: var(--black);
 }
 
 .footer__button--secondary {
@@ -597,8 +597,8 @@ h1 {
 }
 
 .footer__social-link:hover {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
+    background-color: var(--primary);
+    color: var(--black);
 }
 
 .footer__links {
@@ -622,12 +622,12 @@ h1 {
 }
 
 .footer__link:hover {
-    color: var(--bs-primary);
+    color: var(--secondary);
 }
 
 .footer__divider {
     height: 1px;
-    background-color: var(--bs-border-color);
+    background-color: var(--semi-black);
     margin: 2rem 0;
 }
 
@@ -636,7 +636,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 2rem;
-    color: var(--bs-secondary-color);
+    color: var(--semi-black);
     font-size: 0.875rem;
 }
 
