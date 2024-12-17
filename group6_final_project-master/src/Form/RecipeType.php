@@ -113,14 +113,18 @@ class RecipeType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Vegan' => 'Vegan',
-                    'Vegetarian' => 'Vegetarian',
-                    'Pescatarian' => 'Pescatarian',
-                    'Meat' => 'Meat'
+                    'Vegan' => 'vegan',
+                    'Vegetarian' => 'vegetarian',
+                    'Pescatarian' => 'pescatarian',
+                    'Carnivore' => 'carnivore',
+                    'Low-Carb' => 'low-carb',
+                    'Paleo' => 'paleo'
                 ],
-                'expanded' => true, 
-                'multiple' => false, 
-                'label' => 'Recipe Type',
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => false,
+                'label' => 'Diet Type',
                 'label_attr' => ['class' => 'form-label'],
             ])
             #->add('date_added', null, [

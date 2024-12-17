@@ -10,6 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Recipe
 {
+    public const DIET_TYPES = [
+        'vegan',
+        'vegetarian',
+        'pescatarian',
+        'carnivore',
+        'low-carb',
+        'paleo'
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -39,7 +48,7 @@ class Recipe
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(type: 'string', length: 20, nullable: true, enumType: true)]
     private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
@@ -171,8 +180,11 @@ class Recipe
         return $this->type;
     }
 
-    public function setType(string $type): static
+    public function setType(?string $type): static
     {
+        if ($type !== null && !in_array($type, self::DIET_TYPES)) {
+            throw new \InvalidArgumentException('Invalid diet type');
+        }
         $this->type = $type;
 
         return $this;
