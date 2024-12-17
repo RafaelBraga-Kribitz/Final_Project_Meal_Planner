@@ -21,9 +21,9 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('email', EmailType::class, [
-                'required' => false,
+            ->add('email', EmailType::class, options: [
                 'attr' => [
+                    'pattern' => '[^@\s]+@[^@\s]+\.[^@\s]+',
                     'class' => 'form-control'
                 ]
             ])
