@@ -14,16 +14,23 @@ document.addEventListener("turbo:load", () => {
 
 // ===============================================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initFileInput() {
     const fileInput = document.querySelector('.custom-file-input');
     const fileName = document.querySelector('.file-name');
 
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) {
-            fileName.textContent = fileInput.files[0].name;
-        } else {
-            fileName.textContent = 'No File Chosen';
-        }
-    });
-});
+    if (fileInput && fileName) {
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            } else {
+                fileName.textContent = 'No File Chosen';
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initFileInput);
+document.addEventListener('turbo:load', initFileInput);
+
+
 
