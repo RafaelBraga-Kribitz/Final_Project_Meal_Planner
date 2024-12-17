@@ -21,7 +21,9 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, options: [
+                'attr' => ['pattern' => '[^@\s]+@[^@\s]+\.[^@\s]+']
+            ])
             ->add('phoneNumber', TelType::class, [
                 'required' => false,
                 'attr' => [
@@ -36,10 +38,10 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('first_name', TextType::class, options: [
-                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
+                'attr' => ['pattern' => '[a-zA-Z\s.,/*-]*']
             ])
             ->add('last_name', TextType::class, array(
-                'attr' => ['pattern' => '[a-zA-Z0-9\s.,/*-]*']
+                'attr' => ['pattern' => '[a-zA-Z\s.,/*-]*']
             ))
             ->add('photo')
             ->add('agreeTerms', CheckboxType::class, [
