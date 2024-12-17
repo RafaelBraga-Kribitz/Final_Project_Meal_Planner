@@ -48,7 +48,7 @@ class Recipe
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\Column(type: 'string', length: 20, nullable: true, enumType: true)]
+    #[ORM\Column(type: Types::STRING, length: 20, nullable: true, enumType: false)]
     private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
