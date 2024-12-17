@@ -257,6 +257,12 @@ h1 {
   color: #000;
 }
 
+.recipe-types .btn.active {
+  background-color: #004466;
+  color: #fff;
+  border-color: #004466;
+}
+
 .recipe-types input[type="radio"] {
   display: none; 
 }

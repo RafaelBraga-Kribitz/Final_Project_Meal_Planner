@@ -100,11 +100,21 @@
                 </div>
             </div>
 
-            <div class="recipe-types d-flex gap-2">
+            {# <div class="recipe-types d-flex gap-2">
                 {% for label, value in availableTypes %}
                     <a href="#" class="btn type-button">{{ label }}</a>
                 {% endfor %}
+            </div> #}
+
+            <div class="recipe-types d-flex gap-2">
+                {% for label, value in availableTypes %}
+                    <a href="#" 
+                        class="btn type-button {% if recipe.type == value %}active{% endif %}">
+                        {{ label }}
+                    </a>
+                {% endfor %}
             </div>
+            
 
             <div class="col-md-6 mb-3">
                 <h3 class="recipe-details__title">Ingredients</h3>
