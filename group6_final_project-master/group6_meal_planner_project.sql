@@ -91,16 +91,26 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`id`, `author_id`, `name`, `ingredients`, `description`, `photo`, `cooking_time`, `preparation_time`, `calories`, `link`, `type`, `date_added`, `date_updated`, `status`) VALUES
-(1, 2, 'Quinoa Buddha Bowl', 'Quinoa, chickpeas, sweet potato, kale, tahini, olive oil, lemon juice, garlic', 'A nutritious and colorful Buddha bowl packed with protein and vegetables', 'buddha-bowl.jpg', 20, 15, 450, 'https://mealplanner.com/recipes/buddha-bowl', 'Vegan', '2024-03-15 10:00:00', NULL, 1),
-(2, 2, 'Grilled Salmon with Asparagus', 'Fresh salmon fillet, asparagus, lemon, olive oil, garlic, dill, salt, pepper', 'Perfectly grilled salmon served with crispy asparagus', 'salmon-asparagus.jpg', 15, 10, 380, 'https://mealplanner.com/recipes/grilled-salmon', 'Pescatarian', '2024-03-15 10:15:00', NULL, 1),
-(3, 3, 'Mediterranean Chicken Bowl', 'Chicken breast, quinoa, cucumber, cherry tomatoes, red onion, feta cheese, olive oil', 'Fresh and light Mediterranean-style chicken bowl', 'med-chicken.jpg', 25, 15, 520, 'https://mealplanner.com/recipes/med-chicken', 'Meat', '2024-03-15 11:00:00', NULL, 1),
-(4, 2, 'Vegetarian Lentil Curry', 'Red lentils, coconut milk, curry powder, onion, garlic, ginger, tomatoes, spinach', 'Creamy and spicy lentil curry perfect for cold days', 'lentil-curry.jpg', 30, 10, 320, 'https://mealplanner.com/recipes/lentil-curry', 'Vegetarian', '2024-03-15 12:00:00', NULL, 1),
-(5, 2, 'Tofu Stir-Fry', 'Firm tofu, broccoli, carrots, snap peas, soy sauce, ginger, garlic, sesame oil', 'Quick and healthy tofu stir-fry with crispy vegetables', 'tofu-stirfry.jpg', 20, 15, 300, 'https://mealplanner.com/recipes/tofu-stirfry', 'Vegan', '2024-03-15 13:00:00', NULL, 1),
-(6, 3, 'Greek Salad Bowl', 'Mixed greens, cucumber, tomatoes, red onion, olives, feta cheese, olive oil, oregano', 'Classic Greek salad with fresh Mediterranean ingredients', 'greek-salad.jpg', 0, 15, 280, 'https://mealplanner.com/recipes/greek-salad', 'Vegetarian', '2024-03-15 14:00:00', NULL, 1),
-(7, 3, 'Shrimp Scampi', 'Shrimp, garlic, white wine, lemon juice, parsley, butter, pasta', 'Classic shrimp scampi served over pasta', 'shrimp-scampi.jpg', 20, 10, 420, 'https://mealplanner.com/recipes/shrimp-scampi', 'Pescatarian', '2024-03-15 15:00:00', NULL, 1),
-(8, 2, 'Turkey Meatballs', 'Ground turkey, breadcrumbs, egg, garlic, onion, parsley, marinara sauce', 'Healthy turkey meatballs in marinara sauce', 'turkey-meatballs.jpg', 25, 15, 380, 'https://mealplanner.com/recipes/turkey-meatballs', 'Meat', '2024-03-15 16:00:00', NULL, 1),
-(9, 3, 'Chickpea Curry', 'Chickpeas, coconut milk, tomatoes, onion, garlic, ginger, curry powder, cilantro', 'Hearty vegan chickpea curry with aromatic spices', 'chickpea-curry.jpg', 30, 10, 340, 'https://mealplanner.com/recipes/chickpea-curry', 'Vegan', '2024-03-15 17:00:00', NULL, 1),
-(10, 2, 'Grilled Vegetable Platter', 'Zucchini, eggplant, bell peppers, mushrooms, olive oil, herbs', 'Colorful platter of grilled seasonal vegetables', 'grilled-veggies.jpg', 20, 15, 200, 'https://mealplanner.com/recipes/grilled-veggies', 'Vegan', '2024-03-15 18:00:00', NULL, 1);
+(1, 2, 'Blueberry Pancakes with Mandarin', 'Flour, eggs, milk, butter, blueberries, mandarin slices, sugar, baking powder, vanilla extract', 'Fluffy pancakes topped with fresh blueberries and mandarin slices.', '/breakfest1.png', 20, 10, 350, NULL, 'Breakfast', '2024-03-15 08:00:00', NULL, 1),
+(2, 2, 'Cinnamon Roll with Honey and Berries', 'Cinnamon roll, honey, whipped cream, strawberries, raspberries, blueberries, mint leaves', 'Warm cinnamon roll with honey and a medley of fresh berries.', '/breakfest2.png', 15, 5, 420, NULL, 'Breakfast', '2024-03-15 08:10:00', NULL, 1),
+(3, 2, 'Avocado Toast with Eggs and Berries', 'Whole grain bread, avocado, eggs, strawberries, blueberries, salt, pepper', 'Creamy avocado toast served with sunny-side-up eggs and a side of fresh berries.', '/breakfest3.png', 10, 5, 400, NULL, 'Breakfast', '2024-03-15 08:20:00', NULL, 1),
+(4, 2, 'Classic American Breakfast', 'Pancakes, eggs, bacon, toast, butter, maple syrup', 'A hearty breakfast plate with pancakes, crispy bacon, and eggs.', '/breakfest4.png', 25, 10, 700, NULL, 'Breakfast', '2024-03-15 08:30:00', NULL, 1),
+(5, 2, 'Full English Breakfast', 'Eggs, bacon, sausage, baked beans, mushrooms, toast, butter', 'Traditional full English breakfast with eggs, bacon, and baked beans.', '/breakfest5.png', 30, 10, 850, NULL, 'Breakfast', '2024-03-15 08:40:00', NULL, 1),
+(6, 2, 'Avocado and Cucumber Toast', 'Whole grain bread, avocado, cucumber, poached egg, parsley, red onions, olive oil', 'Light avocado and cucumber toast topped with a perfectly poached egg.', '/breakfest6.png', 15, 5, 330, NULL, 'Breakfast', '2024-03-15 08:50:00', NULL, 1),
+(7, 2, 'Blueberry and Strawberry Pancakes', 'Flour, eggs, milk, butter, blueberries, strawberries, maple syrup, powdered sugar', 'Fluffy pancakes served with blueberries, strawberries, and maple syrup.', '/breakfest7.png', 20, 10, 400, NULL, 'Breakfast', '2024-03-15 09:00:00', NULL, 1),
+(8, 2, 'Fruit Pancake Platter', 'Pancakes, blueberries, strawberries, raspberries, yogurt, maple syrup, mint leaves', 'A vibrant platter of pancakes topped with fresh berries and yogurt.', '/breakfest8.png', 20, 10, 380, NULL, 'Breakfast', '2024-03-15 09:10:00', NULL, 1),
+(9, 2, 'Ham and Spinach Omelette', 'Eggs, ham, spinach, mozzarella, cherry tomatoes, salt, pepper', 'Delicious omelette filled with ham, spinach, and melted mozzarella cheese.', '/breakfest9.png', 15, 5, 320, NULL, 'Breakfast', '2024-03-15 09:20:00', NULL, 1),
+(10, 2, 'Egg Toast with Veggies', 'Whole grain bread, eggs, avocado, bell peppers, cilantro, tomatoes, olive oil', 'Crunchy toast topped with a fried egg and fresh veggies.', '/breakfest10.png', 10, 5, 280, NULL, 'Breakfast', '2024-03-15 09:30:00', NULL, 1),
+(11, 2, 'Grilled Steak with Tomato and Pepper', 'Beef steak, cherry tomato, yellow pepper, rosemary, olive oil, salt, pepper', 'Juicy grilled steak served with roasted cherry tomato and pepper.', '/dinner1.png', 20, 10, 500, NULL, 'Dinner', '2024-03-15 12:00:00', NULL, 1),
+(12, 2, 'Grilled Steak with Asparagus', 'Beef steak, asparagus, garlic butter, salt, pepper, olive oil', 'Perfectly grilled steak served with garlic butter asparagus.', '/dinner2.png', 25, 10, 480, NULL, 'Dinner', '2024-03-15 12:10:00', NULL, 1),
+(13, 2, 'Herb-Crusted Fish with Potatoes', 'Whole fish, potatoes, lemon, parsley, olive oil, salt, pepper', 'Fresh herb-crusted fish served with soft boiled potatoes.', '/dinner3.png', 30, 15, 450, NULL, 'Dinner', '2024-03-15 12:20:00', NULL, 1),
+(14, 2, 'Grilled Salmon with Mixed Greens', 'Salmon fillet, mixed greens, cherry tomatoes, red pepper, carrots, olive oil', 'Delicious grilled salmon served with a colorful salad mix.', '/dinner4.png', 20, 10, 420, NULL, 'Dinner', '2024-03-15 12:30:00', NULL, 1),
+(15, 2, 'Classic Spaghetti Bolognese', 'Spaghetti, ground beef, tomato sauce, garlic, onion, basil, parmesan cheese', 'Traditional spaghetti served with a rich Bolognese meat sauce.', '/lunch1.png', 30, 10, 650, NULL, 'Lunch', '2024-03-15 13:00:00', NULL, 1),
+(16, 2, 'Grilled Chicken Protein Bowl', 'Grilled chicken breast, edamame, cherry tomatoes, corn, mushrooms, poached egg, mixed greens', 'Healthy and nutritious bowl packed with grilled chicken and fresh vegetables.', '/lunch2.png', 20, 10, 600, NULL, 'Lunch', '2024-03-15 13:10:00', NULL, 1),
+(17, 2, 'Smoked Salmon with Rosti and Egg', 'Smoked salmon, rosti potatoes, poached egg, arugula, yogurt sauce, lemon', 'Savory smoked salmon paired with crispy rosti and a perfectly poached egg.', '/lunch3.png', 25, 10, 500, NULL, 'Lunch', '2024-03-15 13:20:00', NULL, 1),
+(18, 2, 'Slow-Roasted Pork with Lentils', 'Pork loin, lentils, pomegranate seeds, sweet potato, parsley, olive oil, garlic', 'Tender slow-roasted pork served with seasoned lentils and sweet potatoes.', '/specials1.png', 60, 20, 750, NULL, 'Special', '2024-03-15 14:00:00', NULL, 1),
+(19, 2, 'Grilled Leeks with Cheese and Nuts', 'Leeks, parmesan cheese, walnuts, garlic, olive oil, pepper', 'Grilled leeks topped with melted cheese and crunchy walnuts.', '/specials2.png', 20, 10, 300, NULL, 'Special', '2024-03-15 14:10:00', NULL, 1),
+(20, 2, 'Beetroot and Gnocchi Delight', 'Gnocchi, beetroot, ricotta cheese, garlic, basil, olive oil', 'Flavorful gnocchi served with beetroot puree and creamy ricotta.', '/specials3.png', 20, 10, 350, NULL, 'Special', '2024-03-15 14:20:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -126,8 +136,16 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `photo`, `phone_number`, `blocked`) VALUES
 (1, 'rafael@mail.com', '[\"ROLE_ADMIN\"]', '$2y$13$fm1h4k7nOjR0g3TARawc/OR8IlcoWFxtnEHUXTVeSJmruG87gLXyO', 'Rafael', 'Braga', 'rafael-avatar.jpg', 123456789, 0),
-(2, 'chef.maria@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Maria', 'Rodriguez', 'maria-profile.jpg', 987654321, 0),
-(3, 'john.cook@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'John', 'Cook', 'john-avatar.jpg', 456789123, 0);
+(2, 'james.wilson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'James', 'Wilson', '/users/user1_m.jpeg', 987654321, 0),
+(3, 'michael.brown@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Michael', 'Brown', '/users/user2_m.jpeg', 456789123, 0),
+(4, 'david.miller@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'David', 'Miller', '/users/user3_m.jpeg', 234567890, 0),
+(5, 'sarah.johnson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Sarah', 'Johnson', '/users/user4_f.jpeg', 345678901, 0),
+(6, 'emma.davis@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Emma', 'Davis', '/users/user5_f.jpeg', 456789012, 0),
+(7, 'robert.taylor@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Robert', 'Taylor', '/users/user6_m.jpeg', 567890123, 0),
+(8, 'olivia.anderson@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Olivia', 'Anderson', '/users/user7_f.jpeg', 678901234, 0),
+(9, 'william.thomas@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'William', 'Thomas', '/users/user8_m.jpeg', 789012345, 0),
+(10, 'daniel.moore@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Daniel', 'Moore', '/users/user9_m.jpeg', 890123456, 0),
+(11, 'joseph.white@mealplanner.com', '[]', '$2y$13$4JnwP/TG4biRIavFUlMjRuIAyDisWgvlrPcrwL/Qyelf1h0fQNWkK', 'Joseph', 'White', '/users/user10_m.jpeg', 901234567, 0);
 
 --
 -- Indexes for dumped tables
