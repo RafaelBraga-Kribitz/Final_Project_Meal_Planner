@@ -49,9 +49,13 @@ class UserType extends AbstractType
                   ])
                 ],
               ])
-            ->add('phone_number', TelType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
-            ))
+            ->add('phone_number', TelType::class, [
+                'required' => false,
+                'attr' => [
+                    'pattern' => '^[0-9\-\+\s\(\)]{6,20}$',
+                    'placeholder' => '+XX XXX XXX XXX',
+                    'class' => 'form-control'
+                ]])
         ;
     }
 
