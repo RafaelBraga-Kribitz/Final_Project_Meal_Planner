@@ -1,67 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User Profile - {{ user.firstName }} {{ user.lastName }}{% endblock %}
+{% block title %}User Profile -
+	{{ user.firstName }}
+	{{ user.lastName }}
+{% endblock %}
 
 {% block body %}
-    <div class="user-profile-container">
-        <div class="user-profile-card">
-            <div class="user-profile-header">
-                <div class="user-profile-image">
-                    {% if user.photo %}
-                        <img src="{{ asset('uploads/users/' ~ user.photo) }}" alt="Profile photo" class="profile-avatar">
-                    {% else %}
-                        <div class="profile-avatar-placeholder">
-                            {{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
-                        </div>
-                    {% endif %}
-                </div>
-                <div class="user-profile-title">
-                    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
-                    <p class="user-email">{{ user.email }}</p>
-                </div>
-            </div>
+	<div class="user-profile-container">
+		<div class="user-profile-card">
+			<div class="user-profile-header">
+				<div class="user-profile-image">
+					{% if user.photo %}
+						<img src="{{ asset('uploads/users/' ~ user.photo) }}" alt="Profile photo" class="profile-avatar">
+					{% else %}
+						<div class="profile-avatar-placeholder">
+							{{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
+						</div>
+					{% endif %}
+				</div>
+				<div class="user-profile-title">
+					<h1>{{ user.firstName }}
+						{{ user.lastName }}</h1>
+					<p class="user-email">{{ user.email }}</p>
+				</div>
+			</div>
 
-            <div class="user-profile-details">
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <span class="detail-label">ID</span>
-                        <span class="detail-value">{{ user.id }}</span>
-                    </div>
+			<div class="user-profile-details">
+				<div class="details-grid">
+					<div class="detail-item">
+						<span class="detail-label">ID</span>
+						<span class="detail-value">{{ user.id }}</span>
+					</div>
 
-                    <div class="detail-item">
-                        <span class="detail-label">Phone Number</span>
-                        <span class="detail-value">{{ user.phoneNumber ?: 'Not provided' }}</span>
-                    </div>
+					<div class="detail-item">
+						<span class="detail-label">Phone Number</span>
+						<span class="detail-value">{{ user.phoneNumber ?: 'Not provided' }}</span>
+					</div>
 
-                    <div class="detail-item full-width">
-                        <span class="detail-label">Roles</span>
-                        <span class="detail-value roles-list">
-                            {% for role in user.roles %}
-                                <span class="role-badge">{{ role|replace({'ROLE_': '', '_': ' '})|title }}</span>
-                            {% endfor %}
-                        </span>
-                    </div>
-                </div>
-            </div>
+					<div class="detail-item full-width">
+						<span class="detail-label">Roles</span>
+						<span class="detail-value roles-list">
+							{% for role in user.roles %}
+								<span class="role-badge">{{ role|replace({'ROLE_': '', '_': ' '})|title }}</span>
+							{% endfor %}
+						</span>
+					</div>
+				</div>
+			</div>
 
-            <div class="user-profile-actions">
-                {% if user.blocked == '1' %}
-                    <a href="{{ path('app_user_block_list') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to List
-                    </a>
-                {% else %}
-                    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to List
-                    </a>
-                {% endif %}
-                
-                <div class="action-group">
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                    {{ include('user/_delete_form.html.twig') }}
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="user-profile-actions">
+				{% if user.blocked == '1' %}
+					<a href="{{ path('app_user_block_list') }}" class="btn btn-secondary">
+						<i class="fas fa-arrow-left"></i>
+						Back to List
+					</a>
+				{% else %}
+					<a href="{{ path('app_user_index') }}" class="btn btn-secondary">
+						<i class="fas fa-arrow-left"></i>
+						Back to List
+					</a>
+				{% endif %}
+
+				<div class="action-group">
+					<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">
+						<i class="fas fa-edit"></i>
+						Edit
+					</a>
+					{{ include('user/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
