@@ -13,8 +13,10 @@
         {# Logged-in user content #}
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h1 class="mb-4">Welcome Back to NextMeal!</h1>
+                <div class="col-md-5 text-center">
+                    <h1 class="mb-4">
+                        Welcome Back {{ app.user.firstName ?? app.user.username ?? 'there' }}! 👋
+                    </h1>
                     <div class="dashboard-quick-links">
                         {% if is_granted('ROLE_ADMIN') %}
                             <div class="admin-actions mb-4">
