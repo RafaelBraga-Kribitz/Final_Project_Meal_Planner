@@ -62,15 +62,22 @@
     {% else %}
         {# Landing page content for non-authenticated users #}
         <div class="landing-page">
-            <div class="hero-section text-center py-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <h1 class="display-4 mb-4">Welcome to NextMeal</h1>
-                            <p class="lead mb-4 mx-auto" style="max-width: 600px;">Your personal meal planning assistant. Create, discover, and organize delicious recipes.</p>
-                            <div class="cta-buttons">
-                                <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
-                                <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg">Sign In</a>
+            <div class="hero-section position-relative">
+                <video class="hero-background-video" autoplay muted loop playsinline>
+                    <source src="{{ asset('videos/cooking-background.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <div class="hero-content position-relative text-center py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <h1 class="display-4 mb-4 text-white">Welcome to NextMeal</h1>
+                                <p class="lead mb-4 mx-auto text-white" style="max-width: 600px;">Your personal meal planning assistant. Create, discover, and organize delicious recipes.</p>
+                                <div class="cta-buttons">
+                                    <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
+                                    <a href="{{ path('app_login') }}" class="btn btn-outline-light btn-lg">Sign In</a>
+                                </div>
                             </div>
                         </div>
                     </div>
