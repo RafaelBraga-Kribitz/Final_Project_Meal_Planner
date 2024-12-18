@@ -21,14 +21,16 @@
             <i class="fas fa-info-circle me-2"></i>You haven't created any meal plans yet. Start planning your meals now!
         </div>
     {% else %}
-        
+
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {% for meal_planner in meal_planners %}
                 <div class="col">
                     <div class="meal-planner-card shadow-sm">
                         <div class="meal-planner-img-container">
-                            {% set recipeWithPhoto = meal_planner.getMealChosen|filter(r => r.photo is not empty)|first %}
-                            {% if recipeWithPhoto is defined %}
+                            {% set recipeWithPhoto = meal_planner.getMealChosen is iterable 
+                                ? meal_planner.getMealChosen|filter(r => r.photo is not empty)|first 
+                                : null %}
+                            {% if recipeWithPhoto is not null and recipeWithPhoto.photo is defined %}
                                 <img class="meal-planner-img" src="{{ asset('pictures/' ~ recipeWithPhoto.photo) }}" alt="{{ recipeWithPhoto.name }}">
                             {% else %}
                                 <img class="meal-planner-img" src="https://placehold.co/400x300/9bdc28/white?text=No+Image" alt="No Image">
@@ -37,12 +39,14 @@
         
                         <div class="meal-planner-content">
                             <div class="meal-planner-tags">
-                                <span class="meal-planner-tag">Plan for {{ meal_planner.chosenDate ? meal_planner.chosenDate|date('F j, Y') : 'Unspecified Date' }}</span>
+                                <span class="meal-planner-tag">
+                                    Plan for {{ meal_planner.chosenDate ? meal_planner.chosenDate|date('F j, Y') : 'Unspecified Date' }}
+                                </span>
                             </div>
                             <div class="meal-planner-attributes">
                                 <ul>
                                     {% if meal_planner.getMealChosen is empty %}
-                                        <p class="text-muted"><i class="fas fa-utensils me-2"></i>No meals planned</p>
+                                        <p class="text-muted"><i class="bi bi-utensils me-2"></i>No meals planned</p>
                                     {% else %}
                                         {% for item in meal_planner.getMealChosen %}
                                             <li><i class="bi bi-check-all me-2 text-success"></i><strong>{{ item.getName }}</strong></li>
@@ -51,7 +55,7 @@
                                 </ul>
                             </div>
                             <a href="{{ path('app_meal_planner_show', {'id': meal_planner.id}) }}" class="btn btn-details meal-planner-btn">
-                                <i class="bi bi-eye me-2 "></i>View Plan
+                                <i class="bi bi-eye me-2"></i>View Plan
                             </a>
                             <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}" class="btn btn-warning meal-planner-btn">
                                 <i class="bi bi-pencil me-2"></i>Edit Plan
@@ -61,6 +65,7 @@
                 </div>
             {% endfor %}
         </div>
+        
         
 
     {% endif %}
