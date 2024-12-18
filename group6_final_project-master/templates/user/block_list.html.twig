@@ -18,7 +18,7 @@
                             <div class="user-card-header">
                                 <div class="user-card-image">
                                     {% if user.photo %}
-                                        <img src="{{ asset('pictures/' ~ user.photo) }}" alt="User Photo" class="card-img-top profile-avatar">
+                                        <img src="{{ asset('pictures/users/' ~ user.photo) }}" alt="User Photo" class="card-img-top profile-avatar">
                                     {% else %}
                                         <div class="profile-avatar-placeholder">
                                             {{ user.firstName|first|upper }}{{ user.lastName|first|upper }}

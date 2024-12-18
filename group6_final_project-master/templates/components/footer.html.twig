@@ -27,16 +27,37 @@
 
             <div class="footer__links">
                 <div class="footer__links-column">
+                    {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('admin_app_recipe_index') }}" class="footer__link">All Recipes</a>
+                    <a href="#" class="footer__link">Seasonal Dishes</a>
+                    <a href="#" class="footer__link">Special Dishes</a>
+                    {% endif %}
+                    {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                     <a href="{{ path('app_recipe_index') }}" class="footer__link">All Recipes</a>
                     <a href="#" class="footer__link">Seasonal Dishes</a>
                     <a href="#" class="footer__link">Special Dishes</a>
                     <a href="#" class="footer__link">Featured Recipes</a>
+                    {% endif %}
                 </div>
                 <div class="footer__links-column">
+                    {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <a href="#" class="footer__link">About Us</a>
+                    <a href="#" class="footer__link">Community</a>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a href="#" class="footer__link">About Us</a>
+                    <a href="#" class="footer__link">Community</a>
+                    <a href="#" class="footer__link">Popular Recipes</a>
+                    <a href="#" class="footer__link">Featured Recipes</a>
+                    {% endif %}
+                    {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                     <a href="#" class="footer__link">About Us</a>
                     <a href="#" class="footer__link">Community</a>
                     <a href="{{ path('app_meal_planner_index') }}" class="footer__link">Meal Planner</a>
                     <a href="#" class="footer__link">Popular Recipes</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
