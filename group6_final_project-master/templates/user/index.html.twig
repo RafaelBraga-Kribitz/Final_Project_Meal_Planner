@@ -1,43 +1,138 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}User Index
+{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
-    <a href="{{ path('app_user_block_list') }}">Blocked List</a>
+	<div class="user-index-container">
+		<h1>User Index</h1>
+		<a href="{{ path('app_user_block_list') }}" class="btn btn-secondary mb-4">
+			<i class="fas fa-list"></i>
+			Blocked List
+		</a>
 
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+		<div class="user-cards-grid">
+			{% for user in users %}
+				{% if user.blocked == '0' %}
+					<div class="user-card">
+						<div class="card">
+							<div class="user-card-header">
+								<div class="user-card-image">
+									{% if user.photo %}
+										<img src="{{ asset('uploads/users/' ~ user.photo) }}" alt="User Photo" class="card-img-top profile-avatar">
+									{% else %}
+										<div class="profile-avatar-placeholder">
+											{{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">{{ user.firstName }}
+									{{ user.lastName }}</h5>
+								<p class="user-email">{{ user.email }}</p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<strong>ID:</strong>
+									{{ user.id }}
+								</li>
+								<li class="list-group-item">
+									<strong>Phone:</strong>
+									{{ user.phoneNumber ?: 'Not provided' }}
+								</li>
+								<li class="list-group-item">
+									<strong>Roles:</strong>
+									{% for role in user.roles %}
+										<span class="role-badge">{{ role|replace({'ROLE_': '', '_': ' '})|title }}</span>
+									{% endfor %}
+								</li>
+							</ul>
+							<div class="card-body user-card-actions">
+								<a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-info">
+									<i class="fas fa-eye"></i>
+									Show
+								</a>
+								<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">
+									<i class="fas fa-edit"></i>
+									Edit
+								</a>
+								<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-danger">
+									<i class="fas fa-ban"></i>
+									Block
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% else %}
+				<div class="no-records-found">
+					<h2>No Records Found</h2>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 
-        {% for user in users %}
-        {% if user.blocked == '0' %}
-        <div class="mx-auto my-4">
-            <div class="card" style="width: 18rem;">
-            <img src="{{ user.photo }}" class="card-img-top" alt="Picture">
-            <div class="card-body">
-            <h5 class="card-title">User Id : {{ user.id }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">First Name: {{ user.firstName }}</li>
-                <li class="list-group-item">User Name: {{ user.lastName }}</li>
-                <li class="list-group-item">Email: {{ user.email }}</li>
-                <li class="list-group-item">Role: {{ user.roles ? user.roles|json_encode : '' }}</li>
-                <li class="list-group-item">Password: {{ user.password }}</li>
-                <li class="list-group-item">Phone: {{ user.phoneNumber }}</li>
-            </ul>
-            <div class="card-body">
-                <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                <a href="{{ path('app_user_block', {'id': user.id}) }}">block</a>
-            </div>
-        </div>
-    </div>
+	<style>
+		.user-index-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
 
-            
-            {% endif %}
-        {% else %}
-            <h2>No Records Found</h2>
-        {% endfor %}
-    </div>
+		.user-cards-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 20px;
+		}
 
-    {# <a href="{{ path('app_user_new') }}">Create new</a> #}
+		.user-card {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.card {
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			border: none;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		.card img {
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.profile-avatar-placeholder {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 200px;
+			background-color: #f0f0f0;
+			font-size: 2rem;
+			font-weight: bold;
+			color: #555;
+		}
+
+		.role-badge {
+			background-color: #007bff;
+			color: white;
+			padding: 5px 10px;
+			border-radius: 12px;
+			margin-right: 5px;
+			font-size: 0.85rem;
+		}
+
+		.user-card-actions .btn {
+			margin-right: 5px;
+		}
+
+		.no-records-found {
+			text-align: center;
+			font-size: 1.5rem;
+			color: #777;
+			margin-top: 20px;
+		}
+	</style>
 {% endblock %}
