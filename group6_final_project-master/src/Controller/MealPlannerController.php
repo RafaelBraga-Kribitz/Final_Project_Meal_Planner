@@ -51,7 +51,7 @@ final class MealPlannerController extends AbstractController
         }
 
            // approved recipies from current user in session
-           if ($user) {
+            if ($user) {
             if (!$type && !$maxCalories) {
                 $userRecipes = $recipeRepository->findBy([
                     'status' => true,
@@ -60,9 +60,6 @@ final class MealPlannerController extends AbstractController
             } else {
                 $userRecipes = $recipeRepository->findByFiltersAndUser($type, $maxCalories, $user);
             }
-
-
-       
         $mealPlanner = new MealPlanner();
         $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
             'approved_recipes' => $approvedRecipes,

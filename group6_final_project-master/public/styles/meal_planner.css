@@ -1,0 +1,96 @@
+.meal-planner-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meal-planner-card:hover {
+  transform: translateY(-5px);
+}
+
+.meal-planner-img-container {
+  height: 200px; 
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+.meal-planner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meal-planner-content {
+  padding: 15px;
+  background-color: #fff;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meal-planner-tags .meal-planner-tag {
+  display: inline-block;
+  background-color: #9bdc28;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.meal-planner-title {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.meal-planner-attributes {
+  margin-top: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.meal-planner-attributes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-planner-attributes li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.meal-planner-btn {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  padding: 4px 8px; 
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .meal-planner-card {
+    height: auto;
+  }
+
+  .meal-planner-img-container {
+    height: 150px; 
+  }
+}
