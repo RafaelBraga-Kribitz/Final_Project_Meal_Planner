@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class StaticController extends AbstractController
 {
-    #[Route('/static', name: 'app_static')]
+    #[Route('/', name: 'app_static')]
     public function index(): Response
     {
         return $this->render('static/index.html.twig', [
-            'controller_name' => 'StaticController',
+            'is_authenticated' => $this->isGranted('IS_AUTHENTICATED_FULLY')
         ]);
     }
 }

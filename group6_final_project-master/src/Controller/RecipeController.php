@@ -72,8 +72,14 @@ final class RecipeController extends AbstractController
     #[Route('/{id}', name: 'app_recipe_show', methods: ['GET'])]
     public function show(Recipe $recipe): Response
     {
+         /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $availableTypes = Recipe::getAvailableTypes();
+
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
+            'userId' => $user->getId(),
+            'availableTypes' => $availableTypes,
         ]);
     }
 

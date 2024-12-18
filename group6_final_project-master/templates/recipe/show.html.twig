@@ -1,52 +1,56 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Recipe Details{% endblock %}
 
 {% block body %}
-    <div class="container mt-2">
+    <div class="container container-view mt-4 mb-4">
 
-        <div class="recipe-wrapper">
-            <div class="recipe-container">
-                <div class="recipe-container__card">
-                    <h2>{{ recipe.name }}</h2>
-                    <div class="recipe-container__image">
-                            <img src="{{ asset('pictures/' ~ recipe.photo ) }}" alt="{{ recipe.name }}">
-                    </div>
-                    <div class="recipe-container__content">
-                        <h2>{{ recipe.name }}</h2>
-                        <p>{{ recipe.description }}</p>
-                        
-                        <div class="ingredients">
-                            <h3>Ingredients:</h3>
-                            <p>{{ recipe.ingredients }}</p>
-                        </div>
-                        <div class="calories">
-                            <h3>Calories:</h3>
-                            <span>{{ recipe.calories }} kcal</span>
-                        </div>
-                        <div class="prep-time">
-                            <h3>Preparation Time:</h3>
-                            <span>{{ recipe.preparationTime }} minutes</span>
-                        </div>
-                        <div class="cooking-time">
-                            <h3>Cooking Time:</h3>
-                            <span>{{ recipe.cookingTime }} minutes</span>
-                        </div>
-                        <div class="type">
-                            <h3>Dietary Preferences:</h3>
-                            <span>{{ recipe.type }}</span>
-                        </div>
-                        
-                        {% if recipe.link %}
-                        <a href="{{ recipe.link }}" target="_blank" class="btn btn-primary mt-3">See Full Recipe</a>
-                        {% endif %}
-                    </div>
+        <div class="recipe-details">
+
+            <div class="form-section mb-4">
+                <h3 class="recipe-details__title">{{ recipe.name }}</h3>
+            </div>
+
+            <div class="recipe-image text-center">
+                <img src="{{ asset('pictures/' ~ recipe.photo) }}" alt="{{ recipe.name }}" class="img-fluid recipe-image__image" >
+            </div>
+
+            <h1 class="recipe-details__title">{{ recipe.name }}</h1>
+
+            <div class="recipe-details__items">
+                <div class="list-items">
+                    <p class="list-item">Calories <br> <span class="list-item-style">{{ recipe.calories }} kcal</span></p>
+                    <p class="list-item">Preparation Time <br> <span class="list-item-style">{{ recipe.preparationTime }} min</span></p>
+                    <p class="list-item">Cooking Time <br> <span class="list-item-style">{{ recipe.cookingTime }} min</span></p>
+                    <p class="list-item">Author<br> 
+                        <span class="list-item-style">{{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
+                    </p>
                 </div>
+            </div>
+
+            <div class="recipe-types d-flex gap-2">
+                {% for label, value in availableTypes %}
+                    <a href="#" 
+                        class="btn type-button {% if recipe.type == value %}active{% endif %}">
+                        {{ label }}
+                    </a>
+                {% endfor %}
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <h3 class="recipe-details__title">Ingredients</h3>
+                <div class="list-items">
+                        <p class="list-item-ingredient">{{ recipe.ingredients }}</p>
+                </div>
+            </div>
+
+            <div class="recipe-description mt-3">
+                <h3 class="recipe-details__title">Description</h3>
+                <p class="list-item-ingredient">{{ recipe.description }}</p>
             </div>
         </div>
 
-        <div class="ms-4 mt-4 button-group">
+        <div class="mt-5 d-flex justify-content-center gap-2">
             {% if is_granted("ROLE_ADMIN") and recipe.status == '1' %}
                 <a href="{{ path('admin_app_recipe_index') }}" class="btn btn-secondary">Back to List</a>
                 <a href="{{ path('admin_app_recipe_edit', {'id': recipe.id}) }}" class="btn btn-warning">Edit</a>
@@ -64,6 +68,6 @@
                 <a href="{{ path('app_approved_recipes') }}" class="btn btn-secondary">Back to List</a>
             {% endif %}
         </div>
-        
+
     </div>
 {% endblock %}

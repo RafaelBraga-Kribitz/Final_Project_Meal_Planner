@@ -2,6 +2,7 @@
 
 .container-recipe {
   width: 1200px;
+  margin-bottom: 30px;
 }
 
 body {
@@ -238,6 +239,7 @@ h1 {
   font-weight: 800;
 }
 
+/* ================== types button styling start ===================== */
 
 .recipe-types .btn {
   display: inline-block;
@@ -257,6 +259,12 @@ h1 {
   color: #000;
 }
 
+.recipe-types .btn.active {
+  background-color: #004466;
+  color: #fff;
+  border-color: #004466;
+}
+
 .recipe-types input[type="radio"] {
   display: none; 
 }
@@ -267,7 +275,7 @@ h1 {
   border-color: #004466;
 }
 
-
+/* ================== types button styling end ===================== */
 
 
 #ingredient-input {
@@ -323,5 +331,78 @@ h1 {
 
 
 /* ================ style form end ================== */
+
+
+/* ================ style details view recipe start ================== */
+
+.recipe-details {
+  max-width: 1168px;
+  margin: 0 auto;
+}
+
+.recipe-details__title {
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 800;
+}
+
+.recipe-image {
+  max-width: 1168px;
+  max-height: 553px;
+  width: 100%;
+  height: auto;
+}
+
+.recipe-image__image {
+  width: 100%;
+  height: auto;
+  max-height: 553px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.recipe-details__items {
+  margin-bottom: 30px;
+}
+
+.list-items {
+  display: flex;
+  gap: 72px;
+}
+
+.list-item {
+  display: block;
+  width: 240px;
+  height: 130px;
+  border: 1px solid #c3c3c3;
+  border-radius: 18px;
+  padding: 20px 25px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.list-item-ingredient {
+  display: block;
+  width: 400px;
+  height: 200px;
+  border: 1px solid #c3c3c3;
+  border-radius: 18px;
+  padding: 20px 25px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.list-item-style {
+  font-size: 25px;
+  font-weight: 800;
+  color: #5D5C59;
+  line-height: 1;
+}
+
+.recipe-types {
+  margin-bottom: 22px;
+}
+
+/* ================ style details view recipe end ================== */
 
 

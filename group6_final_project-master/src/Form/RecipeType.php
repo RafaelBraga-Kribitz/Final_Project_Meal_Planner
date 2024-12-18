@@ -116,11 +116,15 @@ class RecipeType extends AbstractType
                     'Vegan' => 'Vegan',
                     'Vegetarian' => 'Vegetarian',
                     'Pescatarian' => 'Pescatarian',
-                    'Meat' => 'Meat'
+                    'Carnivore' => 'Carnivore',
+                    'Low-Carb' => 'Low-carb',
+                    'Paleo' => 'Paleo'
                 ],
-                'expanded' => true, 
-                'multiple' => false, 
-                'label' => 'Recipe Type',
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => false,
+                'label' => 'Diet Type',
                 'label_attr' => ['class' => 'form-label'],
             ])
             #->add('date_added', null, [

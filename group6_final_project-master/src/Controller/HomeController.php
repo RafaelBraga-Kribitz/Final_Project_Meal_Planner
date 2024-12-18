@@ -63,10 +63,13 @@ final class HomeController extends AbstractController
     {
          /** @var \App\Entity\User $user */
         $user = $this->getUser();
+
+        $availableTypes = Recipe::getAvailableTypes();
+
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
             'userId' => $user->getId(),
-            
+            'availableTypes' => $availableTypes,
         ]);
     }
 

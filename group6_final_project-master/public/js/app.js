@@ -33,4 +33,40 @@ document.addEventListener('DOMContentLoaded', initFileInput);
 document.addEventListener('turbo:load', initFileInput);
 
 
+// ================= adding illumination type button by creating recipe start ===================
+
+function activateRecipeTypeButtons() {
+    const recipeTypeButtons = document.querySelectorAll('.recipe-types label.btn');
+    const form = document.querySelector('form');
+
+    if (!recipeTypeButtons || !form) return;
+
+    recipeTypeButtons.forEach(button => {
+        const input = button.querySelector('input[type="radio"]');
+
+        if (input.checked) {
+            button.classList.add('active');
+        }
+
+        input.addEventListener('change', () => {
+            recipeTypeButtons.forEach(b => b.classList.remove('active'));
+            if (input.checked) {
+                button.classList.add('active');
+            }
+        });
+    });
+
+    form.addEventListener('submit', () => {
+        recipeTypeButtons.forEach(button => button.classList.remove('active'));
+    });
+}
+
+document.addEventListener('DOMContentLoaded', activateRecipeTypeButtons);
+document.addEventListener('turbo:render', activateRecipeTypeButtons);
+document.addEventListener('turbo:load', activateRecipeTypeButtons);
+
+
+// ================= adding illumination type button by creating recipe end ===================
+
+
 
