@@ -3,12 +3,12 @@
 {% block title %}Recipe index{% endblock %}
 
 {% block body %}
-    <h1>Recipe Index</h1>
 
-    <div class="recipe-container">
-        {% for recipe in recipes %}
-        {% if recipe.status == '1' %}
-            <div class="container">
+<div class="recipe-container">
+    <h1 class="text-center">Recipes</h1>
+    {% for recipe in recipes %}
+    {% if recipe.status == '1' %}
+    <div class="container">
                 <div class="card">
                     <div class="imgBx">
                             <img src="{{ asset('pictures/' ~ recipe.photo ) }}" alt="{{ recipe.name }}">
