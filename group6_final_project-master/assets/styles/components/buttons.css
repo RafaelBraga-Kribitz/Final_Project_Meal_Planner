@@ -1,0 +1,153 @@
+/* Button custom properties */
+:root {
+  --button-primary: #cbfc02;
+  --button-secondary: #6f8a01;
+  --button-danger: #e74c3c;
+  --button-info: #3498db;
+  --button-success: #2ecc71;
+  --button-warning: #f39c12;
+  --button-padding: 0.75rem 1.5rem;
+  --button-transition: all 0.3s ease;
+}
+
+/* Base button styles */
+.btn,
+.button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: var(--button-padding);
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--button-transition);
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--black);
+}
+
+/* Primary button */
+.btn-primary,
+.button--primary {
+  background-color: var(--button-primary);
+  border: 1px solid var(--button-primary);
+}
+
+.btn-primary:hover,
+.button--primary:hover {
+  background-color: #b5e202;
+  border-color: #b5e202;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(203, 252, 2, 0.4);
+}
+
+/* Secondary button */
+.btn-secondary,
+.button--secondary {
+  background-color: var(--button-secondary);
+  border: 1px solid var(--button-secondary);
+  color: white;
+}
+
+.btn-secondary:hover,
+.button--secondary:hover {
+  background-color: #5c7301;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(111, 138, 1, 0.4);
+}
+
+/* Other button variants */
+.btn-danger {
+  background-color: var(--button-danger);
+}
+
+.btn-info {
+  background-color: var(--button-info);
+}
+
+.btn-success {
+  background-color: var(--button-success);
+}
+
+.btn-warning {
+  background-color: var(--button-warning);
+}
+
+/* Button states */
+.btn:active,
+.button:active {
+  transform: translateY(1px);
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Add these hover effects and shadows */
+.btn-danger:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(231, 76, 60, 0.4);
+}
+
+.btn-info:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.4);
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(46, 204, 113, 0.4);
+}
+
+.btn-warning:hover {
+  background-color: #d68910;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(243, 156, 18, 0.4);
+}
+
+/* Add general hover opacity effect */
+.btn:hover,
+.button:hover {
+  opacity: 0.9;
+}
+
+/* Add outline variants */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 1px solid var(--button-primary);
+  color: var(--black);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--button-primary);
+  color: var(--black);
+}
+
+/* Override Bootstrap button styles */
+.btn.btn-primary,
+.btn.btn-secondary,
+.btn.btn-danger,
+.btn.btn-info,
+.btn.btn-success,
+.btn.btn-warning {
+  border-radius: var(--border-radius) !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600 !important;
+  padding: var(--button-padding) !important;
+}
+
+/* Override Bootstrap outline variants */
+.btn.btn-outline-primary,
+.btn.btn-outline-secondary {
+  border-radius: var(--border-radius) !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600 !important;
+  padding: var(--button-padding) !important;
+}
