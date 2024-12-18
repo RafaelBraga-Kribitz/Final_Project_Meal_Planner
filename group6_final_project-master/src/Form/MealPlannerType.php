@@ -6,6 +6,7 @@ use App\Entity\MealPlanner;
 use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +17,7 @@ class MealPlannerType extends AbstractType
     {
         $approvedRecipes = $options['approved_recipes'];
         $builder
-            ->add('chosen_date', DateType::class)
+            ->add('chosen_date', DateTimeType::class)
             ->add('meal_chosen', EntityType::class, [
                 'class' => Recipe::class,
                 'choices' => $approvedRecipes,
