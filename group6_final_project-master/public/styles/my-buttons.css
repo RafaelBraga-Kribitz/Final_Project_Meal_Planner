@@ -52,6 +52,18 @@
   color: #000; 
 }
 
+.btn-details {
+  background-color: #3498db;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+}
+
+.btn-details:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.4);
+  color: #000; 
+}
+
 
 .btn-success {
   background-color: #2ecc71; 
