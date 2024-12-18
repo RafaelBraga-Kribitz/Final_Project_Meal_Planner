@@ -1392,3 +1392,96 @@ h1 {
     background-color: #c82333;
 }
 
+.landing-page {
+    min-height: calc(100vh - 60px); /* Adjust based on your navbar height */
+}
+
+.hero-section {
+    padding: 120px 0 80px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    color: #9bdc28; /* Your brand color */
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.lead {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.btn-lg {
+    padding: 0.75rem 2rem;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 0 60px;
+    }
+    
+    .feature-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Button styles for landing page */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-buttons .btn {
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 10px 20px;
+    min-width: 160px;
+    text-align: center;
+    margin-top: 19.2px;
+}
+
+.cta-buttons .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--black);
+}
+
+.cta-buttons .btn-outline-primary {
+    border: 2px solid var(--primary);
+    color: var(--black);
+    background-color: transparent;
+}
+
+.cta-buttons .btn-primary:hover,
+.cta-buttons .btn-outline-primary:hover {
+    background-color: #b5e202;
+    border-color: #b5e202;
+    color: var(--black);
+}
+

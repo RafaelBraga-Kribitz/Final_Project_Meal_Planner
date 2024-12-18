@@ -44,11 +44,15 @@
         <div class="landing-page">
             <div class="hero-section text-center py-5">
                 <div class="container">
-                    <h1 class="display-4 mb-4">Welcome to NextMeal</h1>
-                    <p class="lead mb-4">Your personal meal planning assistant. Create, discover, and organize delicious recipes.</p>
-                    <div class="cta-buttons">
-                        <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
-                        <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg">Sign In</a>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h1 class="display-4 mb-4">Welcome to NextMeal</h1>
+                            <p class="lead mb-4 mx-auto" style="max-width: 600px;">Your personal meal planning assistant. Create, discover, and organize delicious recipes.</p>
+                            <div class="cta-buttons mb-5">
+                                <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
+                                <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg me-3">Sign In</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,26 +60,32 @@
             <div class="features-section py-5 bg-light">
                 <div class="container">
                     <h2 class="text-center mb-5">Why Choose NextMeal?</h2>
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="feature-card text-center p-3">
-                                <i class="bi bi-calendar-check fs-1 mb-3"></i>
-                                <h3>Meal Planning</h3>
-                                <p>Organize your weekly meals with our intuitive planner.</p>
+                    <div class="row justify-content-center align-items-stretch g-4">
+                        <div class="col-12 col-md-4 col-lg-4 d-flex">
+                            <div class="feature-card text-center p-4 w-100">
+                                <div class="feature-icon mb-3">
+                                    <i class="bi bi-calendar-check fs-1"></i>
+                                </div>
+                                <h3 class="h4 mb-3">Meal Planning</h3>
+                                <p class="mb-0">Organize your weekly meals with our intuitive planner.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="feature-card text-center p-3">
-                                <i class="bi bi-search fs-1 mb-3"></i>
-                                <h3>Recipe Discovery</h3>
-                                <p>Explore a variety of recipes from our community.</p>
+                        <div class="col-12 col-md-4 col-lg-4 d-flex">
+                            <div class="feature-card text-center p-4 w-100">
+                                <div class="feature-icon mb-3">
+                                    <i class="bi bi-search fs-1"></i>
+                                </div>
+                                <h3 class="h4 mb-3">Recipe Discovery</h3>
+                                <p class="mb-0">Explore a variety of recipes from our community.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="feature-card text-center p-3">
-                                <i class="bi bi-share fs-1 mb-3"></i>
-                                <h3>Share Recipes</h3>
-                                <p>Create and share your favorite recipes with others.</p>
+                        <div class="col-12 col-md-4 col-lg-4 d-flex">
+                            <div class="feature-card text-center p-4 w-100">
+                                <div class="feature-icon mb-3">
+                                    <i class="bi bi-share fs-1"></i>
+                                </div>
+                                <h3 class="h4 mb-3">Share Recipes</h3>
+                                <p class="mb-0">Create and share your favorite recipes with others.</p>
                             </div>
                         </div>
                     </div>
