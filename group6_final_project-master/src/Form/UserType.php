@@ -39,10 +39,9 @@ class UserType extends AbstractType
                   new Image([
                     'maxSize' => '2048k',
                     'mimeTypes' => [
-                      'image/jpeg',
-                      'image/apng',
-                      'image/gif'
-                      
+                        'image/png',
+                        'image/jpg',
+                        'image/jpeg',
                     ],
                     'mimeTypesMessage' => 'Please upload a valid image (jpeg, png, gif, jpg)',
                     'maxSizeMessage' => 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}',
