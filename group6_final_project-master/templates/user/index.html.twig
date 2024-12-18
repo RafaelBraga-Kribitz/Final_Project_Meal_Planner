@@ -19,7 +19,7 @@
 							<div class="user-card-header">
 								<div class="user-card-image">
 									{% if user.photo %}
-										<img src="{{ asset('pictures/users/' ~ user.photo) }}" alt="User Photo" class="card-img-top profile-avatar">
+										<img src="{{ asset('pictures/' ~ user.photo) }}" alt="User Photo" class="card-img-top profile-avatar">
 									{% else %}
 										<div class="profile-avatar-placeholder">
 											{{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
@@ -49,7 +49,7 @@
 								</li>
 							</ul>
 							<div class="card-body user-card-actions">
-								<a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-info">
+								<a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-primary">
 									<i class="fas fa-eye"></i>
 									Show
 								</a>
@@ -57,7 +57,7 @@
 									<i class="fas fa-edit"></i>
 									Edit
 								</a>
-								<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-danger">
+								<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-primary">
 									<i class="fas fa-ban"></i>
 									Block
 								</a>
@@ -102,6 +102,10 @@
 		.card img {
 			height: 200px;
 			object-fit: cover;
+			border-radius: 50%;
+			width: 200px;
+			margin: 20px auto;
+			display: block;
 		}
 
 		.profile-avatar-placeholder {
@@ -109,10 +113,13 @@
 			justify-content: center;
 			align-items: center;
 			height: 200px;
+			width: 200px;
 			background-color: #f0f0f0;
 			font-size: 2rem;
 			font-weight: bold;
 			color: #555;
+			border-radius: 50%;
+			margin: 20px auto;
 		}
 
 		.role-badge {
@@ -124,8 +131,17 @@
 			font-size: 0.85rem;
 		}
 
+		.user-card-actions {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+		}
+
 		.user-card-actions .btn {
-			margin-right: 5px;
+			flex: 1;
+			text-align: center;
+			padding: 8px 16px;
+			white-space: nowrap;
 		}
 
 		.no-records-found {
