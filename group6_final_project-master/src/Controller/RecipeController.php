@@ -83,78 +83,43 @@ final class RecipeController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}/edit', name: 'app_recipe_edit', methods: ['GET', 'POST'])]
-    // public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
-    // {
-    //     $form = $this->createForm(RecipeType::class, $recipe);
-    //     $form->handleRequest($request);
-    //     $user = $this->getUser();
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $imageFile = $form->get('photo')->getData();
-            
-    //         if ($imageFile) {
-    //             if($recipe->getPhoto() != "recipe.jpg") {
-    //                 unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
-    //             }
-    //             $imageFileName = $fileUploader->upload($imageFile);
-    //             $recipe->setPhoto($imageFileName);
-    //         }
-
-    //         elseif($recipe->getPhoto() != "recipe.jpg") {
-    //             unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
-
-    //             $recipe->setPhoto('recipe.jpg');
-    //         }
-    //         $recipe->setStatus(True);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-    //     /** @var \App\Entity\User|null $user */
-    //     $user = $this->getUser();
-
-    //     return $this->render('recipe/edit.html.twig', [
-    //         'recipe' => $recipe,
-    //         'form' => $form,
-    //         'userId' => $user->getId(),
-    //     ]);
-    // }
-
-
-
     #[Route('/{id}/edit', name: 'app_recipe_edit', methods: ['GET', 'POST'])]
-public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
-{
-    $form = $this->createForm(RecipeType::class, $recipe);
-    $form->handleRequest($request);
-    $user = $this->getUser();
+    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    {
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+        $user = $this->getUser();
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        try {
+        if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('photo')->getData();
+            
             if ($imageFile) {
-                if ($recipe->getPhoto() && $recipe->getPhoto() != "recipe.jpg") {
+                if($recipe->getPhoto() != "recipe.jpg") {
                     unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
                 }
                 $imageFileName = $fileUploader->upload($imageFile);
                 $recipe->setPhoto($imageFileName);
             }
-        } catch (\Exception $e) {
-            $this->addFlash('error', 'An error occurred while uploading the image.');
+
+            elseif($recipe->getPhoto() != "recipe.jpg") {
+                unlink($this->getParameter('photo_directory') . "/" . $recipe->getPhoto());
+
+                $recipe->setPhoto('recipe.jpg');
+            }
+            $recipe->setStatus(True);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
+        /** @var \App\Entity\User|null $user */
+        $user = $this->getUser();
 
-        $entityManager->flush();
-        return $this->redirectToRoute('admin_app_recipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render('recipe/edit.html.twig', [
+            'recipe' => $recipe,
+            'form' => $form,
+            'userId' => $user->getId(),
+        ]);
     }
-
-    /** @var \App\Entity\User|null $user */
-    return $this->render('recipe/edit.html.twig', [
-        'recipe' => $recipe,
-        'form' => $form,
-        'userId' => $user->getId(),
-    ]);
-}
 
 
     #[Route('/{id}', name: 'app_recipe_delete', methods: ['POST'])]
