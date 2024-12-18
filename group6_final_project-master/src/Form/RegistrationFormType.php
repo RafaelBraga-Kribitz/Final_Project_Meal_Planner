@@ -67,8 +67,9 @@ class RegistrationFormType extends AbstractType
                   new Image([
                     'maxSize' => '2056k',
                     'mimeTypes' => [
-                        'image/apng',
-                        'image/jpeg'
+                        'image/png',
+                        'image/jpg',
+                        'image/jpeg',
                     ],
                     'mimeTypesMessage' => 'Please upload a valid image (jpeg, png, gif, jpg)',
                     'maxSizeMessage' => 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}',
