@@ -9,7 +9,7 @@
     {% include 'components/_filter_form.html.twig' %}
 
     <section class="section-meals">
-        <h2>All Approved Recipes</h2>
+        <h2 class="mb-5">Recipes</h2>
         {% if approvedRecipes is empty %}
             <p class="text-center text-muted">No approved recipes available.</p>
         {% else %}
@@ -50,7 +50,7 @@
     </section>
 
     <section class="section-meals">
-        <h2>Your Approved Recipes</h2>
+        <h2 class="mb-5">Your Recipes</h2>
         {% if userRecipes is empty %}
             <p class="text-center text-muted">You have no approved recipes.</p>
         {% else %}
