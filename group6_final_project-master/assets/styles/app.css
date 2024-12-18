@@ -1403,7 +1403,42 @@ h1 {
 }
 
 .hero-section {
-    padding: 120px 0 80px;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Ensure buttons are visible over the video */
+.cta-buttons {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make outline button more visible on video background */
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
 }
 
 .feature-card {
@@ -1606,5 +1641,23 @@ h1 {
     text-transform: uppercase;
     font-weight: 500;
     padding: 0.75rem;
+}
+
+/* Override margin-top for hero section only */
+.landing-page .hero-section {
+    margin-top: -1rem !important; /* Counteract the mt-3 */
+}
+
+/* Specific styles for hero section buttons */
+.hero-content .btn-outline-light {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.hero-content .btn-outline-light:hover {
+    background-color: var(--white);
+    border-color: var(--white);
+    color: var(--black);
 }
 
