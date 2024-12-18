@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Length;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -42,8 +45,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Length(min: 3)]
     private ?string $last_name = null;
 
+    
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'users', fileNameProperty: 'photo', size: 'imageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private ?string $phoneNumber = null;
@@ -189,5 +202,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->blocked = $blocked;
 
         return $this;
+    }
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+ 
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Service\UserFileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use App\Service\FileUploader;
 
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SessionInterface $session, CsrfTokenManagerInterface $csrfTokenManager, FileUploader $fileUploader): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SessionInterface $session, CsrfTokenManagerInterface $csrfTokenManager, UserFileUploader $userFileUploader): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -27,29 +27,33 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
-
+        
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
             $user->setBlocked(False);
+           
+            // $imageFile = $form->get('photo')->getData();
+          
+            // if ($imageFile) {
+            //     dd('Image file exists: ' .$imageFile);
+            // $imageFileName = $userFileUploader->upload($imageFile);
+            // $user->setPhoto($imageFileName);
+            // }else{
+            //     dd('else');
+            //     $user->setPhoto("user.jpg");
+            // }
 
-            $imageFile = $form->get('photo')->getData();
-            if ($imageFile) {
-            $imageFileName = $fileUploader->upload($imageFile);
-            $user->setPhoto($imageFileName);
-            }else{
-                $user->setPhoto("user.jpg");
-            }
             $entityManager->persist($user);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-            $session->invalidate();
+           
 
             return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'registrationForm' => $form,
         ]);
     }
 }

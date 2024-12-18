@@ -13,11 +13,11 @@
         </div>
     {% endif %}
 
-    <form method="post" class="needs-validation" novalidate>
+    
         {{ form_start(registrationForm) }}
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                {% for field in registrationForm %}
+             
                     
                     {# {% if field.vars.block_prefixes|last != 'hidden' %} #}
                         {# {% if field.vars.name == 'agreeTerms' %}
@@ -45,13 +45,17 @@
                     {# {% else %}
                         {{ form_widget(field) }}
                     {% endif %} #}
-                {% endfor %}
-    {{ form_end(registrationForm) }}
+                    {{ form_widget(registrationForm) }}
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary btn-lg my-5">Register</button>
                 </div>
+    {{ form_end(registrationForm) }}
+               
             </div>
         </div>
-    </form>
+
 </div>
+
+
+
 {% endblock %}

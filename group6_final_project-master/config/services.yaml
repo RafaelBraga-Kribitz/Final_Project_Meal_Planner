@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     photo_directory: '../public/pictures'
+    user_photo_directory: '../public/pictures/users'
 
 
 services:
@@ -25,5 +26,9 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%photo_directory%'
+
+    App\Service\UserFileUploader:
+        arguments:
+            $targetDirectory: '%user_photo_directory%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

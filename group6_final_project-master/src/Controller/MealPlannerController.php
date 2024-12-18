@@ -106,7 +106,7 @@ final class MealPlannerController extends AbstractController
         $maxCalories = is_numeric($maxCaloriesInput) ? (int) $maxCaloriesInput : null; 
 
         $user=$this->getUser();
-       
+
         if (!$type && !$maxCalories) {
             $approvedRecipes = $recipeRepository->findBy(["status"=>"1"]);
         } else {            
@@ -114,7 +114,7 @@ final class MealPlannerController extends AbstractController
         }
 
            // approved recipies from current user in session
-           if ($user) {
+            if ($user) {
             if (!$type && !$maxCalories) {
                 $userRecipes = $recipeRepository->findBy([
                     'status' => true,
@@ -127,7 +127,6 @@ final class MealPlannerController extends AbstractController
 
         // $form = $this->createForm(MealPlannerType::class, $mealPlanner);
         
-       
         $form = $this->createForm(MealPlannerType::class, $mealPlanner, [
             'approved_recipes' => $approvedRecipes
         ]);

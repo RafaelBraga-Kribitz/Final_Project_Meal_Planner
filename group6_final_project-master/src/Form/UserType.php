@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserType extends AbstractType
 {
@@ -24,25 +26,36 @@ class UserType extends AbstractType
             ->add('last_name', TextType::class, array(
                 'attr' => ['pattern' => '[a-zA-Z]*']
             ))
-            ->add('photo', FileType::class, [
-                'label' => 'Image (png, jpg, jpeg file)',
-                'mapped' => false,
+            ->add('imageFile', VichFileType::class, [
                 'required' => false,
+                'allow_delete' => true,
+                'delete_label' => 'Remove file',
+                'download_uri' => false,
+                'download_label' => 'download file',
+                'asset_helper' => true,
+                'label' => 'Profile Picture',
+                'label_attr' => ["class" => "form-label"],
                 'constraints' => [
-                    new File([
-                        'maxSize' => '2048k',
-                        'mimeTypes' => [
-                            'photo/png',
-                            'photo/jpg',
-                            'photo/jpeg',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid image file',
-                    ])
+                  new Image([
+                    'maxSize' => '2048k',
+                    'mimeTypes' => [
+                        'image/png',
+                        'image/jpg',
+                        'image/jpeg',
+                    ],
+                    'mimeTypesMessage' => 'Please upload a valid image (jpeg, png, gif, jpg)',
+                    'maxSizeMessage' => 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}',
+        
+                  ])
                 ],
-            ])
-            ->add('phone_number', TelType::class, array(
-                'attr' => ['pattern' => '[0-9]*']
-            ))
+              ])
+            ->add('phone_number', TelType::class, [
+                'required' => false,
+                'attr' => [
+                    'pattern' => '^[0-9\-\+\s\(\)]{6,20}$',
+                    'placeholder' => '+XX XXX XXX XXX',
+                    'class' => 'form-control'
+                ]])
         ;
     }
 
