@@ -4,95 +4,64 @@
     {% if is_authenticated %}
         Welcome Back
     {% else %}
-        Welcome to NextMeal
+        NextMeal
     {% endif %}
 {% endblock %}
 
 {% block body %}
     {% if is_authenticated %}
-        {# Logged-in user content #}
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-5 text-center">
-                    <h1 class="mb-4">
-                        Welcome Back {{ app.user.firstName ?? app.user.username ?? 'there' }}! 👋
-                    </h1>
-                    <div class="dashboard-quick-links">
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <div class="admin-actions mb-4">
-                                <h2>Admin Quick Actions</h2>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-3">
-                                    <a href="{{ path('admin_app_recipe_index') }}" class="btn btn-primary">Recipe Dashboard</a>
-                                    <a href="{{ path('admin_app_pending') }}" class="btn btn-warning">Pending Recipes</a>
-                                    <a href="{{ path('app_user_index') }}" class="btn btn-info">User Management</a>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="user-actions mb-4">
-                                <h2>Quick Actions</h2>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-3">
-                                    <a href="{{ path('app_approved_recipes') }}" class="btn btn-primary">Browse Recipes</a>
-                                    <a href="{{ path('app_meal_planner_index') }}" class="btn btn-success">Meal Planner</a>
-                                    <a href="{{ path('app_recipe_new') }}" class="btn btn-info">Create Recipe</a>
-                                </div>
-                            </div>
-                        {% endif %}
+        <div class="container mt-4">
+            <h1 class="welcome-heading">
+                Welcome back, {{ app.user.firstName ?? app.user.username ?? 'there' }}! 👋
+            </h1>
+
+            {# Featured Recipe Section #}
+            <section class="featured-recipe mt-4">
+                <h2 class="section-heading">Featured recipe</h2>
+                <div class="featured-recipe-card">
+                    <img src="{{ asset('pictures/Featured_Recipe_Banner.png') }}" alt="Featured Recipe Banner" class="featured-banner">
+                    <div class="featured-content">
+                        <h2>Welcome to NextMeal</h2>
+                        <p>We help you plan your meals and make grocery shopping easy.</p>
+                        <a href="#" class="btn btn-primary get-started-btn">Get Started</a>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            {# Meal Plans Section #}
+            <section class="meal-plans mt-5">
+                <h2 class="section-heading">Your meal plans</h2>
+                <div class="recipe-grid">
+                    {% for recipe in featured_recipes|default([]) %}
+                        <div class="recipe-card">
+                            <img src="{{ asset('pictures/' ~ recipe.photo) }}" alt="{{ recipe.name }}" class="recipe-image">
+                            <div class="recipe-info">
+                                <span class="recipe-type">{{ recipe.type|upper }}</span>
+                                <h3 class="recipe-title">{{ recipe.name }}</h3>
+                                <div class="recipe-meta">
+                                    <div class="meta-item">
+                                        <i class="bi bi-fire"></i>
+                                        <span>{{ recipe.calories }} calories</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        <span>{{ recipe.cookingTime }} min cooking time</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="bi bi-clock-history"></i>
+                                        <span>{{ recipe.prepTime }} min prep time</span>
+                                    </div>
+                                </div>
+                                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="btn btn-outline-primary view-recipe-btn">VIEW RECIPE</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
         </div>
+
     {% else %}
-        {# Landing page content for non-authenticated users #}
-        <div class="landing-page">
-            <div class="hero-section text-center py-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <h1 class="display-4 mb-4">Welcome to NextMeal</h1>
-                            <p class="lead mb-4 mx-auto" style="max-width: 600px;">Your personal meal planning assistant. Create, discover, and organize delicious recipes.</p>
-                            <div class="cta-buttons mb-5">
-                                <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
-                                <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg me-3">Sign In</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="features-section py-5 bg-light">
-                <div class="container">
-                    <h2 class="text-center mb-5">Why Choose NextMeal?</h2>
-                    <div class="row justify-content-center align-items-stretch g-4">
-                        <div class="col-12 col-md-4 col-lg-4 d-flex">
-                            <div class="feature-card text-center p-4 w-100">
-                                <div class="feature-icon mb-3">
-                                    <i class="bi bi-calendar-check fs-1"></i>
-                                </div>
-                                <h3 class="h4 mb-3">Meal Planning</h3>
-                                <p class="mb-0">Organize your weekly meals with our intuitive planner.</p>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-4 d-flex">
-                            <div class="feature-card text-center p-4 w-100">
-                                <div class="feature-icon mb-3">
-                                    <i class="bi bi-search fs-1"></i>
-                                </div>
-                                <h3 class="h4 mb-3">Recipe Discovery</h3>
-                                <p class="mb-0">Explore a variety of recipes from our community.</p>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-4 d-flex">
-                            <div class="feature-card text-center p-4 w-100">
-                                <div class="feature-icon mb-3">
-                                    <i class="bi bi-share fs-1"></i>
-                                </div>
-                                <h3 class="h4 mb-3">Share Recipes</h3>
-                                <p class="mb-0">Create and share your favorite recipes with others.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {# Keep the existing landing page content for non-authenticated users #}
+        {{ parent() }}
     {% endif %}
 {% endblock %}
