@@ -15,6 +15,34 @@
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const createButton = document.querySelector('.create-recipe');
+                    const footer = document.querySelector('.footer');
+                    
+                    if (createButton && footer) {
+                        const BUFFER = 32; // 2rem = 32px
+                        
+                        function updateButtonPosition() {
+                            const footerRect = footer.getBoundingClientRect();
+                            const windowHeight = window.innerHeight;
+                            
+                            if (footerRect.top < windowHeight) {
+                                createButton.style.bottom = (windowHeight - footerRect.top + BUFFER) + 'px';
+                            } else {
+                                createButton.style.bottom = '70px'; // Default position
+                            }
+                        }
+                        
+                        // Update on scroll and resize
+                        window.addEventListener('scroll', updateButtonPosition);
+                        window.addEventListener('resize', updateButtonPosition);
+                        
+                        // Initial position
+                        updateButtonPosition();
+                    }
+                });
+            </script>
         {% endblock %}
 
         <link rel="stylesheet" href="{{ asset('styles/recipe.css') }}?v={{ random() }}">
