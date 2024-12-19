@@ -1,117 +1,105 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}MealPlanner{% endblock %}
-
-{% block body %}
-    <h1>MealPlanner</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Meals</th>
-                <td>{% for item in  meal_planner.getMealChosen %}
-                    <p>
-                        <a href="{{ path('app_recipe_show', {'id': item.id}) }}">
-                            {{ item.getName }}
-                        </a>
-                    </p> 
-                    {% endfor %}             
-            </td>
-            <tr>
-                <th>Chosen_date</th>
-                <td>{{ meal_planner.chosenDate ? meal_planner.chosenDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_meal_planner_index') }}">back to list</a>
-
-    <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}">edit</a>
-
-    {{ include('meal_planner/_delete_form.html.twig') }}
-{% endblock %} #}
+{# 
 
 {% extends 'base.html.twig' %}
 
-{% block title %}Meal Plan Details{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% block body %}
-<div class="container container-view mt-4 mb-4">
-    <!-- Запланований день -->
-    <div class="form-section mb-4">
-        <h4 class="meal-plan-date text-center">
-            Planned for: {{ meal_planner.chosenDate ? meal_planner.chosenDate|date('F j, Y') : 'No date specified' }}
-        </h4>
-    </div>
+<div class="container-detailsplanner">
+    <h1><span class="container-detailsplanner__mainlabel">Plan for</span> <hr> {{ meal_planner.chosenDate ? meal_planner.chosenDate|date('F j, Y') : 'No date specified' }}</h1>
+    
 
-    <div class="meal-plan-details">
-        <!-- Зображення -->
-        <div class="meal-plan-image text-center mb-4" style="max-width: 150px; margin: 0 auto;">
-            {% set firstRecipeWithPhoto = meal_planner.getMealChosen|filter(r => r.photo is not empty)|first %}
-            {% if firstRecipeWithPhoto is defined %}
-                <img src="{{ asset('pictures/' ~ firstRecipeWithPhoto.photo) }}" 
-                     alt="{{ firstRecipeWithPhoto.name }}" 
-                     class="img-fluid meal-plan-image__image"
-                     style="width: 100%; height: auto; object-fit: contain;">
-            {% else %}
-                <img src="https://placehold.co/150x150/9bdc28/white?text=No+Image" 
-                     alt="No Image" 
-                     class="img-fluid meal-plan-image__image">
-            {% endif %}
-        </div>
-
-        <!-- Деталі -->
-        <div class="meal-plan-details__items">
-            <div class="list-items">
-                <p class="list-item">Calories <br> 
-                    <span class="list-item-style">{{ meal_planner.getMealChosen|first.calories ?? 'N/A' }} kcal</span>
-                </p>
-                <p class="list-item">Preparation Time <br> 
-                    <span class="list-item-style">{{ meal_planner.getMealChosen|first.preparationTime ?? 'N/A' }} min</span>
-                </p>
-                <p class="list-item">Cooking Time <br> 
-                    <span class="list-item-style">{{ meal_planner.getMealChosen|first.cookingTime ?? 'N/A' }} min</span>
-                </p>
-                <p class="list-item">Author<br> 
-                    <span class="list-item-style">
-                        {{ meal_planner.getMealChosen|first.author.firstName ?? 'Unknown' }} 
-                        {{ meal_planner.getMealChosen|first.author.lastName ?? '' }}
-                    </span>
-                </p>
+    <div class="container-detailsplanner__wrapper">
+        <div class="meal-detail">
+            <div class="label">{{ meal_planner.getMealChosen|first.name ?? 'No Name Available' }}</div>
+            <div class="value">
+                {% set firstRecipeWithPhoto = meal_planner.getMealChosen|filter(r => r.photo is not empty)|first %}
+                {% if firstRecipeWithPhoto is defined %}
+                    <img src="{{ asset('pictures/' ~ firstRecipeWithPhoto.photo) }}" alt="{{ firstRecipeWithPhoto.name }}" style="width: 400px; height: auto;">
+                {% else %}
+                    <img src="https://placehold.co/400x267" alt="No Image">
+                {% endif %}
             </div>
         </div>
-
-        <!-- Інгредієнти та опис -->
-        <div class="col-md-6 mb-3">
-            <h3 class="meal-plan-details__title">Ingredients</h3>
-            <div class="list-items">
-                <p class="list-item-ingredient">
-                    {{ meal_planner.getMealChosen|first.ingredients ?? 'No Ingredients Available' }}
-                </p>
-            </div>
+        <div class="meal-detail">
+            <div class="label">Type of recipe</div>
+            <div class="value">{{ firstRecipeWithPhoto.type ?? 'N/A' }}</div>
         </div>
-        <div class="meal-plan-description mt-3">
-            <h3 class="meal-plan-details__title">Description</h3>
-            <p class="list-item-ingredient">
-                {{ meal_planner.getMealChosen|first.description ?? 'No Description Available' }}
-            </p>
+        <div class="meal-detail">
+            <div class="label">Caloric content</div>
+            <div class="value">{{ firstRecipeWithPhoto.calories ?? 'N/A' }} kcal</div>
+        </div>
+        <div class="meal-detail">
+            <div class="label">Ingredients</div>
+            <div class="value">{{ firstRecipeWithPhoto.ingredients ?? 'No Ingredients Available' }}</div>
+        </div>
+        <div class="meal-detail">
+            <div class="label">Recipe description</div>
+            <div class="value">{{ firstRecipeWithPhoto.description ?? 'No Description Available' }}</div>
+        </div>
+        <div class="meal-detail">
+            <div class="label">Recipe author</div>
+            <div class="value">{{ firstRecipeWithPhoto.author.firstName ?? 'Unknown' }} {{ firstRecipeWithPhoto.author.lastName ?? '' }}</div>
         </div>
     </div>
+    
+    <div class="actions">
+        <a href="{{ path('app_meal_planner_index') }}" class="btn btn-secondary">Back to List</a>
+        <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}" class="btn btn-warning">Edit</a>
+        {{ include('meal_planner/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}  #}
 
-    <!-- Кнопки -->
-    <div class="mt-5 d-flex justify-content-center gap-3">
-        <!-- Повернутись до списку -->
-        <a href="{{ path('app_meal_planner_index') }}" class="btn btn-secondary">
-            <i class="bi bi-arrow-left me-2"></i>Back to List
-        </a>
+{% extends 'base.html.twig' %}
 
-        <!-- Редагувати -->
-        <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}" class="btn btn-warning">
-            <i class="bi bi-pencil-square me-2"></i>Edit
-        </a>
+{% block title %}Details{% endblock %}
 
-        <!-- Видалити -->
-        {{ include('meal_planner/_delete_form.html.twig', { 'class': 'btn btn-danger' }) }}
+{% block body %}
+<div class="container-detailsplanner">
+    <h1><span class="container-detailsplanner__mainlabel">Plan for</span> <hr> {{ meal_planner.chosenDate ? meal_planner.chosenDate|date('F j, Y') : 'No date specified' }}</h1>
+    
+    <div class="container-detailsplanner__wrapper">
+        {% for recipe in meal_planner.getMealChosen %}
+        <div class="container-detailsplanner__wrapper-item">
+            <div class="meal-detail">
+                <div class="label">{{ recipe.name ?? 'No Name Available' }}</div>
+                <div class="value">
+                    {% if recipe.photo %}
+                        <img src="{{ asset('pictures/' ~ recipe.photo) }}" alt="{{ recipe.name }}" style="width: 400px; height: auto;">
+                    {% else %}
+                        <img src="https://placehold.co/400x267" alt="No Image">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="meal-detail">
+                <div class="label">Type of recipe</div>
+                <div class="value">{{ recipe.type ?? 'N/A' }}</div>
+            </div>
+            <div class="meal-detail">
+                <div class="label">Caloric content</div>
+                <div class="value">{{ recipe.calories ?? 'N/A' }} kcal</div>
+            </div>
+            <div class="meal-detail">
+                <div class="label">Ingredients</div>
+                <div class="value">{{ recipe.ingredients ?? 'No Ingredients Available' }}</div>
+            </div>
+            <div class="meal-detail">
+                <div class="label">Recipe description</div>
+                <div class="value">{{ recipe.description ?? 'No Description Available' }}</div>
+            </div>
+            <div class="meal-detail">
+                <div class="label">Recipe author</div>
+                <div class="value">{{ recipe.author.firstName ?? 'Unknown' }} {{ recipe.author.lastName ?? '' }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="actions">
+        <a href="{{ path('app_meal_planner_index') }}" class="btn btn-secondary">Back to List</a>
+        <a href="{{ path('app_meal_planner_edit', {'id': meal_planner.id}) }}" class="btn btn-warning">Edit</a>
+        {{ include('meal_planner/_delete_form.html.twig') }}
     </div>
 </div>
 {% endblock %}

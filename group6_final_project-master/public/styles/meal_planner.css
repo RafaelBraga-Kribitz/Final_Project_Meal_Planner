@@ -1,3 +1,4 @@
+/* ============================= Card start ============================= */
 .meal-planner-card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -94,3 +95,69 @@
     height: 150px; 
   }
 }
+
+/* ============================= Card end ============================= */
+
+
+/* ============================= Card details start ============================= */
+
+.container-detailsplanner{
+  max-width: 800px;
+  margin:  0 auto 50px;
+  padding: 20px;
+}
+
+.container-detailsplanner__wrapper {
+  margin-top: 70px;
+}
+
+.container-detailsplanner__mainlabel {
+  font-weight: normal;
+}
+
+.container-detailsplanner__wrapper-item {
+  border: 1px solid #d6d4d4;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+}
+
+
+.meal-detail {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.label {
+  flex: 0 0 30%; 
+  min-width: 150px; 
+  font-weight: bold;
+  padding-right: 20px; 
+}
+
+
+.value {
+  flex: 1 1 70%; 
+  word-wrap: break-word; 
+  max-width: 550px; 
+}
+
+
+img {
+  width: 100%;
+  height: auto; 
+  max-width: 400px; 
+  border-radius: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+
+
+
+/* ============================= Card details end ============================= */
