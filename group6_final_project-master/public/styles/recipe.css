@@ -9,7 +9,7 @@ body {
   font-family: Poppins, sans-serif; 
   font-size: 16px; 
   line-height: 1.6; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9; 
   margin: 0; 
   padding: 0; 
@@ -26,7 +26,7 @@ h1 {
   font-weight: 400;
   font-size: 18px;
   margin-top: -30px;
-  color: #5D5C59;
+  color: #303030;
 }
 
 .form-control-name {
@@ -35,7 +35,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;  
 }
@@ -46,7 +46,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -57,7 +57,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -68,7 +68,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -79,7 +79,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -90,7 +90,7 @@ h1 {
   border-radius: 8px; 
   padding: 10px 15px; 
   font-size: 1rem; 
-  color: #333; 
+  color: #303030; 
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -128,7 +128,7 @@ h1 {
 
 .image-hint {
   font-size: 14px;
-  color: #6c757d;
+  color: #303030;
   font-style: italic;
 }
 
@@ -145,24 +145,24 @@ h1 {
 .file-label {
   display: inline-block;
   background-color: #f8f9fa;
-  color: #9acd32;
+  color: #CBFC02;
   padding: 6px 12px;
   font-size: 14px;
   font-weight: bold;
-  border: 2px solid #9acd32;
+  border: 2px solid #CBFC02;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .file-label:hover {
-  background-color: #9acd32;
+  background-color: #CBFC02;
   color: #ffffff;
 }
 
 .file-name {
   font-size: 14px;
-  color: #6c757d;
+  color: #303030;
 }
 
 
@@ -245,7 +245,7 @@ h1 {
   display: inline-block;
   padding: 5px 23px;
   background-color: #D9D9D9;
-  color: #000;
+  color: #303030;
   border-radius: 9px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -256,13 +256,13 @@ h1 {
 
 .recipe-types .btn:hover {
   background-color: #b2b2b2;
-  color: #000;
+  color: #303030;
 }
 
 .recipe-types .btn.active {
-  background-color: #004466;
-  color: #fff;
-  border-color: #004466;
+  background-color: #CBFC02;
+  color: #303030;
+  border-color: #CBFC02;
 }
 
 .recipe-types input[type="radio"] {
@@ -270,9 +270,9 @@ h1 {
 }
 
 .recipe-types input[type="radio"]:checked + .btn {
-  background-color: #004466;
-  color: white;
-  border-color: #004466;
+  background-color: #CBFC02;
+  color: #303030;
+  border-color: #CBFC02;
 }
 
 /* ================== types button styling end ===================== */
@@ -286,8 +286,8 @@ h1 {
 
 #add-ingredient {
   padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
+  background-color: #CBFC02;
+  color: #303030;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -295,7 +295,8 @@ h1 {
 }
 
 #add-ingredient:hover {
-  background-color: #0056b3;
+  background-color: #6f8a01;
+  color: white;
 }
 
 #ingredients-list {
@@ -395,7 +396,7 @@ h1 {
 .list-item-style {
   font-size: 25px;
   font-weight: 800;
-  color: #5D5C59;
+  color: #303030;
   line-height: 1;
 }
 
@@ -430,7 +431,7 @@ h1 {
   font-weight: bold;
   text-align: right;
   padding-right: 10px;
-  color: #555;
+  color: #303030;
 }
 
 .recipe-data {

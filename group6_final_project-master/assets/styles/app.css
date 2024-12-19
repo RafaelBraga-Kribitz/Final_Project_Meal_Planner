@@ -488,6 +488,12 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 70px;
     right: 30px;
     z-index: 1000;
+    transition: bottom 0.3s ease;
+}
+
+/* Add a class for when the button should stop */
+.create-recipe--above-footer {
+    position: absolute;
 }
 
 .create-link {
@@ -808,7 +814,7 @@ h1 {
 }
 
 .meal-choices-grid {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
 }
@@ -1397,7 +1403,42 @@ h1 {
 }
 
 .hero-section {
-    padding: 120px 0 80px;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Ensure buttons are visible over the video */
+.cta-buttons {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make outline button more visible on video background */
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
 }
 
 .feature-card {
@@ -1482,6 +1523,141 @@ h1 {
 .cta-buttons .btn-outline-primary:hover {
     background-color: #b5e202;
     border-color: #b5e202;
+    color: var(--black);
+}
+
+.welcome-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.featured-recipe-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.featured-banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.featured-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.featured-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.featured-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #FFBF00;
+}
+
+.get-started-btn {
+    background-color: #e7ff00;
+    color: #000;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 500;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.recipe-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-info {
+    padding: 1.5rem;
+}
+
+.recipe-type {
+    background: #e8f7f2;
+    color: #00b076;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.recipe-title {
+    margin: 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.recipe-meta {
+    margin-bottom: 1rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.view-recipe-btn {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.75rem;
+}
+
+/* Override margin-top for hero section only */
+.landing-page .hero-section {
+    margin-top: -1rem !important; /* Counteract the mt-3 */
+}
+
+/* Specific styles for hero section buttons */
+.hero-content .btn-outline-light {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.hero-content .btn-outline-light:hover {
+    background-color: var(--white);
+    border-color: var(--white);
     color: var(--black);
 }
 
