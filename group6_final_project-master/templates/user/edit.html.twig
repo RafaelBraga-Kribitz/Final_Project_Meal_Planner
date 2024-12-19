@@ -10,22 +10,58 @@
 			<div class="col-md-8 col-lg-6">
 
 				{% if user.blocked == '1' %}
-					{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-					<a href="{{ path('app_user_block_list') }}">back to list</a>
-					{{ include('user/_delete_form.html.twig') }}
+					<!-- Box with a very light gray background -->
+					<div
+						style="background-color: #CCCCCC; padding: 20px; border-radius: 10px;">
+						<!-- Include the form with the Update button -->
+						{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+						<!-- Buttons container with flexbox for alignment -->
+						<div
+							class="d-flex justify-content-between mt-3">
+							<!-- Uniform white button for "Back to Blocked Users" -->
+							<a href="{{ path('app_user_block_list') }}" class="btn" style="background-color: white; color: #CCCCCC; font-size: 18px; padding: 12px 20px; border-radius: 5px; text-align: center; display: inline-block;">
+								Back to Blocked Users
+							</a>
+
+							<!-- Uniform white button for "Delete User" -->
+							<div>
+								{{ include('user/_delete_form.html.twig') }}
+							</div>
+						</div>
+					</div>
 
 				{% elseif user.blocked == '0' %}
-					{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-					<a href="{{ path('app_user_index') }}">back to list</a>
-					{{ include('user/_delete_form.html.twig') }}
+					<!-- Box with a very light gray background -->
+					<div
+						style="background-color: #CCCCCC; padding: 20px; border-radius: 10px;">
+						<!-- Include the form with the Update button -->
+						{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+						<!-- Buttons container with flexbox for alignment -->
+						<div
+							class="d-flex justify-content-between mt-3">
+							<!-- Uniform white button for "Back to User List" -->
+							<a href="{{ path('app_user_index') }}" class="btn" style="background-color: white; color: #CCCCCC; font-size: 18px; padding: 12px 20px; border-radius: 5px; text-align: center; display: inline-block;">
+								Back to User List
+							</a>
+
+							<!-- Uniform white button for "Delete User" -->
+							<div>
+								{{ include('user/_delete_form.html.twig') }}
+							</div>
+						</div>
+					</div>
 
 				{% endif %}
 			</div>
 		</div>
+	</div>
 
-		{# {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-		
-		    <a href="{{ path('app_user_index') }}">back to list</a>
-		
-		    {{ include('user/_delete_form.html.twig') }} #}
-	{% endblock %}
+
+	{# {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+																					
+																					    <a href="{{ path('app_user_index') }}">back to list</a>
+																					
+																					    {{ include('user/_delete_form.html.twig') }} #}
+{% endblock %}
